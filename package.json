@@ -1,0 +1,29 @@
+{
+  "name": "javalabsserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vuhanamm/javalabs_server.git"
+  },
+  "keywords": [
+    "javalabs"
+  ],
+  "author": "vuhanam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vuhanamm/javalabs_server/issues"
+  },
+  "homepage": "https://github.com/vuhanamm/javalabs_server#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  }
+}
