@@ -15,7 +15,7 @@ db.connect()
 // app.use(morgan('combined'))
 
 //use public folder
-app.use(express.static(path.join(__dirname, 'public/')))
+app.use(express.static(path.join(__dirname, 'public')))
 
 //body parse giúp xem đc params thông qua body. VD: req.body._ten_param
 app.use(express.urlencoded({ extended: true }))
@@ -26,12 +26,12 @@ app.engine('hbs', handlebars({
     extname: '.hbs'
 }));
 app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'resources/views'))
+app.set('views', path.join(__dirname, 'resources','views'))
 
 //set route
 route(app)
 
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`App listening at http://localhost:${port}`)
 })

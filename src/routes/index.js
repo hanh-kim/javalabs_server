@@ -1,4 +1,5 @@
-const loginRoute = require('./login')
+const loginRoute = require('./login_route')
+const lessonRoute = require('./lesson_route')
 
 function route(app) {
     app.use('/', loginRoute)
@@ -23,9 +24,7 @@ function route(app) {
     app.get('/import.html', (req, res) => {
         res.render('import')
     })
-    app.get('/lesson.html', (req, res) => {
-        res.render('lesson')
-    })
+    app.use('/lesson.html', lessonRoute)
     app.get('/lesson_detail.html', (req, res) => {
         res.render('lesson_detail')
     })
