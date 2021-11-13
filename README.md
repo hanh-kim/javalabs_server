@@ -1,8 +1,9 @@
 # javalabs_server
 Cách chạy server:
 B1: Clone project, checkout nhánh develop
-B2: Mở app, mở terminal, chạy lênh: npm start
-B3: Mở trình duyệt, gõ: localhost:{port}  - hiện tại đang là port 3000 => localhost:3000
+B2: Mở app, mở terminal, chạy lênh: npm install
+B3: Chạy lệnh: npm start
+B4: Mở trình duyệt, gõ: localhost:{port}  - hiện tại đang là port 3000 => localhost:3000
 
 
 // Các api đã chạy:
