@@ -8,7 +8,7 @@ route.get('/get-topic', lessonController.getTopicByLessonId)
 
 route.get('/get-quiz', lessonController.getQuizByLessonId)
 
-route.get('/get-all-lesson', lessonController.getAllByLesson)
+route.get('/get-all-in-lesson', lessonController.getAllByLesson)
 
 module.exports = route
 

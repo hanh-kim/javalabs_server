@@ -7,7 +7,7 @@ B3: Mở trình duyệt, gõ: localhost:{port}  - hiện tại đang là port 30
 
 // Các api đã chạy:
 
-http://localhost:3000/api/get-all-in : trả về 1 list lesson, lesson sẽ chứa tất cả các trường của lesson, quiz và topic
+http://localhost:3000/api/get-all-in-lesson : trả về 1 list lesson, lesson sẽ chứa tất cả các trường của lesson, quiz và topic
 http://localhost:3000/api/get-topic : trả về tất cả topic
 http://localhost:3000/api/get-lesson: trả về toàn bộ lesson
 http://localhost:3000/api/get-quiz: trả về toàn bộ quiz
