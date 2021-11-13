@@ -5,14 +5,17 @@ const { extname } = require('path');
 const path = require('path')
 const app = express()
 const db = require('./config/db')
-const route = require('./routes')
+const route = require('./app/routes')
+
 const port = 3000
 
 //connect to mongodb
 db.connect()
 
 //HTTP logger
-// app.use(morgan('combined'))
+app.use(morgan('combined'))
+
+
 
 //use public folder
 app.use(express.static(path.join(__dirname, 'public')))
