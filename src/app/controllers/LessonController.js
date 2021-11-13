@@ -3,6 +3,7 @@ const Lesson = require('../model/LessonModel')
 const xlsx = require('xlsx');
 const Topic = require('../model/TopicModel')
 const Quiz = require('../model/QuizModel')
+const LessonAll = require('../model/LessonAllModel')
 
 class LessonController {
 
@@ -63,11 +64,12 @@ class LessonController {
                         lessonId: newLesson._id,
                         STT: xlData[i].STT,
                         question: xlData[i].question,
-                        answer: [
-                            xlData[i].answerA,
-                            xlData[i].answerB,
-                            xlData[i].answerC,
-                            xlData[i].answerD
+                        answer: [{
+                            A: xlData[i].answerA,
+                            B: xlData[i].answerB,
+                            C: xlData[i].answerC,
+                            D: xlData[i].answerD
+                        }
                         ],
                         correctAnswer: xlData[i].correctAnswer,
 
@@ -110,6 +112,30 @@ class LessonController {
 
     getTopicByLessonId(req, res, next) {
         Topic.find({}).then(topic => res.json(topic)).catch(e => res.json({ status: faild }))
+    }
+
+    getQuizByLessonId(req, res, next) {
+        Quiz.find({}).then(quiz => res.json(quiz)).catch(e => res.json({ status: faild }))
+    }
+
+
+
+
+    async getAllByLesson(req, res, next) {
+        const lesson = await Lesson.find({})
+        var listData = [];
+        for (var ls of lesson) {
+            const topic = await Topic.find({ lessonId: ls._id })
+            const quiz = await Quiz.find({ lessonId: ls._id })
+
+            const lessonAll = LessonAll({
+                lesson: ls,
+                topic: topic,
+                quiz: quiz
+            })
+            listData.push(lessonAll);
+        }
+        res.json(listData)
     }
 
 }
