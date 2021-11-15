@@ -1,14 +1,14 @@
 const express = require('express')
 const route = express.Router()
-const lessonController = require('../controllers/LessonController')
+const apiController = require('../controllers/ApiController')
 
-route.get('/get-lesson', lessonController.getAllLesson)
+route.get('/get-lesson', apiController.getAllLesson)
 
-route.get('/get-topic', lessonController.getTopicByLessonId)
+route.get('/get-topic', apiController.getTopicByLessonId)
 
-route.get('/get-quiz', lessonController.getQuizByLessonId)
+route.get('/get-quiz', apiController.getQuizByLessonId)
 
-route.get('/get-all-in-lesson', lessonController.getAllByLesson)
+route.get('/get-all-in-lesson', apiController.getAllByLesson)
 
 module.exports = route
 

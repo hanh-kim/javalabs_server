@@ -78,26 +78,26 @@
                         <table class="table table-bordered table-hover">
                             <thead class="bill-header cs">
                                 <tr>
-                                    <th id="trs-hd" class="col-lg-1">Lesson</th>
-                                    <th id="trs-hd" class="col-lg-2">Number of Topics</th>
-                                    <th id="trs-hd" class="col-lg-3">Number of Learners</th>
-                                    <th id="trs-hd" class="col-lg-2">Have Quiz</th>
+                                    <th id="trs-hd" class="col-lg-5">Lesson</th>
+                                    <th id="trs-hd" class="col-lg-5">Number of Topics</th>
                                     <th id="trs-hd" class="col-lg-2">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                {{#each lesson}}
                                 <tr>
-                                    <td class="text-center">What is Java</td>
-                                    <td class="text-center">3</td>
-                                    <td class="text-center">113</td>
-                                    <td class="text-center">True</td>
-                                    <td><button class="btn btn-danger" style="margin-left: 5px;" type="submit"><i
-                                                class="fa fa-trash" style="font-size: 15px;"></i></button><a
-                                            class="btn btn-danger" role="button"
-                                            style="margin-left: 5px;background-color: rgb(98,155,241);"
-                                            href="lesson_detail.html"><i class="fa fa-info-circle"
-                                                style="font-size: 15px;"></i></a></td>
+                                    <td class="text-center">{{this.title}}</td>
+                                    <td class="text-center">{{this.totalTopic}}</td>
+                                    <td>
+                                        <a class="btn btn-danger" role="button"
+                                            style="margin-left: 5px;background-color: rgb(98,155,241); padding-left: 25px; padding-right: 25px; margin-top: 5px; margin-bottom: 5px"
+                                            href="lesson_detail.html">DETAIL</a>
+                                        <button class="btn btn-danger"
+                                            style="margin-left: 5px; padding-left: 25px; padding-right: 25px; margin-top: 5px; margin-bottom: 5px"
+                                            type="button">DELETE</button>
+                                    </td>
                                 </tr>
+                                {{/each}}
                             </tbody>
                         </table>
                     </div>
