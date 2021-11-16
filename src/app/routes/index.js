@@ -29,7 +29,7 @@ function route(app) {
     })
     app.use('/lesson.html', lessonRoute)
 
-    app.use('/lesson_detail.html', lessonDetailRoute)
+    app.use('/lesson_detail', lessonDetailRoute)
     app.get('/pending_request.html', (req, res) => {
         res.render('pending_request')
     })

@@ -13,7 +13,7 @@ const port = 3000
 db.connect()
 
 //HTTP logger
-app.use(morgan('combined'))
+// app.use(morgan('combined'))
 
 
 

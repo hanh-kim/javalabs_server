@@ -6,7 +6,7 @@ route.get('/get-lesson', apiController.getAllLesson)
 
 route.get('/get-topic', apiController.getTopicByLessonId)
 
-route.get('/get-quiz', apiController.getQuizByLessonId)
+route.get('/get-quiz', apiController.getQuestionByLessonId)
 
 route.get('/get-all-in-lesson', apiController.getAllByLesson)
 
