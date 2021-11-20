@@ -1,6 +1,6 @@
 const express = require('express')
 const handlebars = require('express-handlebars');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const { extname } = require('path');
 const path = require('path')
 const app = express()
@@ -36,6 +36,6 @@ app.set('views', path.join(__dirname, 'resources', 'views'))
 route(app)
 
 
-app.listen(port, () => {
-    console.log(`App listening at http://localhost:${port}`)
+app.listen(process.env.PORT || 3000, () => {
+    console.log(`App listening at ${process.env.PORT}`)
 })
