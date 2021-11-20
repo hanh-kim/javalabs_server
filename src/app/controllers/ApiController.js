@@ -2,8 +2,9 @@ const Lesson = require('../model/LessonModel')
 const Topic = require('../model/TopicModel')
 const Quiz = require('../model/QuizModel')
 const Question = require('../model/QuestionModel')
+const Program = require('../model/ProgramModel')
+const ProgramDetail = require('../model/ProgramDetailModel')
 
-//he
 class ApiController {
 
     //get all lesson:
@@ -39,7 +40,7 @@ class ApiController {
         })
     }
 
-    //get all
+    //get all in lesson
     async getAllByLesson(req, res, next) {
         var lesson = await Lesson.find({})
         var listData = [];
@@ -54,6 +55,70 @@ class ApiController {
         res.json(listData)
     }
 
+    //get Program:
+    getProgram(req, res, next) {
+        var listData = []
+        Program.find({}).then(program => {
+            for (var pr of program) {
+                // var data = Buffer.from(pr.image.data, "binary").toString("base64");
+                var programMd = new ProgramMD(pr._id, pr.name, pr.image)
+                listData.push(programMd)
+            }
+            res.json(listData)
+
+        }).catch(e => res.json({ error: e, message: 'Có lỗi' }))
+    }
+
+    //get program detail by id:
+    getProgramDetail(req, res, next) {
+        if (req.query.programId == null) {
+            res.json({
+                message: 'Cần truyền param programId',
+                status: false
+            })
+            return;
+        }
+        ProgramDetail.find({ programId: req.query.programId }).then(programDetail => {
+            res.json(programDetail)
+        }).catch(e => res.json({ message: 'Có lỗi', error: e }))
+    }
+
+    //get all in program
+    async getAllInProgram(req, res, next) {
+        var program = await Program.find({})
+        var listData = [];
+        for (var pr of program) {
+            const programDetail = await ProgramDetail.find({ programId: pr._id })
+            // var data = Buffer.from(pr.image.data, "binary").toString("base64");
+            var program = new ProgramWithDetail(pr._id, pr.name, programDetail, pr.image)
+            listData.push(program)
+        }
+        res.json(listData)
+    }
+}
+
+class ProgramMD {
+    _id
+    name
+    image
+    constructor(id, name, image) {
+        this._id = id
+        this.name = name
+        this.image = image
+    }
+}
+
+class ProgramWithDetail {
+    _id
+    name
+    image
+    programDetail
+    constructor(id, name, programDetail, image) {
+        this._id = id
+        this.name = name
+        this.image = image
+        this.programDetail = programDetail
+    }
 }
 class QuizMD {
     _id
