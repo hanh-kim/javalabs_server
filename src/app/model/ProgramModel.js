@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const Program = new Schema({
     name: { type: String, default: '' },
-    image: { data: Buffer, contentType: String },
+    image: { type: String, default: '' },
 })
 
 module.exports = mongoose.model('Program', Program)

@@ -60,8 +60,8 @@ class ApiController {
         var listData = []
         Program.find({}).then(program => {
             for (var pr of program) {
-                var data = Buffer.from(pr.image.data, "binary").toString("base64");
-                var programMd = new ProgramMD(pr._id, pr.name, data)
+                // var data = Buffer.from(pr.image.data, "binary").toString("base64");
+                var programMd = new ProgramMD(pr._id, pr.name, pr.image)
                 listData.push(programMd)
             }
             res.json(listData)
@@ -70,7 +70,7 @@ class ApiController {
     }
 
     //get program detail by id:
-    getProgramDetail(req, res, nex) {
+    getProgramDetail(req, res, next) {
         if (req.query.programId == null) {
             res.json({
                 message: 'Cần truyền param programId',
@@ -82,6 +82,19 @@ class ApiController {
             res.json(programDetail)
         }).catch(e => res.json({ message: 'Có lỗi', error: e }))
     }
+
+    //get all in program
+    async getAllInProgram(req, res, next) {
+        var program = await Program.find({})
+        var listData = [];
+        for (var pr of program) {
+            const programDetail = await ProgramDetail.find({ programId: pr._id })
+            // var data = Buffer.from(pr.image.data, "binary").toString("base64");
+            var program = new ProgramWithDetail(pr._id, pr.name, programDetail, pr.image)
+            listData.push(program)
+        }
+        res.json(listData)
+    }
 }
 
 class ProgramMD {
@@ -92,6 +105,19 @@ class ProgramMD {
         this._id = id
         this.name = name
         this.image = image
+    }
+}
+
+class ProgramWithDetail {
+    _id
+    name
+    image
+    programDetail
+    constructor(id, name, programDetail, image) {
+        this._id = id
+        this.name = name
+        this.image = image
+        this.programDetail = programDetail
     }
 }
 class QuizMD {

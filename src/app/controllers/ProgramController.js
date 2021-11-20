@@ -11,15 +11,10 @@ class ProgramController {
     }
 
     importProgram(req, res, next) {
-        // req.files['avatar'][0] -> File
-        //  req.files['gallery'] -> Array
-
+        console.log(req.files['image'][0])
         Program({
             name: req.body.name,
-            image: {
-                data: fs.readFileSync(path.join(__dirname + '../../../public/uploads/' + req.files['image'][0].filename)),
-                contentType: 'image/png'
-            }
+            image: '/uploads/' + req.files['image'][0].filename
         }).save().then(program => {
             const workbook = xlsx.readFile(req.files['excel_file'][0].path)
             let lessonSheet = workbook.Sheets[workbook.SheetNames[0]]

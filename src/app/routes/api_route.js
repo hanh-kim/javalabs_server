@@ -14,5 +14,7 @@ route.get('/get-program', apiController.getProgram)
 
 route.get('/get-program-detail', apiController.getProgramDetail)
 
+route.get('/get-all-in-program', apiController.getAllInProgram)
+
 module.exports = route
 
