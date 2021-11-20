@@ -5,6 +5,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Detail Lesson</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="assets/css/Community-ChatComments.css">
+    <link rel="stylesheet" href="assets/css/Data-Table-1.css">
+    <link rel="stylesheet" href="assets/css/Data-Table.css">
+    <link rel="stylesheet" href="assets/css/Drag-and-Drop-File-Input.css">
+    <link rel="stylesheet" href="assets/css/File-Input---Beautiful-Input--Button-Approach-Jasny-Bootstrap.css">
+    <link rel="stylesheet" href="assets/css/Forum---Thread-listing-1.css">
+    <link rel="stylesheet" href="assets/css/Forum---Thread-listing.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/List-item.css">
+    <link rel="stylesheet" href="assets/css/Table-With-Search-1.css">
+    <link rel="stylesheet" href="assets/css/Table-With-Search.css">
 </head>
 
 <body>
@@ -15,58 +32,26 @@
             <table class="table table-bordered table-hover">
                 <thead class="bill-header cs">
                     <tr>
-                        <th id="trs-hd" class="col-lg-2">Topic</th>
-                        <th id="trs-hd" class="col-lg-6">Content</th>
-                        <th id="trs-hd" class="col-lg-2">Số người học</th>
+                        <th id="trs-hd" class="col-lg-3">Topic</th>
+                        <th id="trs-hd" class="col-lg-7">Content</th>
                         <th id="trs-hd" class="col-lg-2">Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {{#each topic}}
                     <tr>
-                        <td>What is Java?</td>
-                        <td><br>Java is a popular programming language, created in 1995.<br><br>It is owned by Oracle,
-                            and more than 3 billion devices run Java.<br><br>It is used for:<br><br>Mobile applications
-                            (specially Android apps)<br><br>Desktop applications<br><br>Web
-                            applications<br><br>Web servers and application servers<br><br>Games<br><br>Database
-                            connection<br><br><br>And much, much more!<br><br></td>
-                        <td class="text-center">10</td>
-                        <td><button class="btn btn-success" style="margin-left: 5px;" type="submit"><i
-                                    class="fa fa-pencil" style="font-size: 15px;"></i></button><button
-                                class="btn btn-danger" style="margin-left: 5px;" type="submit"><i class="fa fa-trash"
-                                    style="font-size: 15px;"></i></button></td>
+                        <td>{{this.title}}</td>
+                        <td>{{this.content}}</td>
+                        <td><a class="btn btn-danger" role="button"
+                                style="margin-left: 5px;background-color: rgb(98,155,241); padding-left: 25px; padding-right: 25px; margin-top: 5px; margin-bottom: 5px"
+                                href="lesson_detail.html">DETAIL</a>
+                            <button class="btn btn-danger"
+                                style="margin-left: 5px; padding-left: 25px; padding-right: 25px; margin-top: 5px; margin-bottom: 5px"
+                                type="button">DELETE</button>
+                        </td>
                     </tr>
-                    <tr>
-                        <td>How Java works?</td>
-                        <td><br>Java works on different platforms (Windows, Mac, Linux, Raspberry Pi, etc.)<br><br>It is
-                            one of the most popular programming language in the world<br><br>It is easy to learn and
-                            simple to use<br><br>It is open-source and free<br><br>It
-                            is secure, fast and powerful<br><br>It has a huge community support (tens of millions of
-                            developers)<br><br>Java is an object oriented language which gives a clear structure to
-                            programs and allows code to be reused, lowering
-                            development costs<br><br>As Java is close to C++ and C#, it makes it easy for programmers to
-                            switch to Java or vice versa<br><br></td>
-                        <td class="text-center">3</td>
-                        <td><button class="btn btn-success" style="margin-left: 5px;" type="submit"><i
-                                    class="fa fa-pencil" style="font-size: 15px;"></i></button><button
-                                class="btn btn-danger" style="margin-left: 5px;" type="submit"><i class="fa fa-trash"
-                                    style="font-size: 15px;"></i></button></td>
-                    </tr>
-                    <tr>
-                        <td>Let's revise</td>
-                        <td><br>Java works on different platforms (Windows, Mac, Linux, Raspberry Pi, etc.)<br><br>It is
-                            one of the most popular programming language in the world<br><br>It is easy to learn and
-                            simple to use<br><br>It is open-source and free<br><br>It
-                            is secure, fast and powerful<br><br>It has a huge community support (tens of millions of
-                            developers)<br><br>Java is an object oriented language which gives a clear structure to
-                            programs and allows code to be reused, lowering
-                            development costs<br><br>As Java is close to C++ and C#, it makes it easy for programmers to
-                            switch to Java or vice versa<br><br></td>
-                        <td class="text-center">3</td>
-                        <td><button class="btn btn-success" style="margin-left: 5px;" type="submit"><i
-                                    class="fa fa-pencil" style="font-size: 15px;"></i></button><button
-                                class="btn btn-danger" style="margin-left: 5px;" type="submit"><i class="fa fa-trash"
-                                    style="font-size: 15px;"></i></button></td>
-                    </tr>
+                    {{/each}}
+
                 </tbody>
             </table>
         </div>
@@ -79,64 +64,41 @@
             <table class="table table-bordered table-hover">
                 <thead class="bill-header cs">
                     <tr>
-                        <th id="trs-hd" class="col-lg-10">Question</th>
-                        <th id="trs-hd" class="col-lg-2">Action</th>
+                        <th id="trs-hd" class="col-lg-7">Question</th>
+                        <th id="trs-hd" class="col-lg-5">Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {{#each quiz}}
                     <tr>
                         <td>
-                            <h5><br>Question 1:&nbsp;Which of the following statements is true about java?<br><br></h5>
-                            <br>
-                            <h6><br>A. Write once, bug everywhere<br></h6>
-                            <h6 style="color: rgb(30,26,227);"><br>B. Write one, run everywhere<br></h6>
-                            <h6><br>C. I don't know<br></h6>
-                            <h6><br>D. All of above<br></h6>
+                            <h5><br>Question {{this.STT}}:&nbsp;{{this.question}}<br></h5>
+                            <h6><br>A: {{this.answerA}}<br></h6>
+                            <h6><br>B: {{this.answerB}}<br></h6>
+                            <h6><br>C: {{this.answerC}}<br></h6>
+                            <h6><br>D: {{this.answerD}}<br></h6>
+                            <h6 style="color: rgb(42, 218, 57); font-weight: 600;"><br>Correct Answer:
+                                {{this.correctAnswer}}<br></h6>
+
                         </td>
-                        <td><button class="btn btn-success" style="margin-left: 5px;" type="submit"><i
-                                    class="fa fa-pencil" style="font-size: 15px;"></i></button><button
-                                class="btn btn-danger" style="margin-left: 5px;" type="submit"><i class="fa fa-trash"
-                                    style="font-size: 15px;"></i></button>
-                            <a class="btn btn-danger" role="button"
-                                style="margin-left: 5px;background-color: rgb(248,215,42);" href="discussion.html"><i
-                                    class="fa fa-comments-o" style="font-size: 15px;"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
                         <td>
-                            <h5><br>Question 2:&nbsp;What is a correct syntax to output "Hello World" in Java?<br><br>
-                            </h5><br>
-                            <h6><br>A. echo("Hello World");<br><br></h6>
-                            <h6 style="color: rgb(30,26,227);"><br>B. System.out.println("Hello World");<br><br></h6>
-                            <h6><br>C. print ("Hello World");<br><br></h6>
-                            <h6><br>D. Console.WriteLine("Hello World");<br><br></h6>
-                        </td>
-                        <td><button class="btn btn-success" style="margin-left: 5px;" type="submit"><i
-                                    class="fa fa-pencil" style="font-size: 15px;"></i></button><button
-                                class="btn btn-danger" style="margin-left: 5px;" type="submit"><i class="fa fa-trash"
-                                    style="font-size: 15px;"></i></button>
-                            <a class="btn btn-danger" role="button"
-                                style="margin-left: 5px;background-color: rgb(248,215,42);" href="discussion.html"><i
-                                    class="fa fa-comments-o" style="font-size: 15px;"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h5><br>Question 3:&nbsp;How to initialization a String in Java?<br><br></h5><br>
-                            <h6><br>A. string txt = "Xin chao";<br><br></h6>
-                            <h6><br>B. String txt = "Xin chao"<br><br></h6>
-                            <h6><br>C. var txt = "Xin chao";<br><br></h6>
-                            <h6 style="color: rgb(30,26,227);"><br>D. String txt = "Xin chao";<br><br></h6>
-                        </td>
-                        <td><button class="btn btn-success" style="margin-left: 5px;" type="submit"><i
-                                    class="fa fa-pencil" style="font-size: 15px;"></i></button><button
-                                class="btn btn-danger" style="margin-left: 5px;" type="submit"><i class="fa fa-trash"
-                                    style="font-size: 15px;"></i></button>
-                            <a class="btn btn-danger" role="button"
-                                style="margin-left: 5px;background-color: rgb(248,215,42);" href="discussion.html"><i
-                                    class="fa fa-comments-o" style="font-size: 15px;"></i></a>
+                            <div style="justify-content: center;display: flex; flex-wrap: wrap;">
+
+                                <button class="btn btn-primary"
+                                    style="margin-left: 5px; padding-left: 25px; padding-right: 25px; margin-top: 5px; margin-bottom: 5px; color: aliceblue;background-color: rgb(98,155,241);"
+                                    type="button">UPDATE</button>
+                                <div style="justify-content: center;display: flex; flex-wrap: wrap;">
+                                    <a class="btn btn-danger" role="button"
+                                        style="margin-left: 5px;background-color: rgb(243, 213, 44); padding-left: 25px; padding-right: 25px; margin-top: 5px; margin-bottom: 5px"
+                                        href="discussion">CHAT</a>
+                                    <button class="btn btn-danger"
+                                        style="margin-left: 5px; padding-left: 25px; padding-right: 25px; margin-top: 5px; margin-bottom: 5px"
+                                        type="button">DELETE</button>
+                                </div>
                         </td>
                     </tr>
+                    {{/each}}
+
                 </tbody>
             </table>
         </div>
