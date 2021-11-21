@@ -36,7 +36,16 @@ class ApiController {
             return;
         }
         Quiz.findOne({ lessonId: req.query.lessonId }).then(quiz => {
-            Question.find({ quizId: quiz._id }).then(question => res.json(question))
+            if (quiz == null) {
+                res.json({})
+                return
+            }
+            Question.find({ quizId: quiz._id }).then(question => res.json(question)).catch(e => {
+                res.json({ message: "Lỗi", status: false, err: e })
+                return
+            })
+        }).catch(e => {
+            res.json({ message: "Lỗi", status: false, err: e })
         })
     }
 

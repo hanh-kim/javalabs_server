@@ -93,9 +93,11 @@
                                             <a class="btn btn-danger" role="button"
                                                 style="margin-left: 5px;background-color: rgb(98,155,241); padding-left: 25px; padding-right: 25px; margin-top: 5px; margin-bottom: 5px"
                                                 href="lesson_detail?lessonId={{this._id}}">DETAIL</a>
-                                            <button class="btn btn-danger"
-                                                style="margin-left: 5px; padding-left: 25px; padding-right: 25px; margin-top: 5px; margin-bottom: 5px"
-                                                type="button">DELETE</button>
+                                            <form action="lesson.html/detete_lesson" method="post">
+                                                <button class="btn btn-danger"
+                                                    style="margin-left: 5px; padding-left: 25px; padding-right: 25px; margin-top: 5px; margin-bottom: 5px"
+                                                    type="submit" name="id" value="{{this._id}}">DELETE</button>
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>
