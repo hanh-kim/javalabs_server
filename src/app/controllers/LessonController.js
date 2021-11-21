@@ -6,8 +6,6 @@ const Quiz = require('../model/QuizModel')
 const Question = require('../model/QuestionModel')
 
 class LessonController {
-
-
     index(req, res) {
         Lesson.find({}).then(
             lesson => {
@@ -36,7 +34,7 @@ class LessonController {
 
             Lesson({
                 title: xlData[0].title,
-                totalTopic: xlData[0].totalTopic,
+                totalTopic: xlsx.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[1]]).length,
             }).save().then((newLesson) => {
                 //import quiz:
                 Quiz({
@@ -92,11 +90,6 @@ class LessonController {
                         return;
                     })
                 }
-
-                res.status(201).json({
-                    success: true,
-                    message: 'Create successfully',
-                })
             }).catch((error) => {
                 console.log(error);
                 res.status(500).json({
@@ -106,12 +99,52 @@ class LessonController {
                 });
                 return;
             });
-
-
+            res.redirect('/lesson.html')
 
         } catch (e) {
-            res.send('Lỗi ' + e)
+            res.json({
+                success: false,
+                message: 'Create failed. Please try again.',
+                error: error.message,
+            })
         }
+    }
+
+
+    //detete lesson:
+    deleteLesson(req, res, next) {
+        if (req.body.id == null) {
+            res.json({ message: 'Cần truyền params id', status: false })
+            return
+        }
+        Lesson.deleteOne({ _id: req.body.id }, function (err) {
+            if (err) {
+                res.json({ message: 'Delete failed', status: false })
+                return
+            }
+            Topic.deleteMany({ lessonId: req.body.id }, function (err) {
+                if (err) {
+                    res.json({ message: 'Delete failed', status: false })
+                    return
+                }
+            })
+            Quiz.findOne({ lessonId: req.body.id }).then(quiz => {
+                Quiz.deleteOne({ lessonId: req.body.id }, function (err) {
+                    if (err) {
+                        res.json({ message: 'Delete failed', status: false })
+                        return
+                    }
+                })
+                Question.deleteMany({ quizId: quiz._id }, function (err) {
+                    if (err) {
+                        res.json({ message: 'Delete failed', status: false })
+                        return
+                    }
+                })
+            })
+
+            res.redirect('/lesson.html')
+        })
     }
 
 }

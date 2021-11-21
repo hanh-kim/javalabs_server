@@ -22,4 +22,6 @@ route.get('/', lessonController.index)
 
 route.post('/add_lesson', upload.single('file_excel'), lessonController.importLessonFromExcelFile)
 
+route.post('/detete_lesson', lessonController.deleteLesson)
+
 module.exports = route
