@@ -10,7 +10,16 @@ class ApiController {
 
     //get all lesson:
     getAllLesson(req, res, next) {
-        Lesson.find({}).then(lesson => res.json(lesson)).catch(e => res.json({ status: faild }))
+        Lesson.find({}).then(lesson => res.json({
+            isSuccess: true,
+            code: 200,
+            message: "success",
+            data: lesson,
+        })).catch(e => res.json({
+            status: false,
+            message: e.message,
+            code: 404
+        }))
     }
 
     //get topic by id
@@ -18,13 +27,22 @@ class ApiController {
         if (req.query.lessonId == null) {
             res.json({
                 message: 'Cần truyền param lessonId',
-                status: false
+                isSuccess: false
             })
             return;
         }
         Topic.find({ lessonId: req.query.lessonId }).then(topic => {
-            res.json(topic)
-        }).catch(e => res.json({ status: 'Có lỗi xảy ra' }))
+            res.json({
+                isSuccess: true,
+                code: 200,
+                message: "success",
+                data: topic,
+            })
+        }).catch(e => res.json({
+            isSuccess: false,
+            message: e.message,
+            code: 404
+        }))
     }
 
     //get question by id
@@ -32,21 +50,40 @@ class ApiController {
         if (req.query.lessonId == null) {
             res.json({
                 message: 'Cần truyền param lessonId',
-                status: false
+                isSuccess: false
             })
             return;
         }
         Quiz.findOne({ lessonId: req.query.lessonId }).then(quiz => {
             if (quiz == null) {
-                res.json({})
+                res.json({
+                    isSuccess: true,
+                    code: 200,
+                    message: "success",
+                    data: [],
+                })
                 return
             }
-            Question.find({ quizId: quiz._id }).then(question => res.json(question)).catch(e => {
-                res.json({ message: "Lỗi", status: false, err: e })
+            Question.find({ quizId: quiz._id }).then(question => res.json({
+                isSuccess: true,
+                code: 200,
+                message: "success",
+                data: question,
+            })).catch(e => {
+                res.json({
+                    status: false,
+                    message: e.message,
+                    code: 404
+                })
                 return
             })
         }).catch(e => {
-            res.json({ message: "Lỗi", status: false, err: e })
+            res.json({
+                isSuccess: false,
+                status: false,
+                message: e.message,
+                code: 404
+            })
         })
     }
 
@@ -62,7 +99,12 @@ class ApiController {
             var lessonAll = new LessonAll(ls.id, ls.title, ls.totalTopic, topic, quizMD)
             listData.push(lessonAll)
         }
-        res.json(listData)
+        res.json({
+            isSuccess: true,
+            code: 200,
+            message: "success",
+            data: listData
+        })
     }
 
     //get Program:
@@ -76,7 +118,11 @@ class ApiController {
             }
             res.json(listData)
 
-        }).catch(e => res.json({ error: e, message: 'Có lỗi' }))
+        }).catch(e => res.json({
+            status: false,
+            message: e.message,
+            code: 404
+        }))
     }
 
     //get program detail by id:
@@ -90,7 +136,11 @@ class ApiController {
         }
         ProgramDetail.find({ programId: req.query.programId }).then(programDetail => {
             res.json(programDetail)
-        }).catch(e => res.json({ message: 'Có lỗi', error: e }))
+        }).catch(e => res.json({
+            isSuccess: false,
+            message: e.message,
+            code: 404
+        }))
     }
 
     //get all in program
@@ -131,9 +181,16 @@ class ApiController {
             mark: mark,
             username: username
         }).save().then(user => {
-            res.json({ message: "Thành công", isSuccess: true })
-            console.log(user)
-        }).catch(e => res.json({ message: "Thất bại", isSuccess: false }))
+            res.json({
+                message: "Thành công",
+                isSuccess: true,
+                code: 200
+            })
+        }).catch(e => res.json({
+            isSuccess: false,
+            message: e.message,
+            code: 404
+        }))
     }
 
 
@@ -151,8 +208,23 @@ class ApiController {
                 mark = req.body.mark
             }
             user.mark += Number(req.body.mark)
-            user.save().then(user => res.json({ message: "Thành công", isSuccess: true, user: user })).catch(e => res.json({ message: 'Lỗi', isSuccess: false, error: e.message }))
-        }).catch(e => res.json({ message: 'Lỗi', isSuccess: false, error: e.message }))
+            user.save().then(user => res.json(
+                {
+                    message: "success",
+                    isSuccess: true,
+                    code: 200,
+                    user: user
+                })).catch(e => res.json(
+                    {
+                        isSuccess: false,
+                        message: e.message,
+                        code: 404
+                    }))
+        }).catch(e => res.json({
+            isSuccess: false,
+            message: e.message,
+            code: 404
+        }))
     }
 }
 
