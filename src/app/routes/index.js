@@ -2,8 +2,9 @@ const loginRoute = require('./login_route')
 const lessonRoute = require('./lesson_route')
 const apiRoute = require('./api_route')
 const lessonDetailRoute = require('./lesson_detail_route')
-const programRoute = require('./program_route')
-
+const programRoute = require('./add_program_route')
+const proRoute = require('./program_route')
+const detailProgram = require('./detail_program_route')
 
 function route(app) {
     app.use('/', loginRoute)
@@ -40,12 +41,11 @@ function route(app) {
         res.render('profile')
     })
     app.use('/add_program', programRoute)
-    app.get('/program_detail.html', (req, res) => {
-        res.render('program_detail')
-    })
-    app.get('/programs.html', (req, res) => {
-        res.render('programs')
-    })
+
+    app.use('/program_detail', detailProgram)
+
+    app.use('/programs.html', proRoute)
+
     app.get('/quiz.html', (req, res) => {
         res.render('quiz')
     })
