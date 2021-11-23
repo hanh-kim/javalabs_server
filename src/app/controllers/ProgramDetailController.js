@@ -12,7 +12,7 @@ class ProgramDetailController {
         ProgramDetailModel.find({ programId: req.query.programId }).then(program => {
             var listProgramDetail = []
             for (var i of program) {
-                var pr = new ProgramDetailMD(i.content, i.title, i._id)
+                var pr = new ProgramDetailMD(i.content, i.title, i._id, req.query.programId)
                 listProgramDetail.push(pr)
                 console.log(pr)
             }
@@ -21,26 +21,20 @@ class ProgramDetailController {
     }
 
 
-    // //delete topic:
-    // async deleteTopic(req, res, next) {
-    //     if (req.body.id_topic == null) {
-    //         res.json({ message: 'Cần truyền params id', status: false })
-    //         return
-    //     }
-    //     Topic.deleteOne({ _id: req.body.id_topic }, function (err) {
-    //         if (err) {
-    //             res.json({ message: 'Delete failed', status: false, err: err })
-    //             return
-    //         }
-    //     })
-    //     const ls = await Lesson.findById(req.body.lessonId);
-    //     ls.totalTopic = ls.totalTopic - 1
-    //     await ls.save().catch(err => {
-    //         res.json({ message: 'Delete failed', status: false, err: err })
-    //         return
-    //     })
-    //     res.redirect('/lesson_detail?lessonId=' + req.body.lessonId)
-    // }
+    //delete topic:
+    async deleteProgramDetail(req, res, next) {
+        if (req.body.id == null) {
+            res.json({ message: 'Cần truyền params id', status: false })
+            return
+        }
+        ProgramDetailModel.deleteOne({ _id: req.body.id }, function (err) {
+            if (err) {
+                res.json({ message: 'Delete failed', isSuccess: false, err: err.message })
+                return
+            }
+        })
+        res.redirect('/program_detail?programId=' + req.body.programId)
+    }
 
     // //delete quiz:
     // deleteQuiz(req, res, next) {
@@ -63,11 +57,13 @@ class ProgramDetailController {
 class ProgramDetailMD {
     content
     title
+    programId
     _id
-    constructor(content, title, _id) {
+    constructor(content, title, _id, programId) {
         this.content = content
         this.title = title
         this._id = _id
+        this.programId = programId
     }
 }
 

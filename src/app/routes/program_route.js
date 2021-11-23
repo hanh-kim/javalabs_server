@@ -4,5 +4,6 @@ const programController = require('../controllers/ProgramController')
 
 route.get('/', programController.index)
 
+route.post('/detele-programs', programController.deleteProgram)
 
 module.exports = route

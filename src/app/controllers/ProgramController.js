@@ -16,6 +16,26 @@ class ProgramController {
             }).catch(e => res.json({ status: failed, message: 'Lỗi', error: e.message }))
     }
 
+    deleteProgram(req, res, next) {
+        if (req.body.id == null) {
+            res.json({ message: 'Cần truyền params id', isSuccess: false })
+            return
+        }
+        Program.deleteOne({ _id: req.body.id }, function (err) {
+            if (err) {
+                res.json({ message: 'Delete failed', isSuccess: false })
+                return
+            }
+            ProgramDetail.deleteMany({ programId: req.body.id }, function (err) {
+                if (err) {
+                    res.json({ message: 'Delete failed', isSuccess: false })
+                    return
+                }
+            })
+        })
+        res.redirect('/programs.html')
+    }
+
 }
 
 
