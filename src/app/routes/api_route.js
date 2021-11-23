@@ -16,5 +16,10 @@ route.get('/get-program-detail', apiController.getProgramDetail)
 
 route.get('/get-all-in-program', apiController.getAllInProgram)
 
+route.post('/insert-user', apiController.insertUser)
+
+route.post('/update-mark-user', apiController.updateUser)
+
+
 module.exports = route
 
