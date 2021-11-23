@@ -21,72 +21,26 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {{#each program}}
                     <tr>
-                        <td class="text-center">Hello Word</td>
-                        <td><br>
-                            <p
-                                style="font-family: 'Cutive Mono', monospace;background-color: #f0f0f0;padding-left: 10px;padding-right: 10px;padding-top: 2px;padding-bottom: 2px;white-space: nowrap;overflow-x: scroll;">
-                                <br>public class HelloWorld {<br><br>&nbsp;&nbsp;public static void main(String[] args)
-                                {<br><br>&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Hello World, I'm
-                                JavaLabs");<br><br>&nbsp;&nbsp;}<br><br>}<br><br></p><br><br>
-                        </td>
-                        <td><button class="btn btn-success" style="margin-left: 5px;" type="submit"><i
-                                    class="fa fa-pencil" style="font-size: 15px;"></i></button><button
-                                class="btn btn-danger" style="margin-left: 5px;" type="submit"><i class="fa fa-trash"
-                                    style="font-size: 15px;"></i></button></td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">Add Two Number</td>
-                        <td><br>
-                            <p
-                                style="font-family: 'Cutive Mono', monospace;background-color: #f0f0f0;padding-left: 10px;padding-right: 10px;padding-top: 2px;padding-bottom: 2px;white-space: nowrap;overflow-x: scroll;">
-                                public class AddTwoNumber {<br><br>&nbsp;&nbsp;public static void main(String[] args)
-                                {<br><br>&nbsp;&nbsp;&nbsp;&nbsp;int firstNumber = 1;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;int
-                                secondNumber = 3;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;int
-                                sum = firstNumber + secondNumber;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("The
-                                sum of number is: "+sum);<br><br>&nbsp;&nbsp;}<br><br>}</p><br>
-                        </td>
-                        <td><button class="btn btn-success" style="margin-left: 5px;" type="submit"><i
-                                    class="fa fa-pencil" style="font-size: 15px;"></i></button><button
-                                class="btn btn-danger" style="margin-left: 5px;" type="submit"><i class="fa fa-trash"
-                                    style="font-size: 15px;"></i></button></td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">If else</td>
+                        <td class="text-center">{{this.title}}</td>
                         <td>
                             <p
-                                style="font-family: 'Cutive Mono', monospace;background-color: #f0f0f0;padding-left: 10px;padding-right: 10px;padding-top: 2px;padding-bottom: 2px;white-space: nowrap;overflow-x: scroll;">
-                                <br>public class IfElseDemo {<br><br>&nbsp;&nbsp;public static void main(String[] args)
-                                {<br><br>&nbsp;&nbsp;&nbsp;&nbsp;int firstNumber = 1;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;int
-                                secondNumber = 3;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;if(firstNumber
-                                &gt; secondNumber){<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Case
-                                1");<br><br>&nbsp;&nbsp;&nbsp;&nbsp;}else{<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Case
-                                2");<br><br>&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;}<br><br>}<br><br><br></p><br>
+                                style="font-family: 'Cutive Mono', monospace;background-color: #f0f0f0;padding-left: 10px;padding-right: 10px;padding-top: 2px;padding-bottom: 2px;white-space: wrap;overflow-x: scroll;">
+                                <br>{{this.content}}<br>
+                            </p>
                         </td>
-                        <td><button class="btn btn-success" style="margin-left: 5px;" type="submit"><i
-                                    class="fa fa-pencil" style="font-size: 15px;"></i></button><button
-                                class="btn btn-danger" style="margin-left: 5px;" type="submit"><i class="fa fa-trash"
-                                    style="font-size: 15px;"></i></button></td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">Switch Statement</td>
-                        <td>
-                            <p
-                                style="font-family: 'Cutive Mono', monospace;background-color: #f0f0f0;padding-left: 10px;padding-right: 10px;padding-top: 2px;padding-bottom: 2px;white-space: nowrap;overflow-x: scroll;">
-                                public class SwitchCase {<br><br>&nbsp;&nbsp;public static void main(String[] args)
-                                {<br><br>&nbsp;&nbsp;&nbsp;&nbsp;int firstNumber =
-                                1;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;switch(firstNumber){<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case
-                                1 :<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Case
-                                1");<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case
-                                2:<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Case
-                                2");<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default:&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Defaut
-                                case");<br><br>&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;}<br><br>}</p><br><br>
+                        <td><a class="btn btn-danger" role="button"
+                                style="margin-left: 5px;background-color: rgb(98,155,241); padding-left: 27px; padding-right: 27px; margin-top: 5px; margin-bottom: 5px"
+                                href="lesson_detail?lessonId={{this._id}}">UPDATE</a>
+                            <form action="lesson.html/detete_lesson" method="post">
+                                <button class="btn btn-danger"
+                                    style="margin-left: 5px; padding-left: 27px; padding-right: 27px; margin-top: 5px; margin-bottom: 5px"
+                                    type="submit" name="id" value="{{this._id}}">DELETE</button>
+                            </form>
                         </td>
-                        <td><button class="btn btn-success" style="margin-left: 5px;" type="submit"><i
-                                    class="fa fa-pencil" style="font-size: 15px;"></i></button><button
-                                class="btn btn-danger" style="margin-left: 5px;" type="submit"><i class="fa fa-trash"
-                                    style="font-size: 15px;"></i></button></td>
                     </tr>
+                    {{/each}}
                 </tbody>
             </table>
         </div>
