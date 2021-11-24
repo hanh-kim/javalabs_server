@@ -2,6 +2,7 @@ const Process = require('../model/ProcessModel')
 
 class ProcessController {
     insertOrUpdate(req, res) {
+
         if (req.body.userId == null || req.body.lessonId == null) {
             res.json({
                 code: 404,
@@ -17,9 +18,9 @@ class ProcessController {
             lessonId: req.body.userId,
         }).then(process => {
             if (process == null) {
-                var arr = [];
+                var arr = []
                 if (req.body.completed != null)
-                    arr.push(req.body.completed)
+                    eval(req.body.completed);
                 Process({
                     userId: req.body.userId,
                     lessonId: req.body.userId,
@@ -44,9 +45,11 @@ class ProcessController {
             } else {
                 //change value:
                 if (req.body.completed != null) {
+                    var arrParams = eval(req.body.completed);
                     var arrCompleted = process.completed;
-                    for (var i of req.body.completed) {
-                        arrCompleted.push(i)
+                    for (var i in arrParams) {
+                        if (!process.completed.includes(arrParams[i]))
+                            arrCompleted.push(arrParams[i])
                     }
                     process.completed = arrCompleted
                 }
@@ -87,7 +90,7 @@ class ProcessController {
     }
 
     getProcess(req, res) {
-        if(req.query.userId == null || req.query.lessonId == null){
+        if (req.query.userId == null || req.query.lessonId == null) {
             res.json({
                 code: 404,
                 message: 'Thiếu params. Cần truyền userId, lessonId',
@@ -111,14 +114,14 @@ class ProcessController {
     }
 
     getProcessByUser(req, res) {
-        if(req.query.userId == null){
+        if (req.query.userId == null) {
             res.json({
                 code: 404,
                 message: 'Thiếu params. Cần truyền userId',
                 isSuccess: false
             })
         }
-        Process.find({userId: req.query.userId }).then(process => {
+        Process.find({ userId: req.query.userId }).then(process => {
             res.json({
                 code: 200,
                 message: 'Thành công',
