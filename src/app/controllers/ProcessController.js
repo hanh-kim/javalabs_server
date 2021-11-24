@@ -23,7 +23,7 @@ class ProcessController {
                     eval(req.body.completed);
                 Process({
                     userId: req.body.userId,
-                    lessonId: req.body.userId,
+                    lessonId: req.body.lessonId,
                     completed: arr,
                     status: req.body.status,
                     quizStatus: req.body.quizStatus,
