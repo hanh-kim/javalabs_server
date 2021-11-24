@@ -20,6 +20,8 @@ route.post('/insert-user', apiController.insertUser)
 
 route.post('/update-mark-user', apiController.updateUser)
 
+route.get('/get-user', apiController.getUser)
+
 
 module.exports = route
 

@@ -226,6 +226,28 @@ class ApiController {
             code: 404
         }))
     }
+
+    getUser(req, res) {
+        if (req.query.gmail == null) {
+            res.json({
+                isSuccess: false,
+                message: "Cần truyền param gmail",
+                code: 404
+            })
+        }
+        User.findOne({ gmail: req.query.gmail }).then(user => {
+            res.json({
+                message: "success",
+                isSuccess: true,
+                code: 200,
+                data: user
+            })
+        }).catch(e => res.json({
+            isSuccess: false,
+            message: e.message,
+            code: 404
+        }))
+    }
 }
 
 class ProgramMD {
