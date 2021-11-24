@@ -19,14 +19,14 @@ class ProcessController {
         }).then(process => {
             if (process == null) {
                 var arr = []
-                if (req.body.completed != null)
-                    eval(req.body.completed);
+                if (req.body.completed != null && req.body.completed != "")
+                    arr.push(req.body.completed)
                 Process({
                     userId: req.body.userId,
                     lessonId: req.body.lessonId,
                     completed: arr,
-                    status: req.body.status,
-                    quizStatus: req.body.quizStatus,
+                    status: (req.body.status != null && req.body.status != '') ? req.body.status : -1,
+                    quizStatus: (req.body.quizStatus != null && req.body.quizStatus != '') ? req.body.quizStatus : -1,
                     quizMarked: req.body.quizMarked,
                     dateTime: req.body.dateTime,
                     lastModify: req.body.dateTime
@@ -44,13 +44,13 @@ class ProcessController {
                 }))
             } else {
                 //change value:
-                if (req.body.completed != null) {
-                    var arrParams = eval(req.body.completed);
+                if (req.body.completed != null && req.body.completed != "") {
+                    // var arrParams = eval(req.body.completed);
                     var arrCompleted = process.completed;
-                    for (var i in arrParams) {
-                        if (!process.completed.includes(arrParams[i]))
-                            arrCompleted.push(arrParams[i])
-                    }
+                    // for (var i in arrParams) {
+                    if (!process.completed.includes(req.body.completed.toString().trim()))
+                        arrCompleted.push(req.body.completed.toString().trim())
+                    // }
                     process.completed = arrCompleted
                 }
                 if (req.body.status != null) {
