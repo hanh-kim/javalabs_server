@@ -94,7 +94,7 @@ class ProcessController {
                 isSuccess: false
             })
         }
-        Process.findOne({ lessonId: req.query.lessonId, userId: req.query.userId }).then(process => {
+        Process.find({ lessonId: req.query.lessonId, userId: req.query.userId }).then(process => {
             res.json({
                 code: 200,
                 message: 'Thành công',
