@@ -15,7 +15,7 @@ class ProcessController {
 
         Process.findOne({
             userId: req.body.userId,
-            lessonId: req.body.userId,
+            lessonId: req.body.lessonId,
         }).then(process => {
             if (process == null) {
                 var arr = []
