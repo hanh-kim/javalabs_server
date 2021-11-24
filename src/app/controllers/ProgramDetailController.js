@@ -14,7 +14,6 @@ class ProgramDetailController {
             for (var i of program) {
                 var pr = new ProgramDetailMD(i.content, i.title, i._id, req.query.programId)
                 listProgramDetail.push(pr)
-                console.log(pr)
             }
             res.render('program_detail', { program: listProgramDetail });
         }).catch(e => res.json({ status: false, message: 'Lỗi', error: e.message }))
