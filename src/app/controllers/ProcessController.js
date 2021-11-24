@@ -2,13 +2,6 @@ const Process = require('../model/ProcessModel')
 
 class ProcessController {
     insertOrUpdate(req, res) {
-        // userId: { type: String, default: '' },
-        // lessonId: { type: String, default: '' },
-        // completed: { type: Number, default: 0 },
-        // status: { type: Number, default: -1 },
-        // quizStatus: { type: Number, default: -1 },
-        // quizMarked: { type: Number, default: 0 },
-        // dateTime: { type: String, default: '' }
         if (req.body.userId == null || req.body.lessonId == null) {
             res.json({
                 code: 404,
@@ -60,13 +53,13 @@ class ProcessController {
                 if (req.body.status != null) {
                     process.status = req.body.status
                 }
-                if(req.body.quizStatus != null){
+                if (req.body.quizStatus != null) {
                     process.quizStatus = req.body.quizStatus
                 }
-                if(req.body.quizMarked != null){
+                if (req.body.quizMarked != null) {
                     process.quizMarked = req.body.quizMarked
                 }
-                if(req.body.quizStatus != null){
+                if (req.body.quizStatus != null) {
                     process.lastModify = req.body.dateTime
                 }
 
@@ -93,6 +86,53 @@ class ProcessController {
         })
     }
 
+    getProcess(req, res) {
+        if(req.query.userId == null || req.query.lessonId == null){
+            res.json({
+                code: 404,
+                message: 'Thiếu params. Cần truyền userId, lessonId',
+                isSuccess: false
+            })
+        }
+        Process.findOne({ lessonId: req.query.lessonId, userId: req.query.userId }).then(process => {
+            res.json({
+                code: 200,
+                message: 'Thành công',
+                isSuccess: true,
+                data: process
+            })
+        }).catch(e => {
+            res.json({
+                code: 404,
+                message: 'Thất bại',
+                isSuccess: false
+            })
+        })
+    }
+
+    getProcessByUser(req, res) {
+        if(req.query.userId == null){
+            res.json({
+                code: 404,
+                message: 'Thiếu params. Cần truyền userId',
+                isSuccess: false
+            })
+        }
+        Process.find({userId: req.query.userId }).then(process => {
+            res.json({
+                code: 200,
+                message: 'Thành công',
+                isSuccess: true,
+                data: process
+            })
+        }).catch(e => {
+            res.json({
+                code: 404,
+                message: 'Thất bại',
+                isSuccess: false
+            })
+        })
+    }
 }
 
 

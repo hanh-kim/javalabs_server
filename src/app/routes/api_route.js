@@ -23,5 +23,10 @@ route.post('/update-mark-user', apiController.updateUser)
 
 route.post('/update-process', processController.insertOrUpdate)
 
+route.get('/get-process', processController.getProcess)
+
+route.get('/get-all-process', processController.getProcessByUser)
+
+
 module.exports = route
 
