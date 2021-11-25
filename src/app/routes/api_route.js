@@ -2,6 +2,8 @@ const express = require('express')
 const route = express.Router()
 const apiController = require('../controllers/ApiController')
 const processController = require('../controllers/ProcessController')
+const userController = require('../controllers/UserController')
+
 
 route.get('/get-lesson', apiController.getAllLesson)
 
@@ -17,11 +19,11 @@ route.get('/get-program-detail', apiController.getProgramDetail)
 
 route.get('/get-all-in-program', apiController.getAllInProgram)
 
-route.post('/insert-user', apiController.insertUser)
+route.post('/insert-user', userController.insertUser)
 
-route.post('/update-mark-user', apiController.updateUser)
+route.post('/update-mark-user', userController.updateUser)
 
-route.get('/get-user', apiController.getUser)
+route.get('/get-user', userController.getUser)
 
 route.post('/update-process', processController.insertOrUpdate)
 

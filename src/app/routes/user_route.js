@@ -1,9 +1,9 @@
 const express = require('express')
 const route = express.Router()
-const loginController = require('../controllers/LoginController')
+const userController = require('../controllers/UserController')
 
-//GET /login
-route.get('/', loginController.index)
+//GET /
+route.get('/', userController.index)
 
 
 module.exports = route

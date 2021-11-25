@@ -100,66 +100,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {{#each user}}
                                         <tr>
                                             <td><img class="rounded-circle mr-2" width="30" height="30"
-                                                    src="assets/img/avatars/avatar1.jpeg">Airi Satou</td>
-                                            <td>nguyenvana@gmail.com</td>
-                                            <td>33</td>
+                                                    src="assets/img/avatars/avatar1.jpeg">{{this.username}}</td>
+                                            <td>{{this.gmail}}</td>
+                                            <td>{{this.mark}}</td>
                                         </tr>
-                                        <tr>
-                                            <td><img class="rounded-circle mr-2" width="30" height="30"
-                                                    src="assets/img/avatars/avatar2.jpeg">Angelica Ramos</td>
-                                            <td>nguyenvanb@gmail.com<br></td>
-                                            <td>47</td>
-                                        </tr>
-                                        <tr>
-                                            <td><img class="rounded-circle mr-2" width="30" height="30"
-                                                    src="assets/img/avatars/avatar3.jpeg">Ashton Cox</td>
-                                            <td>nguyenvanc@gmail.com</td>
-                                            <td>66</td>
-                                        </tr>
-                                        <tr>
-                                            <td><img class="rounded-circle mr-2" width="30" height="30"
-                                                    src="assets/img/avatars/avatar4.jpeg">Bradley Greer</td>
-                                            <td>nguyenvand@gmail.com<br></td>
-                                            <td>41</td>
-                                        </tr>
-                                        <tr>
-                                            <td><img class="rounded-circle mr-2" width="30" height="30"
-                                                    src="assets/img/avatars/avatar5.jpeg">Brenden Wagner</td>
-                                            <td>nguyenvane@gmail.com<br></td>
-                                            <td>28</td>
-                                        </tr>
-                                        <tr>
-                                            <td><img class="rounded-circle mr-2" width="30" height="30"
-                                                    src="assets/img/avatars/avatar1.jpeg">Brielle Williamson</td>
-                                            <td>nguyenvanf@gmail.com<br></td>
-                                            <td>61</td>
-                                        </tr>
-                                        <tr>
-                                            <td><img class="rounded-circle mr-2" width="30" height="30"
-                                                    src="assets/img/avatars/avatar2.jpeg">Bruno Nash<br></td>
-                                            <td>nguyenvanb@gmail.com<br></td>
-                                            <td>38</td>
-                                        </tr>
-                                        <tr>
-                                            <td><img class="rounded-circle mr-2" width="30" height="30"
-                                                    src="assets/img/avatars/avatar3.jpeg">Caesar Vance</td>
-                                            <td>nguyenvanb@gmail.com<br></td>
-                                            <td>21</td>
-                                        </tr>
-                                        <tr>
-                                            <td><img class="rounded-circle mr-2" width="30" height="30"
-                                                    src="assets/img/avatars/avatar4.jpeg">Cara Stevens</td>
-                                            <td>nguyenvanb@gmail.com<br></td>
-                                            <td>46</td>
-                                        </tr>
-                                        <tr>
-                                            <td><img class="rounded-circle mr-2" width="30" height="30"
-                                                    src="assets/img/avatars/avatar5.jpeg">Cedric Kelly</td>
-                                            <td>nguyenvanb@gmail.com<br></td>
-                                            <td>22</td>
-                                        </tr>
+                                        {{/each}}
                                     </tbody>
                                     <tfoot>
                                         <tr>

@@ -22,20 +22,20 @@ class LessonDetailController {
             const quiz = await Quiz.findOne({ lessonId: req.query.lessonId })
             var listQuestion = []
             const question = await QuestionModel.find({ quizId: quiz._id }).sort({ STT: 1 })
-            for (var i of question) {
+            for (var i in question) {
                 var cr = '';
-                if (i.correctAnswer == 1) {
+                if (question[i].correctAnswer == 1) {
                     cr = 'A';
-                } else if (i.correctAnswer == 2) {
+                } else if (question[i].correctAnswer == 2) {
                     cr = 'B';
-                } else if (i.correctAnswer == 3) {
+                } else if (question[i].correctAnswer == 3) {
                     cr = 'C';
-                } else if (i.correctAnswer == 4) {
+                } else if (question[i].correctAnswer == 4) {
                     cr = 'D';
                 } else {
                     cr = ''
                 }
-                var qz = new QuizMD(i.STT, i.quizId, i.question, i.answer[0], i.answer[1], i.answer[2], i.answer[3], cr, i._id, req.query.lessonId)
+                var qz = new QuizMD(Number(i)+1, question[i].quizId, question[i].question, question[i].answer[0], question[i].answer[1], question[i].answer[2], question[i].answer[3], cr, question[i]._id, req.query.lessonId)
                 listQuestion.push(qz)
             }
             res.render('lesson_detail', { quiz: listQuestion, topic: listTopic })

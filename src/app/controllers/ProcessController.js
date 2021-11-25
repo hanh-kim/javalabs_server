@@ -39,7 +39,7 @@ class ProcessController {
                     })
                 }).catch(e => res.json({
                     code: 404,
-                    message: 'Thất bại',
+                    message: e.message,
                     isSuccess: false
                 }))
             } else {
@@ -53,10 +53,10 @@ class ProcessController {
                     // }
                     process.completed = arrCompleted
                 }
-                if (req.body.status != null) {
+                if (req.body.status != null && req.body.status != '') {
                     process.status = req.body.status
                 }
-                if (req.body.quizStatus != null) {
+                if (req.body.quizStatus != null && req.body.quizStatus != '') {
                     process.quizStatus = req.body.quizStatus
                 }
                 if (req.body.quizMarked != null) {
@@ -75,7 +75,7 @@ class ProcessController {
                     })
                 }).catch(e => res.json({
                     code: 404,
-                    message: 'Thất bại',
+                    message: e.message,
                     isSuccess: false
                 }))
 
@@ -107,7 +107,7 @@ class ProcessController {
         }).catch(e => {
             res.json({
                 code: 404,
-                message: 'Thất bại',
+                message: e.message,
                 isSuccess: false
             })
         })
@@ -131,7 +131,7 @@ class ProcessController {
         }).catch(e => {
             res.json({
                 code: 404,
-                message: 'Thất bại',
+                message: e.message,
                 isSuccess: false
             })
         })

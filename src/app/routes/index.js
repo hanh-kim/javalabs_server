@@ -5,6 +5,7 @@ const lessonDetailRoute = require('./lesson_detail_route')
 const programRoute = require('./add_program_route')
 const proRoute = require('./program_route')
 const detailProgram = require('./detail_program_route')
+const userRoute = require('./user_route')
 
 function route(app) {
     app.use('/', loginRoute)
@@ -53,9 +54,7 @@ function route(app) {
     app.get('/register.html', (req, res) => {
         res.render('register')
     })
-    app.get('/user.html', (req, res) => {
-        res.render('user')
-    })
+    app.use('/user.html', userRoute)
 
 }
 module.exports = route
