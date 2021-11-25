@@ -10,7 +10,6 @@ class ProgramController {
                 for (var i of program) {
                     var pr = new ProgramMD(i.image, i.name, i._id)
                     listProgram.push(pr)
-                    console.log(pr)
                 }
                 res.render('programs', { program: listProgram });
             }).catch(e => res.json({ status: failed, message: 'Lỗi', error: e.message }))

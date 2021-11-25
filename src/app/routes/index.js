@@ -6,6 +6,8 @@ const programRoute = require('./add_program_route')
 const proRoute = require('./program_route')
 const detailProgram = require('./detail_program_route')
 const userRoute = require('./user_route')
+const homeRoute = require('./home_route')
+
 
 function route(app) {
     app.use('/', loginRoute)
@@ -14,9 +16,7 @@ function route(app) {
 
     app.use('/login.html', loginRoute)
 
-    app.get('/404.html', (req, res) => {
-        res.render('404')
-    })
+
     app.get('/add_page.html', (req, res) => {
         res.render('add_page')
     })
@@ -26,9 +26,7 @@ function route(app) {
     app.get('/forgot-password.html', (req, res) => {
         res.render('forgot-password')
     })
-    app.get('/index.html', (req, res) => {
-        res.render('home')
-    })
+    app.use('/index.html', homeRoute)
     app.get('/import.html', (req, res) => {
         res.render('import')
     })
@@ -55,6 +53,10 @@ function route(app) {
         res.render('register')
     })
     app.use('/user.html', userRoute)
+
+    app.get('*', function (req, res) {
+        res.render('404')
+    });
 
 }
 module.exports = route

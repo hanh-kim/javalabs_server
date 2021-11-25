@@ -96,14 +96,14 @@ class UserController{
 
     //GET /
     index(req, res){
-        User.find({}).then(user => {
+        User.find({}).sort({mark : 1}).then(user => {
             var arr = []
             for(var i of user){
                 var obj = new UserMD(i.gmail, i.mark, i.username)
                 arr.push(obj)
             }
 
-            res.render('user', {user: arr})
+            res.render('user', {user: arr, totalUser : user.length})
         }).catch(e => {
             res.render('404')
         })

@@ -49,9 +49,9 @@
                             <li class="nav-item dropdown no-arrow" role="presentation">
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link"
                                         data-toggle="dropdown" aria-expanded="false" href="#"><span
-                                            class="d-none d-lg-inline mr-2 text-gray-600 small">Valerie Luna</span><img
+                                            class="d-none d-lg-inline mr-2 text-gray-600 small">Admin</span><img
                                             class="border rounded-circle img-profile"
-                                            src="assets/img/avatars/avatar1.jpeg"></a>
+                                            src="assets/img/avatars/user.png"></a>
                                     <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
                                         <a class="dropdown-item" role="presentation" href="#"><i
                                                 class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a><a
@@ -76,7 +76,11 @@
                             <p class="text-primary m-0 font-weight-bold">User Info</p>
                         </div>
                         <div class="card-body">
-                            <div class="row">
+                            <div class="col-md-10 ">
+                                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite" style="color: rgb(146, 146, 146); font-weight: 800;">
+                                        Total: {{totalUser}} user</p>
+                                </div>
+                            <div class="row" style="display: flex; justify-content: space-between;">
                                 <div class="col-md-6 text-nowrap">
                                     <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
                                         <label>Show&nbsp;<select
@@ -86,60 +90,41 @@
                                                 <option value="50">50</option>
                                                 <option value="100">100</option>
                                             </select>&nbsp;</label>
+                                        
                                     </div>
                                 </div>
+                                
                             </div>
                             <div class="table-responsive table mt-2" id="dataTable" role="grid"
                                 aria-describedby="dataTable_info">
                                 <table class="table dataTable my-0" id="dataTable">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Score</th>
+                                            <td><strong>Name</strong></td>
+                                            <td><strong>Email</strong></td>
+                                            <td><strong>Score</strong></td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {{#each user}}
                                         <tr>
                                             <td><img class="rounded-circle mr-2" width="30" height="30"
-                                                    src="assets/img/avatars/avatar1.jpeg">{{this.username}}</td>
+                                                    src="assets/img/avatars/user.png">{{this.username}}</td>
                                             <td>{{this.gmail}}</td>
                                             <td>{{this.mark}}</td>
                                         </tr>
                                         {{/each}}
                                     </tbody>
-                                    <tfoot>
+                                    {{!-- <tfoot>
                                         <tr>
                                             <td><strong>Name</strong></td>
                                             <td><strong>Email</strong></td>
                                             <td><strong>Score</strong></td>
-                                            <td></td>
-                                            <td></td>
                                         </tr>
-                                    </tfoot>
+                                    </tfoot> --}}
                                 </table>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6 align-self-center">
-                                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">
-                                        Total 100 user</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <nav
-                                        class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                        <ul class="pagination">
-                                            <li class="page-item disabled"><a class="page-link" href="#"
-                                                    aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span
-                                                        aria-hidden="true">»</span></a></li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
