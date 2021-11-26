@@ -35,21 +35,7 @@ class ProgramDetailController {
         res.redirect('/program_detail?programId=' + req.body.programId)
     }
 
-    // //delete quiz:
-    // deleteQuiz(req, res, next) {
-    //     console.log(req.body)
-    //     if (req.body.id == null) {
-    //         res.json({ message: 'Cần truyền params id', status: false })
-    //         return
-    //     }
-    //     QuestionModel.deleteOne({ _id: req.body.id }, function (err) {
-    //         if (err) {
-    //             res.json({ message: 'Delete failed', status: false, err: err })
-    //             return
-    //         }
-    //         res.redirect('/lesson_detail?lessonId=' + req.body.lessonId)
-    //     })
-    // }
+ 
 }
 
 

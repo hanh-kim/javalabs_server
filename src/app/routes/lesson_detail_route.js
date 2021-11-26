@@ -8,4 +8,6 @@ route.post('/delete_quiz', lessonDetailController.deleteQuiz)
 
 route.post('/delete_topic', lessonDetailController.deleteTopic)
 
+// route.get('/update_topic', lessonDetailController.updateTopic)
+
 module.exports = route

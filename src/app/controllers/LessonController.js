@@ -66,11 +66,9 @@ class LessonController {
                             answer: arr,
                             correctAnswer: i.correctAnswer,
                         }).save().catch((error) => {
-                            console.log(error);
                             res.status(500).json({
                                 success: false,
-                                message: 'Create failed. Please try again.',
-                                error: error.message,
+                                message: e.message,
                             });
                             return;
                         })

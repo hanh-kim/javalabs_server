@@ -11,7 +11,6 @@ class AddProgramController {
     }
 
     importProgram(req, res, next) {
-        console.log(req.files['image'][0])
         Program({
             name: req.body.name,
             image: '/uploads/' + req.files['image'][0].filename

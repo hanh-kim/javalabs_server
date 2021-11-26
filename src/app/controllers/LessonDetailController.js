@@ -49,7 +49,6 @@ class LessonDetailController {
         }
     }
 
-
     //delete topic:
     async deleteTopic(req, res, next) {
         if (req.body.id_topic == null) {
@@ -73,7 +72,6 @@ class LessonDetailController {
 
     //delete quiz:
     deleteQuiz(req, res, next) {
-        console.log(req.body)
         if (req.body.id == null) {
             res.json({ message: 'Cần truyền params id', status: false })
             return
