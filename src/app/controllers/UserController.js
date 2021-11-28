@@ -108,6 +108,44 @@ class UserController {
             res.render('404')
         })
     }
+
+    //get top N user:
+    getTopUser(req, res) {
+        if (req.query.topUser == null) {
+            User.find({}).sort({ mark: 1 }).then(users => {
+                res.json({
+                    message: "success",
+                    isSuccess: true,
+                    code: 200,
+                    data: users
+                })
+                return
+            }).catch(e => {
+                res.json({
+                    isSuccess: false,
+                    message: e.message,
+                    code: 404
+                })
+            })
+        } else {
+            User.find({}).limit((Number(req.query.topUser))).sort({ mark: 1 }).then(users => {
+                res.json({
+                    message: "success",
+                    isSuccess: true,
+                    code: 200,
+                    data: users
+                })
+                return
+            }).catch(e => {
+                res.json({
+                    isSuccess: false,
+                    message: e.message,
+                    code: 404
+                })
+            })
+        }
+
+    }
 }
 
 class UserMD {

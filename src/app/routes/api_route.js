@@ -23,6 +23,8 @@ route.post('/insert-user', userController.insertUser)
 
 route.post('/update-mark-user', userController.updateUser)
 
+route.get('/get-top-user', userController.getTopUser)
+
 route.get('/get-user', userController.getUser)
 
 route.post('/update-process', processController.insertOrUpdate)
