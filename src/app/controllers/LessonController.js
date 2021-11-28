@@ -44,19 +44,20 @@ class LessonController {
                     //import question:
                     const questionSheet = workbook.Sheets[workbook.SheetNames[2]]
                     xlData = xlsx.utils.sheet_to_json(questionSheet);
+                    var a = ' kkkkk';
 
                     for (var i of xlData) {
                         var arr = []
-                        if (i.answerA != null) {
+                        if (i.answerA != null && i.answerA.toString().trim() != '') {
                             arr.push(i.answerA);
                         }
-                        if (i.answerB != null) {
+                        if (i.answerB != null && i.answerB.toString().trim() != '') {
                             arr.push(i.answerB);
                         }
-                        if (i.answerC != null) {
+                        if (i.answerC != null && i.answerC.toString().trim() != '') {
                             arr.push(i.answerC);
                         }
-                        if (i.answerD != null) {
+                        if (i.answerD != null && i.answerD.toString().trim() != '') {
                             arr.push(i.answerD);
                         }
                         Question({
