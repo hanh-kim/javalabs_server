@@ -35,5 +35,7 @@ route.get('/get-all-process', processController.getProcessByUser)
 
 route.get('/get-daily-score', apiController.getDailyScore)
 
+route.get('/get-score-profile', apiController.getMarkProfile)
+
 module.exports = route
 

@@ -165,12 +165,12 @@ class ApiController {
                 message: 'Cần truyền userId, date',
                 code: 404
             })
+            return
         }
         Process.find({ userId: req.query.userId, lastModify: req.query.date }).then(users => {
             var sumScore = 0
             for (var i of users) {
                 sumScore += Number(i.quizMarked)
-                console.log('>>>>>>>>>>>>>>>' + sumScore)
             }
             res.json({
                 isSuccess: true,
@@ -190,34 +190,60 @@ class ApiController {
     }
 
     //get 1 week score:
-    getDailyScore(req, res) {
-        if (req.query.userId == null || req.query.date == null) {
+    async getMarkProfile(req, res) {
+        if (req.query.userId == null) {
             res.json({
                 isSuccess: false,
-                message: 'Cần truyền userId, date',
+                message: 'Cần truyền userId',
                 code: 404
             })
+            return
         }
-        Process.find({ userId: req.query.userId, lastModify: req.query.date }).then(users => {
-            var sumScore = 0
-            for (var i of users) {
-                sumScore += Number(i.quizMarked)
+        var today = new Date();
+        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        var now = new Date(date)
+        var nowToMilisen = now.getTime()
+        var listData = []
+        for (var i = 0; i < 7; i++) {
+            var milisecond = 1000 * 60 * 60 * 24 * i
+            var dayWork = nowToMilisen - milisecond //tính khoảng cách hiện tại tới ngày thứ 'i'
+            var day = new Date(dayWork) // trả về datetime: yyyy-MM-dd hh:mm:ss
+            var dayFomarted = day.getUTCFullYear() + "/" + (day.getUTCMonth() + 1) + "/" + day.getUTCDate(); // format datetime: yyyy-MM-dd
+            console.log(i)
+            try {
+                var process = await Process.find({ userId: req.query.userId, lastModify: dayFomarted })
+                if (process.length > 0) {
+                    var sumScore = 0
+                    for (var j of process) {
+                        sumScore += Number(j.quizMarked)
+                    }
+                    listData.push({
+                        date: dayFomarted,
+                        mark: sumScore
+                    })
+                } else {
+                    listData.push({
+                        date: dayFomarted,
+                        mark: 0
+                    })
+                }
+            } catch (e) {
+                res.json({
+                    isSuccess: false,
+                    message: e.message,
+                    code: 404
+                })
             }
-            res.json({
-                isSuccess: true,
-                code: 200,
-                message: "success",
-                score: sumScore,
-                userId: req.query.userId,
-                date: req.query.date
-            })
-        }).catch(e => {
-            res.json({
-                isSuccess: false,
-                message: e.message,
-                code: 404
-            })
+        }
+
+        res.json({
+            isSuccess: true,
+            code: 200,
+            message: "success",
+            userId: req.query.userId,
+            data: listData,
         })
+
     }
 
 }
