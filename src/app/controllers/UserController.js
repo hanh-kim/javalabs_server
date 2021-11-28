@@ -1,6 +1,6 @@
 const User = require('../model/UserModel')
 
-class UserController{
+class UserController {
     //insert user:
     insertUser(req, res, next) {
         if (req.body.gmail == null) {
@@ -39,13 +39,13 @@ class UserController{
 
     //update
     updateUser(req, res, next) {
-        if (req.body.gmail == null || req.body.mark == null) {
-            res.json({ message: 'Cân truyền gmail, mark' })
+        if (req.body.id == null || req.body.mark == null) {
+            res.json({ message: 'Cân truyền id, mark' })
             return
         }
-        User.findOne({ gmail: req.body.gmail }).then(user => {
+        User.findOne({ _id: req.body.id }).then(user => {
             if (user == null) {
-                res.json({ message: "User không tồn tại, kiểm tra lại gmail", isSuccess: false })
+                res.json({ message: "User không tồn tại, kiểm tra lại id", isSuccess: false })
             }
             var mark = user.mark;
             if (req.body.mark != '') {
@@ -95,27 +95,27 @@ class UserController{
     }
 
     //GET /
-    index(req, res){
-        User.find({}).sort({mark : 1}).then(user => {
+    index(req, res) {
+        User.find({}).sort({ mark: 1 }).then(user => {
             var arr = []
-            for(var i of user){
+            for (var i of user) {
                 var obj = new UserMD(i.gmail, i.mark, i.username)
                 arr.push(obj)
             }
 
-            res.render('user', {user: arr, totalUser : user.length})
+            res.render('user', { user: arr, totalUser: user.length })
         }).catch(e => {
             res.render('404')
         })
     }
 }
 
-class UserMD{
+class UserMD {
     gmail
     mark
     username
 
-    constructor(gmail, mark, username){
+    constructor(gmail, mark, username) {
         this.gmail = gmail
         this.mark = mark
         this.username = username

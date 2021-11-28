@@ -5,6 +5,7 @@ const Question = require('../model/QuestionModel')
 const Program = require('../model/ProgramModel')
 const ProgramDetail = require('../model/ProgramDetailModel')
 const User = require('../model/UserModel')
+const Process = require('../model/ProcessModel')
 
 class ApiController {
 
@@ -20,7 +21,7 @@ class ApiController {
             message: e.message,
             code: 404
         }))
-    } 
+    }
 
     //get topic by id
     getTopicByLessonId(req, res, next) {
@@ -156,8 +157,69 @@ class ApiController {
         res.json(listData)
     }
 
+    //get score daily score by user id
+    getDailyScore(req, res) {
+        if (req.query.userId == null || req.query.date == null) {
+            res.json({
+                isSuccess: false,
+                message: 'Cần truyền userId, date',
+                code: 404
+            })
+        }
+        Process.find({ userId: req.query.userId, lastModify: req.query.date }).then(users => {
+            var sumScore = 0
+            for (var i of users) {
+                sumScore += Number(i.quizMarked)
+                console.log('>>>>>>>>>>>>>>>' + sumScore)
+            }
+            res.json({
+                isSuccess: true,
+                code: 200,
+                message: "success",
+                score: sumScore,
+                userId: req.query.userId,
+                date: req.query.date
+            })
+        }).catch(e => {
+            res.json({
+                isSuccess: false,
+                message: e.message,
+                code: 404
+            })
+        })
+    }
 
-    
+    //get 1 week score:
+    getDailyScore(req, res) {
+        if (req.query.userId == null || req.query.date == null) {
+            res.json({
+                isSuccess: false,
+                message: 'Cần truyền userId, date',
+                code: 404
+            })
+        }
+        Process.find({ userId: req.query.userId, lastModify: req.query.date }).then(users => {
+            var sumScore = 0
+            for (var i of users) {
+                sumScore += Number(i.quizMarked)
+            }
+            res.json({
+                isSuccess: true,
+                code: 200,
+                message: "success",
+                score: sumScore,
+                userId: req.query.userId,
+                date: req.query.date
+            })
+        }).catch(e => {
+            res.json({
+                isSuccess: false,
+                message: e.message,
+                code: 404
+            })
+        })
+    }
+
 }
 
 class ProgramMD {
