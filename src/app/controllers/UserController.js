@@ -128,7 +128,7 @@ class UserController {
                 })
             })
         } else {
-            User.find({}).limit((Number(req.query.topUser))).sort({ mark: 1 }).then(users => {
+            User.find({}).limit((Number(req.query.topUser))).sort({ mark: -1 }).then(users => {
                 res.json({
                     message: "success",
                     isSuccess: true,
