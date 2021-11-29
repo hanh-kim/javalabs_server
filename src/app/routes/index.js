@@ -48,7 +48,7 @@ function route(app) {
     })
 
     app.get('/pending_request', (req, res) => {
-        res.render('pending_request')
+        res.render('pending_request') 
     })
     app.get('/profile.html', (req, res) => {
         res.render('profile')

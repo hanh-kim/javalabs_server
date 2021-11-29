@@ -25,7 +25,7 @@ class AddProgramController {
                     content: data.content
                 }).save().catch(e => res.json({ message: 'Lỗi đọc file excel', error: e }))
             }
-            res.json({ message: 'Thêm thành công' })
+            res.redirect('/programs.html')
         })
     }
 
