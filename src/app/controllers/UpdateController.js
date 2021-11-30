@@ -1,5 +1,7 @@
 const User = require('../model/UserModel')
 const Topic = require('../model/TopicModel')
+const Question = require('../model/QuestionModel')
+
 class UpdateController {
     //hiển thị view update topic:
     showTopic(req, res, next) {
@@ -33,6 +35,43 @@ class UpdateController {
             res.send('Loi ' + e.message)
         }
 
+    }
+
+
+    //update
+    updateQuestion(req, res){
+        if(req.body.id == null){
+            res.json({ message: 'Cần truyền params id', status: false })
+            return
+        }
+            Question.findOne({ _id: req.body.id }).then(question => {
+                if (question != null) {
+                    var arr = []
+                        if (req.body.aA != null && req.body.aA.toString().trim() != '') {
+                            arr.push(req.body.aA);
+                        }
+                        if (req.body.aB != null && req.body.aB.toString().trim() != '') {
+                            arr.push(req.body.aB);
+                        }
+                        if (req.body.aC != null && req.body.aC.toString().trim() != '') {
+                            arr.push(req.body.aC);
+                        }
+                        if (req.body.aD != null && req.body.aD.toString().trim() != '') {
+                            arr.push(req.body.aD);
+                        }
+                    question.question = req.body.question
+                    question.answer = arr
+                    question.correctAnswer = req.body.correct
+
+                    question.save().then(topic => {
+                        res.redirect('/lesson.html')
+                    }).catch(e => res.send('Có lỗi'))
+                }else{
+                    res.send('null roi bạn oi')
+                }
+            }).catch(e => res.send(e.message))
+
+        
     }
 
 
