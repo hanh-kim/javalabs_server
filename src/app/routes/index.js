@@ -48,7 +48,7 @@ function route(app) {
     })
 
     app.get('/pending_request', (req, res) => {
-        res.render('pending_request') 
+        res.render('pending_request')
     })
     app.get('/profile.html', (req, res) => {
         res.render('profile')
@@ -62,6 +62,10 @@ function route(app) {
     })
 
     app.use('/update_topic', updateRoute)
+    
+    app.get('/update_program_detail', (req, res) => {
+        res.render('update_program_detail')
+    })
 
     app.get('*', function (req, res) {
         res.render('404')
