@@ -6,7 +6,6 @@ route.get('/', updateController.showTopic)
 
 route.post('/update-topic', updateController.updateTopic)
 
-route.post('/update-program-detail', updateController.updateProgramDetail)
-
+route.post('/update-question', updateController.updateQuestion)
 
 module.exports = route

@@ -9,6 +9,6 @@ const Question = new Schema({
     answer: {
         type: Array, default: []
     },
-    correctAnswer: { type: Number, default: 0 }
+    correctAnswer: { type: String, default: '' }
 })
 module.exports = mongoose.model('Question', Question)

@@ -1,5 +1,6 @@
 
 const ProgramDetailModel = require('../model/ProgramDetailModel');
+const Question = require('../model/QuestionModel');
 
 class ProgramDetailController {
 
@@ -35,6 +36,7 @@ class ProgramDetailController {
         res.redirect('/program_detail?programId=' + req.body.programId)
     }
 
+    
  
 }
 
