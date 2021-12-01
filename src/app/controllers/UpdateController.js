@@ -8,6 +8,7 @@ class UpdateController {
     showTopic(req, res, next) {
         if (req.query.id_topic == null) {
             res.send('Cần truyền Id')
+            return
         }
         Topic.findOne({ _id: req.query.id_topic }).then(topic => {
             var a = { title: topic.title, content: topic.content, _id: topic._id }

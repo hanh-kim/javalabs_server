@@ -9,6 +9,8 @@ const userRoute = require('./user_route')
 const homeRoute = require('./home_route')
 const updateRoute = require('./update_route')
 const updateQuestionRoute = require('./update_question_route')
+const updateProgramRoute = require('./update_program_route')
+const qaRoute = require('./qa_route')
 
 function route(app) {
 
@@ -47,9 +49,8 @@ function route(app) {
         res.render('import')
     })
 
-    app.get('/pending_request', (req, res) => {
-        res.render('pending_request')
-    })
+    app.use('/pending_request', qaRoute)
+    
     app.get('/profile.html', (req, res) => {
         res.render('profile')
     })
@@ -63,9 +64,7 @@ function route(app) {
 
     app.use('/update_topic', updateRoute)
     
-    app.get('/update_program_detail', (req, res) => {
-        res.render('update_program_detail')
-    })
+    app.use('/update_program_detail', updateProgramRoute)
 
     app.use('/update-question', updateQuestionRoute)
 

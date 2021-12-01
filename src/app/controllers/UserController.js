@@ -96,7 +96,7 @@ class UserController {
 
     //GET /
     index(req, res) {
-        User.find({}).sort({ mark: 1 }).then(user => {
+        User.find({}).sort({ mark: -1 }).then(user => {
             var arr = []
             for (var i of user) {
                 var obj = new UserMD(i.gmail, i.mark, i.username)

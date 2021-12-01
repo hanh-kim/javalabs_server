@@ -3,6 +3,7 @@ const route = express.Router()
 const apiController = require('../controllers/ApiController')
 const processController = require('../controllers/ProcessController')
 const userController = require('../controllers/UserController')
+const qaController = require('../controllers/QAController')
 
 
 route.get('/get-lesson', apiController.getAllLesson)
@@ -36,6 +37,8 @@ route.get('/get-all-process', processController.getProcessByUser)
 route.get('/get-daily-score', apiController.getDailyScore)
 
 route.get('/get-score-profile', apiController.getMarkProfile)
+
+route.post('/add-qa', qaController.addQA)
 
 module.exports = route
 

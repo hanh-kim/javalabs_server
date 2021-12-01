@@ -65,14 +65,23 @@
                 <center>
                     <section class="contact-clean" style="max-width: 800px; min-width: 200px;">
                         <center>
-                            <form method="POST" action="update-program-detail/update-topic?id={{topic._id}}">
+                            <form method="POST" action="update_program_detail/update">
                                 <h2 class="text-center">UPDATE PROGRAM DETAIL</h2>
-                                <div class="mb-3"><input class="form-control" type="text" name="title"
-                                        placeholder="title" value="{{topic.title}}"></div>
+                                <div class="mb-3">
+                                    <input name="id" value="{{program._id}}" style="display: none;">
+                                    <input name="programId" value="{{program.programId}}" style="display: none;">
+                                    <label style="float: left;">Title</label>
+                                    <input class="form-control" type="text" name="title" placeholder="title"
+                                        value="{{program.title}}">
+                                </div>
                                 <div class="mb-3"></div>
-                                <div class="mb-3"><textarea class="form-control" name="content" placeholder="content"
-                                        rows="14">{{topic.content}}</textarea></div>
-                                <div class="mb-3"><button class="btn btn-primary" type="submit">UPDATE</button></div>
+                                <div class="mb-3">
+                                    <label style="float: left;">Content</label>
+                                    <textarea class="form-control" name="content" placeholder="content"
+                                        rows="14">{{program.content}}</textarea>
+                                </div>
+                                <div class="mb-3"><button class="btn btn-primary d-block w-100"
+                                        type="submit" style="max-width: 300px;">Update</button></div>
                             </form>
                         </center>
                     </section>

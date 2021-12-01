@@ -8,7 +8,7 @@
 </head>
 
 <body id="page-top">
- <div id="wrapper">
+    <div id="wrapper">
         <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
             <div class="container-fluid d-flex flex-column p-0">
                 <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
@@ -63,39 +63,46 @@
                     </div>
                 </nav>
                 <div class="container-fluid">
-                     <div class="col-md-12 search-table-col" style="margin-top: 10px;">
-        <div class="form-group pull-right col-lg-4"><input type="text" class="search form-control"
-                placeholder="Search by typing here.."></div><span class="counter pull-right"></span>
-        <div class="table-responsive table-bordered table table-hover table-bordered results">
-            <table class="table table-bordered table-hover">
-                <thead class="bill-header cs">
-                    <tr>
-                        <th id="trs-hd" class="col-lg-1">User</th>
-                        <th id="trs-hd" class="col-lg-2">Type Problem</th>
-                        <th id="trs-hd" class="col-lg-3">Messenger From User</th>
-                        <th id="trs-hd" class="col-lg-2">Report From</th>
-                        <th id="trs-hd" class="col-lg-2">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="warning no-result">
-                        <td colspan="12"><i class="fa fa-warning"></i>&nbsp; No Result !!!</td>
-                    </tr>
-                    <tr>
-                        <td>VuHaNam</td>
-                        <td>Quiz Error</td>
-                        <td>The question 1 at Quiz 1 has wrong anwser</td>
-                        <td>Question 1 - Quiz 1</td>
-                        <td><button class="btn btn-success" style="margin-left: 5px;" type="submit"><i
-                                    class="fa fa-check" style="font-size: 15px;"></i></button><button
-                                class="btn btn-danger" style="margin-left: 5px;" type="submit"><i class="fa fa-trash"
-                                    style="font-size: 15px;"></i></button></td>
-                    </tr>
-                    
-                </tbody>
-            </table>
-        </div>
-    </div>
+                    <div class="col-md-12 search-table-col" style="margin-top: 10px;">
+                        <div class="form-group pull-right col-lg-4"><input type="text" class="search form-control"
+                                placeholder="Search by typing here.."></div><span class="counter pull-right"></span>
+                        <div class="table-responsive table-bordered table table-hover table-bordered results">
+                            <table class="table table-bordered table-hover">
+                                <thead class="bill-header cs">
+                                    <tr>
+                                        <th id="trs-hd" class="col-lg-1">User</th>
+                                        <th id="trs-hd" class="col-lg-2">Title</th>
+                                        <th id="trs-hd" class="col-lg-6">Content</th>
+                                        <th id="trs-hd" class="col-lg-2">Status</th>
+                                        <th id="trs-hd" class="col-lg-1">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each QA}}
+                                    <tr>
+                                        <td>{{this.userId}}</td>
+                                        <td>{{this.title}}</td>
+                                        <td>{{this.content}}</td>
+                                        <td>{{this.status}}</td>
+                                        <td>
+                                            <form action="pending_request/update-qa" method="post">
+                                                <button class="btn btn-primary"
+                                                    style="padding-left: 20px; padding-right: 20px;"
+                                                    type="submit" name="id" value="{{this._id}}">Resolved</button>
+                                            </form>
+                                            <form action="pending_request/delete-qa" method="post">
+                                                <button class="btn btn-danger"
+                                                    style="padding-left: 28px; padding-right: 28px; margin-top: 10px;"
+                                                    type="submit" name="id" value="{{this._id}}">Delete </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
             <footer class="bg-white sticky-footer">
@@ -106,16 +113,16 @@
         </div>
 
 
-   
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
-    <script src="assets/js/Drag-and-Drop-File-Input.js"></script>
-    <script src="assets/js/File-Input---Beautiful-Input--Button-Approach-Jasny-Bootstrap.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
-    <script src="assets/js/Table-With-Search.js"></script>
-    <script src="assets/js/theme.js"></script>
+
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+        <script src="assets/js/Drag-and-Drop-File-Input.js"></script>
+        <script src="assets/js/File-Input---Beautiful-Input--Button-Approach-Jasny-Bootstrap.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+        <script src="assets/js/Table-With-Search.js"></script>
+        <script src="assets/js/theme.js"></script>
 </body>
 
 </html>
