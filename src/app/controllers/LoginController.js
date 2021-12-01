@@ -5,7 +5,7 @@ class LoginController {
     }
 
     login(req, res){
-        if(req.body.email == 'admin' && req.body.password == 'admin'){
+        if(req.body.email == 'javalabs' && req.body.password == 'admin'){
             res.redirect('/index.html')
         }else{
             res.render('login',{message: 'Username or Password Invalid', currentUsername: req.body.email, currentPass: req.body.password})

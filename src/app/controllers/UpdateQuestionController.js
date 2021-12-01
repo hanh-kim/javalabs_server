@@ -1,43 +1,39 @@
-const User = require('../model/UserModel')
-const Topic = require('../model/TopicModel')
 const Question = require('../model/QuestionModel')
+const Lesson = require('../model/LessonModel')
 
-class UpdateController {
-    //hiển thị view update topic:
-    showTopic(req, res, next) {
-        if (req.query.id_topic == null) {
-            res.send('Cần truyền Id')
-        }
-        Topic.findOne({ _id: req.query.id_topic }).then(topic => {
-            var a = { title: topic.title, content: topic.content, _id: topic._id }
-            res.render('update_topic', { topic: a })
-        }).catch(e => res.render('404'))
-    }
-
-    // update topic
-    async updateTopic(req, res, next) {
+class UpdateQuestionController {
+    //show view
+    index(req, res){
         if (req.query.id == null) {
             res.send('Cần truyền Id')
-            return
         }
-        try {
-            Topic.findOne({ _id: req.query.id }).then(topic => {
-                if (topic != null) {
-                    topic.title = req.body.title
-                    topic.content = req.body.content
-                    topic.save().then(topic => {
-                        res.redirect('/lesson_detail?lessonId=' + topic.lessonId)
-                    }).catch(e => res.send('Có lỗi'))
+        Question.findOne({ _id: req.query.id }).then(ques => {
+            var cr = '';
+                if (ques.correctAnswer == 1) {
+                    cr = 'A';
+                } else if (ques.correctAnswer == 2) {
+                    cr = 'B';
+                } else if (ques.correctAnswer == 3) {
+                    cr = 'C';
+                } else if (ques.correctAnswer == 4) {
+                    cr = 'D';
+                } else {
+                    cr = ''
                 }
-            })
-
-        } catch (e) {
-            res.send('Loi ' + e.message)
-        }
-
+            var a = { 
+                id: ques._id, 
+                question: ques.question, 
+                anA : ques.answer[0], 
+                anB : ques.answer[1], 
+                anC : ques.answer[2], 
+                anD : ques.answer[3], 
+                correct: cr
+            }
+            
+            res.render('update_question', { ques: a })
+        }).catch(e => res.json(e.message))
     }
-
-
+   
     //update
     updateQuestion(req, res){
         if(req.body.id == null){
@@ -91,4 +87,4 @@ class UpdateController {
 }
 
 
-module.exports = new UpdateController()
+module.exports = new UpdateQuestionController()

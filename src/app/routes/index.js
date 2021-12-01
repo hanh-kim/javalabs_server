@@ -8,7 +8,7 @@ const detailProgram = require('./detail_program_route')
 const userRoute = require('./user_route')
 const homeRoute = require('./home_route')
 const updateRoute = require('./update_route')
-const Question = require('../model/QuestionModel')
+const updateQuestionRoute = require('./update_question_route')
 
 function route(app) {
 
@@ -63,36 +63,7 @@ function route(app) {
 
     app.use('/update_topic', updateRoute)
 
-    app.get('/update-question', (req, res) => {
-        if (req.query.id == null) {
-            res.send('Cần truyền Id')
-        }
-        Question.findOne({ _id: req.query.id }).then(ques => {
-            console.log(ques)
-            var cr = '';
-                if (ques.correctAnswer == 1) {
-                    cr = 'A';
-                } else if (ques.correctAnswer == 2) {
-                    cr = 'B';
-                } else if (ques.correctAnswer == 3) {
-                    cr = 'C';
-                } else if (ques.correctAnswer == 4) {
-                    cr = 'D';
-                } else {
-                    cr = ''
-                }
-            var a = { 
-                id: ques._id, 
-                question: ques.question, 
-                anA : ques.answer[0], 
-                anB : ques.answer[1], 
-                anC : ques.answer[2], 
-                anD : ques.answer[3], 
-                correct: cr
-            }
-            res.render('update_question', { ques: a })
-        }).catch(e => res.json(e.message))
-    })
+    app.use('/update-question', updateQuestionRoute)
 
     app.get('*', function (req, res) {
         res.render('404')
