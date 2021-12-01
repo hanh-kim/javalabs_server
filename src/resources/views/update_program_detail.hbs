@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Detail Program</title>
+    <title>Dashboard</title>
 </head>
 
 <body id="page-top">
@@ -17,13 +17,13 @@
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="nav navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item" role="presentation"><a class="nav-link"
+                    <li class="nav-item" role="presentation"><a class="nav-link active"
                             href="index.html"><span>Home&nbsp;</span></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="user.html"><span>User</span></a>
                     </li>
                     <li class="nav-item" role="presentation"><a class="nav-link"
                             href="lesson.html"><span>Lessons</span></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active"
+                    <li class="nav-item" role="presentation"><a class="nav-link"
                             href="programs.html"><span>Programs</span></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link"
                             href="login.html"><span>Logout</span></a></li>
@@ -49,11 +49,10 @@
                             <li class="nav-item dropdown no-arrow" role="presentation">
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link"
                                         data-toggle="dropdown" aria-expanded="false" href="#"><span
-                                            class="d-none d-lg-inline mr-2 text-gray-600 small">Admin</span><img
+                                            class="d-none d-lg-inline mr-2 text-gray-600 small">Valerie Luna</span><img
                                             class="border rounded-circle img-profile"
                                             src="assets/img/avatars/user.png"></a>
                                     <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
-                                        
                                         <div class="dropdown-divider"></div><a class="dropdown-item" role="presentation"
                                             href="/"><i
                                                 class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a>
@@ -63,47 +62,21 @@
                         </ul>
                     </div>
                 </nav>
-                <div class="container-fluid">
-                    <div class="col-md-12 search-table-col" style="margin-top: 10px;">
-                        <div class="form-group pull-right col-lg-4"><input type="text" class="search form-control"
-                                placeholder="Search by typing here.."></div><span class="counter pull-right"></span>
-                        <div class="table-responsive table-bordered table table-hover table-bordered results">
-                            <table class="table table-bordered table-hover">
-                                <thead class="bill-header cs">
-                                    <tr>
-                                        <th id="trs-hd" class="col-lg-2">Topic</th>
-                                        <th id="trs-hd" class="col-lg-6">Content</th>
-                                        <th id="trs-hd" class="col-lg-2">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {{#each program}}
-                                    <tr>
-                                        <td class="text-center">{{this.title}}</td>
-                                        <td>
-                                            <p
-                                                style="font-family: 'Cutive Mono', monospace;background-color: #f0f0f0;padding-left: 10px;padding-right: 10px;padding-top: 2px;padding-bottom: 2px;white-space: wrap;overflow-x: scroll;">
-                                                <br>{{this.content}}<br>
-                                            </p>
-                                        </td>
-                                        <td><a class="btn btn-danger" role="button"
-                                                style="margin-left: 5px;background-color: rgb(98,155,241); padding-left: 27px; padding-right: 27px; margin-top: 5px; margin-bottom: 5px"
-                                                href="update_program_detail?questionId={{this._id}}">UPDATE</a>
-                                            <form action="program_detail/delete_program-detail" method="post">
-                                                <input style="display: none;" name="programId"
-                                                    value="{{this.programId}}" />
-                                                <button class="btn btn-danger"
-                                                    style="margin-left: 5px; padding-left: 27px; padding-right: 27px; margin-top: 5px; margin-bottom: 5px"
-                                                    type="submit" name="id" value="{{this._id}}">DELETE</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    {{/each}}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+                <center>
+                    <section class="contact-clean" style="max-width: 800px; min-width: 200px;">
+                        <center>
+                            <form method="POST" action="update-program-detail/update-topic?id={{topic._id}}">
+                                <h2 class="text-center">UPDATE PROGRAM DETAIL</h2>
+                                <div class="mb-3"><input class="form-control" type="text" name="title"
+                                        placeholder="title" value="{{topic.title}}"></div>
+                                <div class="mb-3"></div>
+                                <div class="mb-3"><textarea class="form-control" name="content" placeholder="content"
+                                        rows="14">{{topic.content}}</textarea></div>
+                                <div class="mb-3"><button class="btn btn-primary" type="submit">UPDATE</button></div>
+                            </form>
+                        </center>
+                    </section>
+                </center>
             </div>
             <footer class="bg-white sticky-footer">
                 <div class="container my-auto">
@@ -112,7 +85,6 @@
             </footer>
         </div>
     </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
-
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
