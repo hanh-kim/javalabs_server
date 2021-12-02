@@ -4,7 +4,7 @@ const apiController = require('../controllers/ApiController')
 const processController = require('../controllers/ProcessController')
 const userController = require('../controllers/UserController')
 const qaController = require('../controllers/QAController')
-
+const chatController = require('../controllers/ChatController')
 
 route.get('/get-lesson', apiController.getAllLesson)
 
@@ -39,6 +39,19 @@ route.get('/get-daily-score', apiController.getDailyScore)
 route.get('/get-score-profile', apiController.getMarkProfile)
 
 route.post('/add-qa', qaController.addQA)
+
+//chat:
+route.post('/add-comment', chatController.addComment)
+
+route.post('/update-comment', chatController.updateComment)
+
+route.post('/delete-comment', chatController.deleteChat)
+
+route.get('/get-comment-by-question', chatController.getChatByQuestion)
+
+route.get('/get-comment-by-quiz', chatController.getChatByQuiz)
+
+route.get('/get-all-comment', chatController.getAllChat)
 
 module.exports = route
 
