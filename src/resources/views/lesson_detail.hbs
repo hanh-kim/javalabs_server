@@ -5,142 +5,185 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Detail Lesson</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="assets/css/Community-ChatComments.css">
+    <link rel="stylesheet" href="assets/css/Data-Table-1.css">
+    <link rel="stylesheet" href="assets/css/Data-Table.css">
+    <link rel="stylesheet" href="assets/css/Drag-and-Drop-File-Input.css">
+    <link rel="stylesheet" href="assets/css/File-Input---Beautiful-Input--Button-Approach-Jasny-Bootstrap.css">
+    <link rel="stylesheet" href="assets/css/Forum---Thread-listing-1.css">
+    <link rel="stylesheet" href="assets/css/Forum---Thread-listing.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/List-item.css">
+    <link rel="stylesheet" href="assets/css/Table-With-Search-1.css">
+    <link rel="stylesheet" href="assets/css/Table-With-Search.css">
 </head>
 
-<body>
-    <div class="col-md-12 search-table-col" style="margin-top: 10px;">
-        <div class="form-group pull-right col-lg-4"><input type="text" class="search form-control"
-                placeholder="Search by typing here.."></div><span class="counter pull-right"></span>
-        <div class="table-responsive table-bordered table table-hover table-bordered results">
-            <table class="table table-bordered table-hover">
-                <thead class="bill-header cs">
-                    <tr>
-                        <th id="trs-hd" class="col-lg-2">Topic</th>
-                        <th id="trs-hd" class="col-lg-6">Content</th>
-                        <th id="trs-hd" class="col-lg-2">Số người học</th>
-                        <th id="trs-hd" class="col-lg-2">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>What is Java?</td>
-                        <td><br>Java is a popular programming language, created in 1995.<br><br>It is owned by Oracle,
-                            and more than 3 billion devices run Java.<br><br>It is used for:<br><br>Mobile applications
-                            (specially Android apps)<br><br>Desktop applications<br><br>Web
-                            applications<br><br>Web servers and application servers<br><br>Games<br><br>Database
-                            connection<br><br><br>And much, much more!<br><br></td>
-                        <td class="text-center">10</td>
-                        <td><button class="btn btn-success" style="margin-left: 5px;" type="submit"><i
-                                    class="fa fa-pencil" style="font-size: 15px;"></i></button><button
-                                class="btn btn-danger" style="margin-left: 5px;" type="submit"><i class="fa fa-trash"
-                                    style="font-size: 15px;"></i></button></td>
-                    </tr>
-                    <tr>
-                        <td>How Java works?</td>
-                        <td><br>Java works on different platforms (Windows, Mac, Linux, Raspberry Pi, etc.)<br><br>It is
-                            one of the most popular programming language in the world<br><br>It is easy to learn and
-                            simple to use<br><br>It is open-source and free<br><br>It
-                            is secure, fast and powerful<br><br>It has a huge community support (tens of millions of
-                            developers)<br><br>Java is an object oriented language which gives a clear structure to
-                            programs and allows code to be reused, lowering
-                            development costs<br><br>As Java is close to C++ and C#, it makes it easy for programmers to
-                            switch to Java or vice versa<br><br></td>
-                        <td class="text-center">3</td>
-                        <td><button class="btn btn-success" style="margin-left: 5px;" type="submit"><i
-                                    class="fa fa-pencil" style="font-size: 15px;"></i></button><button
-                                class="btn btn-danger" style="margin-left: 5px;" type="submit"><i class="fa fa-trash"
-                                    style="font-size: 15px;"></i></button></td>
-                    </tr>
-                    <tr>
-                        <td>Let's revise</td>
-                        <td><br>Java works on different platforms (Windows, Mac, Linux, Raspberry Pi, etc.)<br><br>It is
-                            one of the most popular programming language in the world<br><br>It is easy to learn and
-                            simple to use<br><br>It is open-source and free<br><br>It
-                            is secure, fast and powerful<br><br>It has a huge community support (tens of millions of
-                            developers)<br><br>Java is an object oriented language which gives a clear structure to
-                            programs and allows code to be reused, lowering
-                            development costs<br><br>As Java is close to C++ and C#, it makes it easy for programmers to
-                            switch to Java or vice versa<br><br></td>
-                        <td class="text-center">3</td>
-                        <td><button class="btn btn-success" style="margin-left: 5px;" type="submit"><i
-                                    class="fa fa-pencil" style="font-size: 15px;"></i></button><button
-                                class="btn btn-danger" style="margin-left: 5px;" type="submit"><i class="fa fa-trash"
-                                    style="font-size: 15px;"></i></button></td>
-                    </tr>
-                </tbody>
-            </table>
+<body id="page-top">
+    <div id="wrapper">
+        <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
+            <div class="container-fluid d-flex flex-column p-0">
+                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+                    <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-laugh-wink"></i></div>
+                    <div class="sidebar-brand-text mx-3"><span>JavaQuiz</span></div>
+                </a>
+                <hr class="sidebar-divider my-0">
+                <ul class="nav navbar-nav text-light" id="accordionSidebar">
+                    <li class="nav-item" role="presentation"><a class="nav-link"
+                            href="index.html"><span>Home&nbsp;</span></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="user.html"><span>User</span></a>
+                    </li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active"
+                            href="lesson.html"><span>Lessons</span></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link"
+                            href="programs.html"><span>Programs</span></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link"
+                            href="login.html"><span>Logout</span></a></li>
+                </ul>
+                <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0"
+                        id="sidebarToggle" type="button"></button></div>
+            </div>
+        </nav>
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+                    <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle mr-3"
+                            id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
+                        <form
+                            class="form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                            <div class="input-group"><input class="bg-light form-control border-0 small" type="text"
+                                    placeholder="Search for ...">
+                                <div class="input-group-append"><button class="btn btn-primary py-0" type="button"><i
+                                            class="fas fa-search"></i></button></div>
+                            </div>
+                        </form>
+                        <ul class="nav navbar-nav flex-nowrap ml-auto">
+                            <li class="nav-item dropdown no-arrow" role="presentation">
+                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link"
+                                        data-toggle="dropdown" aria-expanded="false" href="#"><span
+                                            class="d-none d-lg-inline mr-2 text-gray-600 small">Admin</span><img
+                                            class="border rounded-circle img-profile"
+                                            src="assets/img/avatars/user.png"></a>
+                                    <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
+                                        
+                                        <div class="dropdown-divider"></div><a class="dropdown-item" role="presentation"
+                                            href="/"><i
+                                                class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <div class="container-fluid">
+                    <div class="col-md-12 search-table-col" style="margin-top: 10px;">
+                        <div class="form-group pull-right col-lg-4"><input type="text" class="search form-control"
+                                placeholder="Search by typing here.."></div><span class="counter pull-right"></span>
+                        <div class="table-responsive table-bordered table table-hover table-bordered results">
+                            <table class="table table-bordered table-hover">
+                                <thead class="bill-header cs">
+                                    <tr>
+                                        <th id="trs-hd" class="col-lg-3">Topic</th>
+                                        <th id="trs-hd" class="col-lg-7">Content</th>
+                                        <th id="trs-hd" class="col-lg-2">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each topic}}
+                                    <tr>
+                                        <td>{{this.title}}</td>
+                                        <td>{{this.content}}</td>
+                                        <td>
+                                            <a class="btn btn-danger" role="button"
+                                                style="margin-left: 5px;background-color: rgb(98,155,241); padding-left: 25px; padding-right: 25px; margin-top: 5px; margin-bottom: 5px"
+                                                href="update_topic?id_topic={{this._id}}">UPDATE</a>
+                                            <form action="lesson_detail/delete_topic" method="post">
+                                                <input style="display: none;" name='lessonId'
+                                                    value="{{this.lessonId}}" />
+
+                                                <button class="btn btn-danger"
+                                                    style="margin-left: 5px; padding-left: 25px; padding-right: 25px; margin-top: 5px; margin-bottom: 5px"
+                                                    type="submit" name="id_topic" value="{{this._id}}">DELETE</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <h1 style="margin-left: 15px;">Quiz</h1>
+                    <div class="col-md-12 search-table-col" style="margin-top: 10px;">
+                        <div class="form-group pull-right col-lg-4"><input type="text" class="search form-control"
+                                placeholder="Search by typing here.."></div><span class="counter pull-right"></span>
+                        <div class="table-responsive table-bordered table table-hover table-bordered results">
+                            <table class="table table-bordered table-hover">
+                                <thead class="bill-header cs">
+                                    <tr>
+                                        <th id="trs-hd" class="col-lg-9">Question</th>
+                                        <th id="trs-hd" class="col-lg-3">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each quiz}}
+                                    <tr>
+                                        <td>
+                                            <h5><br>Question {{this.STT}}:&nbsp;{{this.question}}<br></h5>
+                                            <h6><br>A: {{this.answerA}}<br></h6>
+                                            <h6><br>B: {{this.answerB}}<br></h6>
+                                            {{#if this.answerC}}
+                                            <h6><br>C: {{this.answerC}}<br></h6>
+                                            {{/if}}
+                                            {{#if this.answerD}}
+                                            <h6><br>D: {{this.answerD}}<br></h6>
+                                            {{/if}}
+                                            <h6 style="color: rgb(42, 218, 57); font-weight: 600;"><br>Correct Answer:
+                                                {{this.correctAnswer}}<br></h6>
+
+                                        </td>
+                                        <td>
+                                            <div style="justify-content: center;display: flex; flex-wrap: wrap;">
+
+                                                <a href="update-question?id={{this._id}}"><button class="btn btn-primary"
+                                                    style="margin-left: 5px; padding-left: 25px; padding-right: 25px; margin-top: 5px; margin-bottom: 5px; color: aliceblue;background-color: rgb(98,155,241);"
+                                                    type="button">UPDATE</button></a>
+                                                <div style="justify-content: center;display: flex; flex-wrap: wrap;">
+                                                    <a class="btn btn-danger" role="button"
+                                                        style="margin-left: 5px;background-color: rgb(243, 213, 44); padding-left: 25px; padding-right: 25px; margin-top: 5px; margin-bottom: 5px"
+                                                        href="discussion">CHAT</a>
+                                                    <form action="lesson_detail/delete_quiz" method="post">
+                                                        <input style="display: none;" name='lessonId'
+                                                            value="{{this.lessonId}}" />
+                                                        <button class="btn btn-danger"
+                                                            style="margin-left: 5px; padding-left: 25px; padding-right: 25px; margin-top: 5px; margin-bottom: 5px"
+                                                            type="submit" name="id" value="{{this._id}}">DELETE</button>
+                                                    </form>
+                                                </div>
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="bg-white sticky-footer">
+                <div class="container my-auto">
+                    <div class="text-center my-auto copyright"><span>Copyright © Brand 2021</span></div>
+                </div>
+            </footer>
         </div>
-    </div>
-    <h1 style="margin-left: 15px;">Quiz</h1>
-    <div class="col-md-12 search-table-col" style="margin-top: 10px;">
-        <div class="form-group pull-right col-lg-4"><input type="text" class="search form-control"
-                placeholder="Search by typing here.."></div><span class="counter pull-right"></span>
-        <div class="table-responsive table-bordered table table-hover table-bordered results">
-            <table class="table table-bordered table-hover">
-                <thead class="bill-header cs">
-                    <tr>
-                        <th id="trs-hd" class="col-lg-10">Question</th>
-                        <th id="trs-hd" class="col-lg-2">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <h5><br>Question 1:&nbsp;Which of the following statements is true about java?<br><br></h5>
-                            <br>
-                            <h6><br>A. Write once, bug everywhere<br></h6>
-                            <h6 style="color: rgb(30,26,227);"><br>B. Write one, run everywhere<br></h6>
-                            <h6><br>C. I don't know<br></h6>
-                            <h6><br>D. All of above<br></h6>
-                        </td>
-                        <td><button class="btn btn-success" style="margin-left: 5px;" type="submit"><i
-                                    class="fa fa-pencil" style="font-size: 15px;"></i></button><button
-                                class="btn btn-danger" style="margin-left: 5px;" type="submit"><i class="fa fa-trash"
-                                    style="font-size: 15px;"></i></button>
-                            <a class="btn btn-danger" role="button"
-                                style="margin-left: 5px;background-color: rgb(248,215,42);" href="discussion.html"><i
-                                    class="fa fa-comments-o" style="font-size: 15px;"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h5><br>Question 2:&nbsp;What is a correct syntax to output "Hello World" in Java?<br><br>
-                            </h5><br>
-                            <h6><br>A. echo("Hello World");<br><br></h6>
-                            <h6 style="color: rgb(30,26,227);"><br>B. System.out.println("Hello World");<br><br></h6>
-                            <h6><br>C. print ("Hello World");<br><br></h6>
-                            <h6><br>D. Console.WriteLine("Hello World");<br><br></h6>
-                        </td>
-                        <td><button class="btn btn-success" style="margin-left: 5px;" type="submit"><i
-                                    class="fa fa-pencil" style="font-size: 15px;"></i></button><button
-                                class="btn btn-danger" style="margin-left: 5px;" type="submit"><i class="fa fa-trash"
-                                    style="font-size: 15px;"></i></button>
-                            <a class="btn btn-danger" role="button"
-                                style="margin-left: 5px;background-color: rgb(248,215,42);" href="discussion.html"><i
-                                    class="fa fa-comments-o" style="font-size: 15px;"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h5><br>Question 3:&nbsp;How to initialization a String in Java?<br><br></h5><br>
-                            <h6><br>A. string txt = "Xin chao";<br><br></h6>
-                            <h6><br>B. String txt = "Xin chao"<br><br></h6>
-                            <h6><br>C. var txt = "Xin chao";<br><br></h6>
-                            <h6 style="color: rgb(30,26,227);"><br>D. String txt = "Xin chao";<br><br></h6>
-                        </td>
-                        <td><button class="btn btn-success" style="margin-left: 5px;" type="submit"><i
-                                    class="fa fa-pencil" style="font-size: 15px;"></i></button><button
-                                class="btn btn-danger" style="margin-left: 5px;" type="submit"><i class="fa fa-trash"
-                                    style="font-size: 15px;"></i></button>
-                            <a class="btn btn-danger" role="button"
-                                style="margin-left: 5px;background-color: rgb(248,215,42);" href="discussion.html"><i
-                                    class="fa fa-comments-o" style="font-size: 15px;"></i></a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+    </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+
+
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
