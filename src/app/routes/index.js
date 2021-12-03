@@ -54,5 +54,6 @@ function route(app) {
         res.render('user')
     })
 
+
 }
 module.exports = route
