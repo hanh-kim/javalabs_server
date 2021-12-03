@@ -5,11 +5,14 @@ const morgan = require('morgan');
 const {extname} = require('path');
 const path = require('path')
 
+
 const db = require('./config/db')
 const route = require('./app/routes')
 const port = 3000;
 //import thư  viện socket
 var server = require("http").Server(app)
+const Chat = require('./app/model/ChatModel')
+
 var io = require('socket.io')(server)
 server.listen(port)
 
@@ -47,46 +50,27 @@ io.sockets.on('connection', function (socket) {
     });
 
     socket.on('joinQiz', function (dataroom) {
-        const text = JSON.parse(dataroom);
-        console.log('data :\t'+dataroom);
+        const data = JSON.parse(dataroom);
+        console.log('data :\t' + dataroom);
 
         //luu monggo
 
-        if (req.body.questionId == null ||
-            req.body.userId == null ||
-            req.body.quizId == null ||
-            req.body.message == null ||
-            req.body.date == null) {
-            res.json({
-                message: 'Cần truyền questionId, userId, quizId, message, date'
-            })
-            return
-        }
         Chat({
-            questionId: req.body.questionId,
-            userId: req.body.questionId,
-            quizId: req.body.quizId,
-            vote: req.body.vote,
-            message: req.body.message,
-            date: req.body.date,
+            questionId: data.questionId,
+            userId: data.username,
+            quizId: data.questionId,
+            vote: data.vote,
+            message: data.message,
+            date: '2021-12-3',
         }).save().then(chat => {
-            res.json({
-                message: 'Thành công',
-                code: 200,
-                isSuccess: true,
-                data: chat
-            })
+
         }).catch(e => {
-            res.json({
-                message: e.message,
-                code: 404,
-                isSuccess: false,
-            })
+
         })
 
 
-        socket.join(text.idRoom)
-        io.in(text.idRoom).emit('private_message', {dataroom});
+        socket.join(data.questionId)
+        io.in(data.idRoom).emit('private_message', {dataroom});
     });
 
 
