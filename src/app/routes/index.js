@@ -72,5 +72,6 @@ function route(app) {
         res.render('404')
     });
 
+
 }
 module.exports = route
