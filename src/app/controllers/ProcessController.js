@@ -62,9 +62,9 @@ class ProcessController {
                 if (req.body.quizMarked != null) {
                     process.quizMarked = req.body.quizMarked
                 }
-                if (req.body.quizStatus != null) {
-                    process.lastModify = req.body.dateTime
-                }
+                var today = new Date();
+                var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                process.lastModify = date
 
                 process.save().then(pro => {
                     res.json({
