@@ -1,0 +1,37 @@
+Index: src/index.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>const express = require('express')\r\nconst app = express();\r\nconst handlebars = require('express-handlebars');\r\nconst morgan = require('morgan');\r\nconst {extname} = require('path');\r\nconst path = require('path')\r\n\r\n\r\nconst db = require('./config/db')\r\nconst route = require('./app/routes')\r\nconst port = 3000;\r\n//import thư  viện socket\r\nvar server = require(\"http\").Server(app)\r\nconst Chat = require('./app/model/ChatModel')\r\n\r\nvar io = require('socket.io')(server)\r\nserver.listen(port)\r\n\r\n//connect to mongodb\r\ndb.connect()\r\n\r\n//HTTP logger\r\napp.use(morgan('combined'))\r\n\r\n//use public folder\r\napp.use(express.static(path.join(__dirname, 'public')))\r\n\r\n//body parse giúp xem đc params thông qua body. VD: req.body._ten_param\r\napp.use(express.urlencoded({extended: true}))\r\napp.use(express.json())\r\n\r\n//template handlebars\r\napp.engine('hbs', handlebars({\r\n    extname: '.hbs'\r\n}));\r\napp.set('view engine', 'hbs');\r\napp.set('views', path.join(__dirname, 'resources', 'views'))\r\n// socket\r\n\r\n//set route\r\nroute(app)\r\n\r\n\r\nio.sockets.on('connection', function (socket) {\r\n\r\n    socket.on('send_message', function (message) {\r\n        const text = JSON.parse(message);\r\n        io.sockets.emit('receiver_message', {message});\r\n\r\n    });\r\n\r\n    socket.on('joinQiz', function (dataroom) {\r\n        const data = JSON.parse(dataroom);\r\n        console.log('data :\\t' + dataroom);\r\n\r\n        //luu monggo\r\n\r\n        Chat({\r\n            questionId: data.questionId,\r\n            userId: data.username,\r\n            quizId: data.questionId,\r\n            vote: data.vote,\r\n            message: data.message,\r\n            date: '2021-12-3',\r\n        }).save().then(chat => {\r\n\r\n        }).catch(e => {\r\n\r\n        })\r\n\r\n\r\n        socket.join(data.questionId)\r\n        io.in(data.idRoom).emit('private_message', {dataroom});\r\n    });\r\n\r\n\r\n});\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/index.js b/src/index.js
+--- a/src/index.js	
++++ b/src/index.js	
+@@ -49,11 +49,9 @@
+ 
+     });
+ 
+-    socket.on('joinQiz', function (dataroom) {
+-        const data = JSON.parse(dataroom);
+-        console.log('data :\t' + dataroom);
+-
+-        //luu monggo
++    socket.on('joinQiz', function (chat) {
++        const data = JSON.parse(chat);
++        console.log(data)
+ 
+         Chat({
+             questionId: data.questionId,
+@@ -68,9 +66,8 @@
+ 
+         })
+ 
+-
+-        socket.join(data.questionId)
+-        io.in(data.idRoom).emit('private_message', {dataroom});
++        socket.join(data.idRoom)
++        io.in(data.idRoom).emit('private_message', {data: chat});
+     });
+ 
+ 
