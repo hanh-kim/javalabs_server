@@ -47,11 +47,15 @@ route.post('/update-comment', chatController.updateComment)
 
 route.post('/delete-comment', chatController.deleteChat)
 
-route.get('/get-comment-by-question', chatController.getChatByQuestion)
+route.get('/get-comment-by-question', chatController.getChatByQuestionId)
 
 route.get('/get-comment-by-quiz', chatController.getChatByQuiz)
 
 route.get('/get-all-comment', chatController.getAllChat)
+
+route.get('/get-comment-by-questionid', chatController.getChatByQuestion)
+
+
 
 module.exports = route
 

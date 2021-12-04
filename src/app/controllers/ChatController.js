@@ -83,39 +83,58 @@ class ChatController {
 
     }
 
-    getChatByQuestion(req, res) {
+    async getChatByQuestion(req, res) {
+        if (req.query.questionId == null) {
+            res.json({ message: 'Cần truyền params questionId', status: false })
+            return
+        }
+
+        var chats = await Chat.find({ questionId: req.query.questionId })
+
+        // .catch(e => res.json({
+        //     message: e.message,
+        //     code: 404,
+        //     isSuccess: false,
+        // }))
+        var data = []
+        for (var i of chats) {
+            var u = await User.findOne({ _id: i.userId })
+            // .catch(e => res.json({
+            //     message: e.message,
+            //     code: 404,
+            //     isSucces: false
+            // }))
+            data.push({
+                _id: i._id,
+                questionId: i.questionId,
+                quizId: i.quizId,
+                imageUrl: i.imageUrl,
+                vote: i.vote,
+                message: i.message,
+                date: i.date,
+                user: u
+            })
+        }
+        res.json({
+            isSucces: true,
+            code: 200,
+            message: "Thành công",
+            data: data
+        })
+    }
+
+    getChatByQuestionId(req, res) {
         if (req.query.questionId == null) {
             res.json({ message: 'Cần truyền params questionId', status: false })
             return
         }
 
         Chat.find({ questionId: req.query.questionId }).then(chats => {
-            var data = []
-            for (var i of chats) {
-                User.findOne({ _id: i.userId }).then(user => {
-                    data.push({
-                        _id: i._id,
-                        questionId: i.questionId,
-                        quizId: i.quizId,
-                        vote: i.vote,
-                        message: i.message,
-                        date: i.date,
-                        user: user
-                    })
-
-                }).catch(e => res.json({
-                    message: e.message,
-                    code: 404,
-                    isSucces: false
-                })
-                )
-            }
-            console.log(arr)
             res.json({
                 message: 'Thành công',
                 code: 200,
                 isSuccess: true,
-                data: data
+                data: chats
             })
         }).catch(e => res.json({
             message: e.message,

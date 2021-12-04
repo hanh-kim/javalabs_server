@@ -59,8 +59,10 @@ io.sockets.on('connection', function (socket) {
         Chat({
             questionId: data.questionId,
             userId: data.username,
+            username: data.username,
             quizId: data.questionId,
             vote: data.vote,
+            imageUrl: data.imageUrl,
             message: data.message,
             date: date,
         }).save().then(chat => {
