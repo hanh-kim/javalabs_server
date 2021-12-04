@@ -35,7 +35,7 @@ class ProcessController {
                         code: 200,
                         message: 'Thành công',
                         isSuccess: true,
-                        process: pr
+                        data: pr
                     })
                 }).catch(e => res.json({
                     code: 404,
@@ -71,7 +71,7 @@ class ProcessController {
                         code: 200,
                         message: 'Thành công',
                         isSuccess: true,
-                        process: pro
+                        data: pro
                     })
                 }).catch(e => res.json({
                     code: 404,

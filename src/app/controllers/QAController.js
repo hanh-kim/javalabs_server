@@ -2,16 +2,16 @@ const QA = require('../model/QAModel')
 
 class QAController {
     index(req, res) {
-        QA.find().sort({status: 1}).then(qa => {
+        QA.find().sort({ status: 1 }).then(qa => {
             var arr = []
-            for(var i of qa){
+            for (var i of qa) {
                 var stt = ''
-                if(i.status == 1){
+                if (i.status == 1) {
                     stt = 'Resolved'
-                }else{
+                } else {
                     stt = 'Pending'
                 }
-                arr.push({userId: i.userId, title : i.title, content: i.content, status: stt, _id: i._id})
+                arr.push({ userId: i.userId, title: i.title, content: i.content, status: stt, _id: i._id })
             }
             res.render('pending_request', { QA: arr })
         }).catch(e => res.send('Loi ' + e.message))
@@ -19,7 +19,7 @@ class QAController {
 
     //addd
     addQA(req, res) {
-        if(req.body.userId == null || req.body.content == null){
+        if (req.body.userId == null || req.body.content == null) {
             res.json({
                 message: 'Cần truyền userId và content',
                 isSuccess: false
@@ -35,7 +35,7 @@ class QAController {
             message: "Thanh cong",
             code: 200,
             isSuccess: true,
-            qa: qa
+            data: qa
         })).catch(e => res.json({
             message: e.message,
             code: 404,
@@ -43,15 +43,15 @@ class QAController {
         }))
     }
 
-    updateQA(req, res){
-        if(req.body.id == null){
+    updateQA(req, res) {
+        if (req.body.id == null) {
             res.json({
                 message: 'Cần truyền id ',
                 isSuccess: false
             })
             return
         }
-        QA.findOne({_id: req.body.id}).then(qa => {
+        QA.findOne({ _id: req.body.id }).then(qa => {
             qa.status = 1
             qa.save().then(q => res.redirect('/pending_request')).catch(e => res.json({
                 message: e.message,
@@ -65,7 +65,7 @@ class QAController {
         }))
     }
 
-    deleteQA(req, res){
+    deleteQA(req, res) {
         if (req.body.id == null) {
             res.json({ message: 'Cần truyền params id', status: false })
             return

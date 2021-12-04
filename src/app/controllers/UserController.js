@@ -30,7 +30,7 @@ class UserController {
                 message: "Thành công",
                 isSuccess: true,
                 code: 200,
-                user: user
+                data: user
             })
         }).catch(e => res.json({
             isSuccess: false,
@@ -59,7 +59,7 @@ class UserController {
                     message: "success",
                     isSuccess: true,
                     code: 200,
-                    user: user
+                    data: user
                 })).catch(e => res.json(
                     {
                         isSuccess: false,
