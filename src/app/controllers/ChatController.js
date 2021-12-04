@@ -1,4 +1,5 @@
 const Chat = require('../model/ChatModel')
+const User = require('../model/UserModel')
 
 class ChatController {
     addComment(req, res) {
@@ -72,14 +73,14 @@ class ChatController {
                     message: 'Xoa thành công',
                     code: 200,
                     isSuccess: true,
-                }) 
+                })
                 return
-            }else{
+            } else {
                 res.json({ message: err.message, status: false, code: 400 })
             }
-            
+
         })
-        
+
     }
 
     getChatByQuestion(req, res) {
@@ -87,12 +88,34 @@ class ChatController {
             res.json({ message: 'Cần truyền params questionId', status: false })
             return
         }
+
         Chat.find({ questionId: req.query.questionId }).then(chats => {
+            var data = []
+            for (var i of chats) {
+                User.findOne({ _id: i.userId }).then(user => {
+                    data.push({
+                        _id: i._id,
+                        questionId: i.questionId,
+                        quizId: i.quizId,
+                        vote: i.vote,
+                        message: i.message,
+                        date: i.date,
+                        user: user
+                    })
+
+                }).catch(e => res.json({
+                    message: e.message,
+                    code: 404,
+                    isSucces: false
+                })
+                )
+            }
+            console.log(arr)
             res.json({
                 message: 'Thành công',
                 code: 200,
                 isSuccess: true,
-                data: chats
+                data: data
             })
         }).catch(e => res.json({
             message: e.message,
@@ -120,7 +143,7 @@ class ChatController {
         }))
     }
 
-    getAllChat(req, res){
+    getAllChat(req, res) {
         Chat.find({}).then(chats => {
             res.json({
                 message: 'Thành công',
