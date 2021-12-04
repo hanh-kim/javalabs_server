@@ -6,6 +6,8 @@ const User = new Schema({
     username: { type: String, default: '' },
     imageUrl: { type: String, default: '' },
     mark: { type: Number, default: 0 }
+}, {
+    versionKey: false
 })
 
 module.exports = mongoose.model('User', User)
