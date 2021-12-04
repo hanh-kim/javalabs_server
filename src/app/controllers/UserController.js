@@ -104,6 +104,7 @@ class UserController {
                 var obj = new UserMD(i.gmail, i.mark, i.username, i.imageUrl)
                 arr.push(obj)
             }
+            console.log(arr)
 
             res.render('user', { user: arr, totalUser: user.length })
         }).catch(e => {
@@ -154,11 +155,13 @@ class UserMD {
     gmail
     mark
     username
+    imageUrl
 
-    constructor(gmail, mark, username) {
+    constructor(gmail, mark, username, imageUrl) {
         this.gmail = gmail
         this.mark = mark
         this.username = username
+        this.imageUrl = imageUrl
     }
 }
 
