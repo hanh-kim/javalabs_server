@@ -4,6 +4,7 @@ const Schema = mongoose.Schema
 const User = new Schema({
     gmail: { type: String, default: '' },
     username: { type: String, default: '' },
+    imageUrl: { type: String, default: '' },
     mark: { type: Number, default: 0 }
 })
 

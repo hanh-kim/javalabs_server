@@ -23,12 +23,14 @@ class UserController {
         User({
             gmail: req.body.gmail,
             mark: mark,
+            imageUrl: req.body.imageUrl,
             username: username
         }).save().then(user => {
             res.json({
                 message: "Thành công",
                 isSuccess: true,
-                code: 200
+                code: 200,
+                user: user
             })
         }).catch(e => res.json({
             isSuccess: false,
@@ -99,7 +101,7 @@ class UserController {
         User.find({}).sort({ mark: -1 }).then(user => {
             var arr = []
             for (var i of user) {
-                var obj = new UserMD(i.gmail, i.mark, i.username)
+                var obj = new UserMD(i.gmail, i.mark, i.username, i.imageUrl)
                 arr.push(obj)
             }
 

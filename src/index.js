@@ -1,8 +1,8 @@
 const express = require('express')
 const app = express();
 const handlebars = require('express-handlebars');
-const morgan = require('morgan');
-const {extname} = require('path');
+// const morgan = require('morgan');
+const { extname } = require('path');
 const path = require('path')
 
 
@@ -14,19 +14,18 @@ var server = require("http").Server(app)
 const Chat = require('./app/model/ChatModel')
 
 var io = require('socket.io')(server)
-server.listen(port)
 
 //connect to mongodb
 db.connect()
 
 //HTTP logger
-app.use(morgan('combined'))
+// app.use(morgan('combined'))
 
 //use public folder
 app.use(express.static(path.join(__dirname, 'public')))
 
 //body parse giúp xem đc params thông qua body. VD: req.body._ten_param
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 //template handlebars
@@ -45,7 +44,7 @@ io.sockets.on('connection', function (socket) {
 
     socket.on('send_message', function (message) {
         const text = JSON.parse(message);
-        io.sockets.emit('receiver_message', {message});
+        io.sockets.emit('receiver_message', { message });
 
     });
 
@@ -54,14 +53,18 @@ io.sockets.on('connection', function (socket) {
         console.log('data :\t' + dataroom);
 
         //luu monggo
-
+        var today = new Date();
+        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        console.log(date)
         Chat({
             questionId: data.questionId,
             userId: data.username,
+            username: data.username,
             quizId: data.questionId,
             vote: data.vote,
+            imageUrl: data.imageUrl,
             message: data.message,
-            date: '2021-12-3',
+            date: date,
         }).save().then(chat => {
 
         }).catch(e => {
@@ -70,9 +73,14 @@ io.sockets.on('connection', function (socket) {
 
 
         socket.join(data.questionId)
-        io.in(data.idRoom).emit('private_message', {dataroom});
+        io.in(data.idRoom).emit('private_message', { dataroom });
     });
 
 
 });
+server.listen(process.env.PORT || port)
 
+
+// app.listen(process.env.PORT || 3000, () => {
+//     console.log(`App listening at ${process.env.PORT}`)
+// })
