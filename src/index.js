@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express();
 const handlebars = require('express-handlebars');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const { extname } = require('path');
 const path = require('path')
 
@@ -19,7 +19,7 @@ var io = require('socket.io')(server)
 db.connect()
 
 //HTTP logger
-app.use(morgan('combined'))
+// app.use(morgan('combined'))
 
 //use public folder
 app.use(express.static(path.join(__dirname, 'public')))
