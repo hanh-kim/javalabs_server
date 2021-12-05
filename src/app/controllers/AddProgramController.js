@@ -12,7 +12,7 @@ class AddProgramController {
 
     importProgram(req, res, next) {
         var imageLink = ''
-        if (req.files.length > 0) {
+        if (req.files['image'].length > 0) {
             imageLink = '/uploads/' + req.files['image'][0].filename
         } else {
             imageLink = 'https://firebasestorage.googleapis.com/v0/b/managefood-8ae7b.appspot.com/o/default.png?alt=media&token=a91c3db6-9948-4e18-9e34-2c10ececc527'
