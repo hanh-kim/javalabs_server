@@ -11,7 +11,8 @@ class UserController {
         User.findOne({ gmail: req.body.gmail }).then(user => {
             if (user != null) {
                 res.json({
-                    message: "Thành công (Get)",
+                    message: "Thành công",
+                    type: 1,
                     isSuccess: true,
                     code: 200,
                     data: user
@@ -38,7 +39,8 @@ class UserController {
                     username: username
                 }).save().then(user => {
                     res.json({
-                        message: "Thành công (Insert)",
+                        message: "Thành công",
+                        type: 0,
                         isSuccess: true,
                         code: 200,
                         data: user
