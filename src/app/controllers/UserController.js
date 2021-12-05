@@ -7,36 +7,56 @@ class UserController {
             res.json({ message: 'gmail không được trống' })
             return
         }
-        var mark = 0;
-        if (req.body.mark == null) {
-            mark = 0;
-        } else {
-            mark = req.body.mark
-        }
 
-        var username = ''
-        if (req.body.username == null) {
-            username = ''
-        } else {
-            username = req.body.username
-        }
-        User({
-            gmail: req.body.gmail,
-            mark: mark,
-            imageUrl: req.body.imageUrl,
-            username: username
-        }).save().then(user => {
-            res.json({
-                message: "Thành công",
-                isSuccess: true,
-                code: 200,
-                data: user
-            })
+        User.findOne({ gmail: req.body.gmail }).then(user => {
+            if (user != null) {
+                res.json({
+                    message: "Thành công (Get)",
+                    isSuccess: true,
+                    code: 200,
+                    data: user
+                })
+                return;
+            } else {
+                var mark = 0;
+                if (req.body.mark == null) {
+                    mark = 0;
+                } else {
+                    mark = req.body.mark
+                }
+
+                var username = ''
+                if (req.body.username == null) {
+                    username = ''
+                } else {
+                    username = req.body.username
+                }
+                User({
+                    gmail: req.body.gmail,
+                    mark: mark,
+                    imageUrl: req.body.imageUrl,
+                    username: username
+                }).save().then(user => {
+                    res.json({
+                        message: "Thành công (Insert)",
+                        isSuccess: true,
+                        code: 200,
+                        data: user
+                    })
+                }).catch(e => res.json({
+                    isSuccess: false,
+                    message: e.message,
+                    code: 404
+                }))
+            }
+
         }).catch(e => res.json({
             isSuccess: false,
             message: e.message,
             code: 404
         }))
+
+
     }
 
     //update
