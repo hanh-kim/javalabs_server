@@ -57,7 +57,7 @@ io.sockets.on('connection', function (socket) {
         var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
         Chat({
             questionId: data.questionId,
-            userId: data.username,
+            userId: data.userId,
             username: data.username,
             quizId: data.questionId,
             vote: data.vote,

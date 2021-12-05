@@ -11,7 +11,7 @@ const updateRoute = require('./update_route')
 const updateQuestionRoute = require('./update_question_route')
 const updateProgramRoute = require('./update_program_route')
 const qaRoute = require('./qa_route')
-
+const discussionRoute = require('./chat_route')
 function route(app) {
 
     app.use('/', loginRoute)
@@ -37,9 +37,7 @@ function route(app) {
     app.get('/add_page.html', (req, res) => {
         res.render('add_page')
     })
-    app.get('/discussion.html', (req, res) => {
-        res.render('discussion')
-    })
+    app.use('/discussion', discussionRoute)
 
     app.get('/forgot-password.html', (req, res) => {
         res.render('forgot-password')
@@ -50,7 +48,7 @@ function route(app) {
     })
 
     app.use('/pending_request', qaRoute)
-    
+
     app.get('/profile.html', (req, res) => {
         res.render('profile')
     })
@@ -63,7 +61,7 @@ function route(app) {
     })
 
     app.use('/update_topic', updateRoute)
-    
+
     app.use('/update_program_detail', updateProgramRoute)
 
     app.use('/update-question', updateQuestionRoute)

@@ -2,6 +2,53 @@ const Chat = require('../model/ChatModel')
 const User = require('../model/UserModel')
 
 class ChatController {
+    index(req, res) {
+        Chat.find({ questionId: req.query.questionId }).then(chats => {
+            var arr = []
+            // {
+            //     questionId: 111,
+            //     userId: 111,
+            //     username: 'Duy Vũ',
+            //     imageUrl: 'https://vcdn-dulich.vnecdn.net/2020/09/04/1-Meo-chup-anh-dep-khi-di-bien-9310-1599219010.jpg',
+            //     quizId: 'a',
+            //     vote: 5,
+            //     message: 'Câu này là sao',
+            //     date: '2021-12-06'
+            // }, {
+            //     questionId: 111,
+            //     userId: 111,
+            //     username: 'Vũ Phake',
+            //     imageUrl: 'https://vcdn-dulich.vnecdn.net/2020/09/04/1-Meo-chup-anh-dep-khi-di-bien-9310-1599219010.jpg',
+            //     quizId: 'a',
+            //     vote: 0,
+            //     message: 'Sao cái gì',
+            //     date: '2021-12-06'
+            // }, {
+            //     questionId: 111,
+            //     userId: 111,
+            //     username: 'Vũ Phake 2',
+            //     imageUrl: 'https://bloganh.net/wp-content/uploads/2021/03/chup-anh-dep-anh-sang-min.jpg',
+            //     quizId: 'a',
+            //     vote: 0,
+            //     message: 'Alo 1234 alo',
+            //     date: '2021-12-06'
+            // }
+            for (var i of chats) {
+                arr.push({
+                    questionId: i.questionId,
+                    userId: i.userId,
+                    username: i.username,
+                    imageUrl: i.imageUrl,
+                    quizId: i.quizId,
+                    vote: i.vote,
+                    message: i.message,
+                    date: i.date
+                })
+            }
+            res.render('discussion', { chat: arr })
+        }).catch(e => res.render('Có lỗi ' + e.message))
+    }
+
     addComment(req, res) {
         if (req.body.questionId == null ||
             req.body.userId == null ||
