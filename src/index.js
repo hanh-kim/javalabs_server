@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express();
 const handlebars = require('express-handlebars');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const {extname} = require('path');
 const path = require('path')
 
@@ -20,7 +20,7 @@ server.listen(port)
 db.connect()
 
 //HTTP logger
-app.use(morgan('combined'))
+// app.use(morgan('combined'))
 
 //use public folder
 app.use(express.static(path.join(__dirname, 'public')))
@@ -40,43 +40,46 @@ app.set('views', path.join(__dirname, 'resources', 'views'))
 //set route
 route(app)
 
-
-//luu monggo
+var idRoom = '';
 io.sockets.on('connection', function (socket) {
+    console.log("đã kết nối máy chủ thử nghiệm ")
+    socket.on('joinQiz', function (chat) {
+        const Data = JSON.parse(chat);
+        console.log(chat)
 
-    socket.on('send_message', function (message) {
-        const text = JSON.parse(message);
-        io.sockets.emit('receiver_message', {message});
+        var today = new Date();
+        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        console.log(Data.questionId)
+        if (Data.message == '') {
+            return
+        } else {
+            Chat({
+                questionId: Data.questionId,
+                userId: Data.username,
+                username: Data.username,
+                quizId: Data.questionId,
+                vote: Data.vote,
+                imageUrl: Data.imageUrl,
+                message: Data.message,
+                date: date,
+            }).save().then(chat => {
 
+            }).catch(e => {
+
+            })
+        }
+
+        idRoom = Data.questionId
+        socket.join(Data.questionId)
+        io.in(Data.questionId).emit('private_message', {data: Data});
     });
 
-    socket.on('joinQiz', function (dataroom) {
-        const data = JSON.parse(dataroom);
-        console.log('data :\t' + dataroom);
+    socket.on('disconnect', function () {
+        console.log('đã ngắt kết nối  máy chủ thử nghiệm ');
 
-        //luu monggo
-        // var today = new Date();
-        // var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-        // console.log(date)
-        // Chat({
-        //     questionId: data.questionId,
-        //     userId: data.username,
-        //     username: data.username,
-        //     quizId: data.questionId,
-        //     vote: data.vote,
-        //     imageUrl: data.imageUrl,
-        //     message: data.message,
-        //     date: date,
-        // }).save().then(chat => {
-        //
-        // }).catch(e => {
-        //
-        // })
-
-
-        socket.join(data.questionId)
-        io.in(data.idRoom).emit('private_message', {dataroom});
     });
 
 });
+
+
 
