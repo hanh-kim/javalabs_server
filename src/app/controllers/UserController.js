@@ -7,36 +7,58 @@ class UserController {
             res.json({ message: 'gmail không được trống' })
             return
         }
-        var mark = 0;
-        if (req.body.mark == null) {
-            mark = 0;
-        } else {
-            mark = req.body.mark
-        }
 
-        var username = ''
-        if (req.body.username == null) {
-            username = ''
-        } else {
-            username = req.body.username
-        }
-        User({
-            gmail: req.body.gmail,
-            mark: mark,
-            imageUrl: req.body.imageUrl,
-            username: username
-        }).save().then(user => {
-            res.json({
-                message: "Thành công",
-                isSuccess: true,
-                code: 200,
-                user: user
-            })
+        User.findOne({ gmail: req.body.gmail }).then(user => {
+            if (user != null) {
+                res.json({
+                    message: "Thành công",
+                    type: 1,
+                    isSuccess: true,
+                    code: 200,
+                    data: user
+                })
+                return;
+            } else {
+                var mark = 0;
+                if (req.body.mark == null) {
+                    mark = 0;
+                } else {
+                    mark = req.body.mark
+                }
+
+                var username = ''
+                if (req.body.username == null) {
+                    username = ''
+                } else {
+                    username = req.body.username
+                }
+                User({
+                    gmail: req.body.gmail,
+                    mark: mark,
+                    imageUrl: req.body.imageUrl,
+                    username: username
+                }).save().then(user => {
+                    res.json({
+                        message: "Thành công",
+                        type: 0,
+                        isSuccess: true,
+                        code: 200,
+                        data: user
+                    })
+                }).catch(e => res.json({
+                    isSuccess: false,
+                    message: e.message,
+                    code: 404
+                }))
+            }
+
         }).catch(e => res.json({
             isSuccess: false,
             message: e.message,
             code: 404
         }))
+
+
     }
 
     //update
@@ -59,7 +81,7 @@ class UserController {
                     message: "success",
                     isSuccess: true,
                     code: 200,
-                    user: user
+                    data: user
                 })).catch(e => res.json(
                     {
                         isSuccess: false,
@@ -104,6 +126,7 @@ class UserController {
                 var obj = new UserMD(i.gmail, i.mark, i.username, i.imageUrl)
                 arr.push(obj)
             }
+            console.log(arr)
 
             res.render('user', { user: arr, totalUser: user.length })
         }).catch(e => {
@@ -154,11 +177,13 @@ class UserMD {
     gmail
     mark
     username
+    imageUrl
 
-    constructor(gmail, mark, username) {
+    constructor(gmail, mark, username, imageUrl) {
         this.gmail = gmail
         this.mark = mark
         this.username = username
+        this.imageUrl = imageUrl
     }
 }
 

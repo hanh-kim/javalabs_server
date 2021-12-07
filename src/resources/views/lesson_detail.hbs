@@ -70,7 +70,7 @@
                                             class="border rounded-circle img-profile"
                                             src="assets/img/avatars/user.png"></a>
                                     <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
-                                        
+
                                         <div class="dropdown-divider"></div><a class="dropdown-item" role="presentation"
                                             href="/"><i
                                                 class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a>
@@ -126,8 +126,8 @@
                             <table class="table table-bordered table-hover">
                                 <thead class="bill-header cs">
                                     <tr>
-                                        <th id="trs-hd" class="col-lg-9">Question</th>
-                                        <th id="trs-hd" class="col-lg-3">Action</th>
+                                        <th id="trs-hd" class="col-lg-10">Question</th>
+                                        <th id="trs-hd" class="col-lg-2">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -150,13 +150,14 @@
                                         <td>
                                             <div style="justify-content: center;display: flex; flex-wrap: wrap;">
 
-                                                <a href="update-question?id={{this._id}}"><button class="btn btn-primary"
-                                                    style="margin-left: 5px; padding-left: 25px; padding-right: 25px; margin-top: 5px; margin-bottom: 5px; color: aliceblue;background-color: rgb(98,155,241);"
-                                                    type="button">UPDATE</button></a>
+                                                <a href="update-question?id={{this._id}}"><button
+                                                        class="btn btn-primary"
+                                                        style="margin-left: 5px; padding-left: 25px; padding-right: 25px; margin-top: 5px; margin-bottom: 5px; color: aliceblue;background-color: rgb(98,155,241);"
+                                                        type="button">UPDATE</button></a>
                                                 <div style="justify-content: center;display: flex; flex-wrap: wrap;">
                                                     <a class="btn btn-danger" role="button"
-                                                        style="margin-left: 5px;background-color: rgb(243, 213, 44); padding-left: 25px; padding-right: 25px; margin-top: 5px; margin-bottom: 5px"
-                                                        href="discussion">CHAT</a>
+                                                        style="margin-left: 5px;background-color: rgb(243, 213, 44); padding-left: 35px; padding-right: 35px; margin-top: 5px; margin-bottom: 5px"
+                                                        href="discussion?questionId={{this._id}}">CHAT</a>
                                                     <form action="lesson_detail/delete_quiz" method="post">
                                                         <input style="display: none;" name='lessonId'
                                                             value="{{this.lessonId}}" />

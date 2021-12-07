@@ -77,9 +77,10 @@
                         </div>
                         <div class="card-body">
                             <div class="col-md-10 ">
-                                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite" style="color: rgb(146, 146, 146); font-weight: 800;">
-                                        Total: {{totalUser}} user</p>
-                                </div>
+                                <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite"
+                                    style="color: rgb(146, 146, 146); font-weight: 800;">
+                                    Total: {{totalUser}} user</p>
+                            </div>
                             <div class="row" style="display: flex; justify-content: space-between;">
                                 <div class="col-md-6 text-nowrap">
                                     <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
@@ -90,10 +91,10 @@
                                                 <option value="50">50</option>
                                                 <option value="100">100</option>
                                             </select>&nbsp;</label>
-                                        
+
                                     </div>
                                 </div>
-                                
+
                             </div>
                             <div class="table-responsive table mt-2" id="dataTable" role="grid"
                                 aria-describedby="dataTable_info">
@@ -109,7 +110,7 @@
                                         {{#each user}}
                                         <tr>
                                             <td><img class="rounded-circle mr-2" width="30" height="30"
-                                                    src="assets/img/avatars/user.png">{{this.username}}</td>
+                                                    src="{{this.imageUrl}}">{{this.username}}</td>
                                             <td>{{this.gmail}}</td>
                                             <td>{{this.mark}}</td>
                                         </tr>
@@ -129,9 +130,10 @@
                     </div>
                 </div>
             </div>
-            <footer class="bg-white sticky-footer">
+            <footer class=" bg-white sticky-footer">
                 <div class="container my-auto">
-                    <div class="text-center my-auto copyright"><span>Copyright © Brand 2021</span></div>
+                    <div class="text-center my-auto copyright"><span>Copyright © Brand
+                            2021</span></div>
                 </div>
             </footer>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
