@@ -54,7 +54,6 @@ io.sockets.on('connection', function (socket) {
 
 
         if (data.message == null || data.message.trim() == '') {
-            return;
         } else {
             //luu monggo
             var today = new Date();
