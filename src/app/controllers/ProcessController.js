@@ -35,7 +35,7 @@ class ProcessController {
                         code: 200,
                         message: 'Thành công',
                         isSuccess: true,
-                        process: pr
+                        data: pr
                     })
                 }).catch(e => res.json({
                     code: 404,
@@ -62,16 +62,16 @@ class ProcessController {
                 if (req.body.quizMarked != null) {
                     process.quizMarked = req.body.quizMarked
                 }
-                if (req.body.quizStatus != null) {
-                    process.lastModify = req.body.dateTime
-                }
+                var today = new Date();
+                var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                process.lastModify = date
 
                 process.save().then(pro => {
                     res.json({
                         code: 200,
                         message: 'Thành công',
                         isSuccess: true,
-                        process: pro
+                        data: pro
                     })
                 }).catch(e => res.json({
                     code: 404,

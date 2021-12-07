@@ -10,6 +10,8 @@ const Process = new Schema({
     quizMarked: { type: Number, default: 0 },
     dateTime: { type: String, default: '' },
     lastModify: { type: String, default: '' }
+}, {
+    versionKey: false
 })
 
 module.exports = mongoose.model('Process', Process)

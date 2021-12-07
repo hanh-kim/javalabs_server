@@ -10,5 +10,7 @@ const Question = new Schema({
         type: Array, default: []
     },
     correctAnswer: { type: String, default: '' }
+}, {
+    versionKey: false
 })
 module.exports = mongoose.model('Question', Question)
