@@ -116,7 +116,11 @@ class ChatController {
                     isSuccess: false,
                 }))
             }
-        })
+        }).catch(e => res.json({
+            message: e.message,
+            code: 404,
+            isSuccess: false
+        }))
     }
 
 
