@@ -52,23 +52,26 @@ io.sockets.on('connection', function (socket) {
         const data = JSON.parse(dataroom);
         console.log('data :\t' + dataroom);
 
-        //luu monggo
-        var today = new Date();
-        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-        Chat({
-            questionId: data.questionId,
-            userId: data.userId,
-            username: data.username,
-            quizId: data.questionId,
-            vote: data.vote,
-            imageUrl: data.imageUrl,
-            message: data.message,
-            date: date,
-        }).save().then(chat => {
 
-        }).catch(e => {
+        if (data.message == null || data.message.trim() == '') {
+        } else {
+            //luu monggo
+            var today = new Date();
+            var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+            Chat({
+                questionId: data.questionId,
+                userId: data.userId,
+                username: data.username,
+                quizId: data.questionId,
+                vote: data.vote,
+                imageUrl: data.imageUrl,
+                message: data.message,
+                date: date,
+            }).save().then(chat => {
+            }).catch(e => {
 
-        })
+            })
+        }
 
 
         socket.join(data.questionId)
