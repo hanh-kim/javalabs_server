@@ -2,7 +2,7 @@ const express = require('express')
 const app = express();
 const handlebars = require('express-handlebars');
 // const morgan = require('morgan');
-const { extname } = require('path');
+const {extname} = require('path');
 const path = require('path')
 
 
@@ -25,7 +25,7 @@ db.connect()
 app.use(express.static(path.join(__dirname, 'public')))
 
 //body parse giúp xem đc params thông qua body. VD: req.body._ten_param
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
 //template handlebars
@@ -41,45 +41,47 @@ route(app)
 
 
 io.sockets.on('connection', function (socket) {
+    console.log("đã kết nối máy chủ thử nghiệm ")
+    socket.on('joinQiz', function (chat) {
+        const Data = JSON.parse(chat);
+        console.log(chat)
 
-    socket.on('send_message', function (message) {
-        const text = JSON.parse(message);
-        io.sockets.emit('receiver_message', { message });
-
-    });
-
-    socket.on('joinQiz', function (dataroom) {
-        const data = JSON.parse(dataroom);
-        console.log('data :\t' + dataroom);
-
-
-        if (data.message == null || data.message.trim() == '') {
-        } else {
-            //luu monggo
-            var today = new Date();
-            var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        var today = new Date();
+        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        console.log(Data.questionId)
+        if (!Data.message == null || !Data.message == '') {
             Chat({
-                questionId: data.questionId,
-                userId: data.userId,
-                username: data.username,
-                quizId: data.questionId,
-                vote: data.vote,
-                imageUrl: data.imageUrl,
-                message: data.message,
+                questionId: Data.questionId,
+                userId: Data.userId,
+                username: Data.username,
+                quizId: Data.questionId,
+                vote: Data.vote,
+                imageUrl: Data.imageUrl,
+                message: Data.message,
                 date: date,
             }).save().then(chat => {
+
             }).catch(e => {
 
             })
         }
 
 
-        socket.join(data.questionId)
-        io.in(data.idRoom).emit('private_message', { dataroom });
+        socket.join(Data.questionId)
+        io.in(Data.questionId).emit('private_message', {data: Data});
     });
 
+    socket.on('disconnect', function () {
+        console.log('đã ngắt kết nối  máy chủ thử nghiệm ');
+        // socket.on('leaveroom', function (data) {
+        //     console.log('user đã out  phòng chat');
+        // });
 
-});
+    });
+
+})
+
+
 server.listen(process.env.PORT || port)
 
 
