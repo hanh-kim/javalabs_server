@@ -84,16 +84,27 @@ class ChatController {
     }
 
     updateComment(req, res) {
-        if (req.body.id == null) {
+        if (req.body.id == null || req.body.userId == null) {
             res.json({
-                message: 'Cần truyền id'
+                message: 'Cần truyền id, userId'
             })
             return
         }
 
         Chat.findOne({ _id: req.body.id }).then(chat => {
             if (chat != null) {
-                chat.vote = Number(chat.vote) + 1
+                var arr = chat.userLiked
+                if (chat.userLiked.includes(req.body.userId)) {
+                    chat.vote = Number(chat.vote) - 1
+                    var index = arr.indexOf(req.body.userId);
+                    if (index > -1) {
+                        arr.splice(index, 1);
+                    }
+                } else {
+                    chat.vote = Number(chat.vote) + 1
+                    arr.push(req.body.userId)
+                }
+                chat.userLiked = arr
                 chat.save().then(c => res.json({
                     message: 'Thành công',
                     code: 200,
