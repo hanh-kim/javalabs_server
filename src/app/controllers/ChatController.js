@@ -105,18 +105,31 @@ class ChatController {
                     arr.push(req.body.userId)
                 }
                 chat.userLiked = arr
-                chat.save().then(c => res.json({
-                    message: 'Thành công',
-                    code: 200,
-                    isSuccess: true,
-                    data: c
-                })).catch(e => res.json({
+                chat.save().then(c => {
+                    Chat.find({ questionId: c.questionId }).then(chats => {
+                        res.json({
+                            message: 'Thành công',
+                            code: 200,
+                            isSuccess: true,
+                            data: chats
+                        })
+                    }).catch(e => res.json({
+                        message: e.message,
+                        code: 404,
+                        isSuccess: false,
+                    }))
+
+                }).catch(e => res.json({
                     message: e.message,
                     code: 404,
                     isSuccess: false,
                 }))
             }
-        })
+        }).catch(e => res.json({
+            message: e.message,
+            code: 404,
+            isSuccess: false
+        }))
     }
 
 
