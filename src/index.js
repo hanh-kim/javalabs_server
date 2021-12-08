@@ -12,6 +12,7 @@ const port = 3000;
 //import thư  viện socket
 var server = require("http").Server(app)
 const Chat = require('./app/model/ChatModel')
+const ChatController = require('./app/controllers/ChatController')
 
 var io = require('socket.io')(server)
 
@@ -42,9 +43,8 @@ route(app)
 
 io.sockets.on('connection', function (socket) {
     console.log("đã kết nối máy chủ thử nghiệm ")
-    socket.on('joinQiz', function (chat) {
+    socket.volatile.on('JoinRoomChat', function (chat) {
         const Data = JSON.parse(chat);
-        console.log(chat)
 
         var today = new Date();
         var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
@@ -64,18 +64,29 @@ io.sockets.on('connection', function (socket) {
             }).catch(e => {
 
             })
+            socket.join(Data.questionId)
+            io.in(Data.questionId).emit('ChatAtRoom', {data: Data});
+
+        } else {
+            socket.join(Data.questionId)
+            io.in(Data.questionId).emit('ChatAtRoom', {data: ''});
         }
 
-
-        socket.join(Data.questionId)
-        io.in(Data.questionId).emit('private_message', {data: Data});
     });
+
+    socket.on('ClickLike', function (data) {
+        const Data = JSON.parse(data);
+        socket.join(Data.questionId)
+        io.in(Data.questionId).emit('LoadAgain', {data: Data});
+
+    });
+
 
     socket.on('disconnect', function () {
         console.log('đã ngắt kết nối  máy chủ thử nghiệm ');
-        // socket.on('leaveroom', function (data) {
-        //     console.log('user đã out  phòng chat');
-        // });
+        socket.on('leaveroom', function () {
+            console.log('user đã out  phòng chat');
+        });
 
     });
 
@@ -84,7 +95,3 @@ io.sockets.on('connection', function (socket) {
 
 server.listen(process.env.PORT || port)
 
-
-// app.listen(process.env.PORT || 3000, () => {
-//     console.log(`App listening at ${process.env.PORT}`)
-// })
