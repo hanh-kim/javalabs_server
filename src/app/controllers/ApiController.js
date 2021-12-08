@@ -209,6 +209,7 @@ class ApiController {
             var dayWork = nowToMilisen - milisecond //tính khoảng cách hiện tại tới ngày thứ 'i'
             var day = new Date(dayWork) // trả về datetime: yyyy-MM-dd hh:mm:ss
             var dayFomarted = day.getUTCFullYear() + "/" + (day.getUTCMonth() + 1) + "/" + day.getUTCDate(); // format datetime: yyyy-MM-dd
+            var dayReturn = day.getUTCDate() + '/' + (day.getUTCMonth() + 1);
             console.log(i)
             try {
                 var process = await Process.find({ userId: req.query.userId, lastModify: dayFomarted })
@@ -218,12 +219,12 @@ class ApiController {
                         sumScore += Number(j.quizMarked)
                     }
                     listData.push({
-                        date: dayFomarted,
+                        date: dayReturn,
                         mark: sumScore
                     })
                 } else {
                     listData.push({
-                        date: dayFomarted,
+                        date: dayReturn,
                         mark: 0
                     })
                 }
