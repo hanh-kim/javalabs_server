@@ -105,6 +105,10 @@ class ChatController {
                     arr.push(req.body.userId)
                 }
                 chat.userLiked = arr
+                if(chat.vote < 0){
+                    chat.vote = 0
+                    chat.userLiked = []
+                }
                 chat.save().then(c => {
                     Chat.find({ questionId: c.questionId }).then(chats => {
                         res.json({
