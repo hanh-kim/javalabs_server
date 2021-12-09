@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="4e383003-dcd5-4f56-82db-16457d21fa6e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controllers/AddProgramController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controllers/AddProgramController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/controllers/ChatController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controllers/ChatController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,8 +15,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -105,7 +107,8 @@
       <workItem from="1638846834916" duration="6555000" />
       <workItem from="1638899537864" duration="607000" />
       <workItem from="1638927561004" duration="18815000" />
-      <workItem from="1638970557444" duration="3169000" />
+      <workItem from="1638970557444" duration="5438000" />
+      <workItem from="1639013304273" duration="5413000" />
     </task>
     <task id="LOCAL-00001" summary="luu code">
       <created>1638541828252</created>
@@ -135,7 +138,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638972221292</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="day code chat">
+      <created>1638978840320</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1638978840320</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -77,7 +77,7 @@ io.sockets.on('connection', function (socket) {
     socket.on('ClickLike', function (data) {
         const Data = JSON.parse(data);
         socket.join(Data.questionId)
-        io.in(Data.questionId).emit('LoadAgain', {data: Data});
+        io.in(Data.questionId).emit('Refresh', {data: Data});
 
     });
 

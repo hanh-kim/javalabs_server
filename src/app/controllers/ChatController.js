@@ -1,5 +1,6 @@
 const Chat = require('../model/ChatModel')
 const User = require('../model/UserModel')
+const e = require("express");
 
 class ChatController {
     index(req, res) {
@@ -56,23 +57,25 @@ class ChatController {
     }
 
     updateComment(req, res) {
+
         if (req.body.id == null || req.body.userId == null) {
             res.json({
                 message: 'Cần truyền id , userId'
             })
             return
         }
-
-        var userId = req.body.userId;
-        console.log("User " + userId)
         Chat.findOne({_id: req.body.id}).then(chat => {
             if (chat) {
                 if (chat.userLiked.includes(req.body.userId)) {
-                    chat.vote--;
-                    var index = chat.userLiked.indexOf(req.body.userId);
-                    if (index > -1) {
-                        chat.userLiked.splice(index, 1);
+                    if (chat.vote > 0) {
+                        chat.vote--;
+                        var index = chat.userLiked.indexOf(req.body.userId);
+                        if (index > -1) {
+                            chat.userLiked.splice(index, 1);
+                        }
                     }
+
+
                 } else {
                     chat.vote++;
                     chat.userLiked.push(req.body.userId);

@@ -29,7 +29,7 @@ class AddProgramController {
                     programId: program._id,
                     title: data.title,
                     content: data.content
-                }).save().catch(e => res.json({ message: 'Lỗi đọc file excel', error: e }))
+                }).save().catch(e => res.json({message: 'Lỗi đọc file excel', error: e}))
             }
             res.redirect('/programs.html')
         })
