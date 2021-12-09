@@ -1,11 +1,38 @@
 const Chat = require('../model/ChatModel')
 const User = require('../model/UserModel')
-const e = require("express");
 
 class ChatController {
     index(req, res) {
-        Chat.find({questionId: req.query.questionId}).then(chats => {
+        Chat.find({ questionId: req.query.questionId }).then(chats => {
             var arr = []
+            // {
+            //     questionId: 111,
+            //     userId: 111,
+            //     username: 'Duy Vũ',
+            //     imageUrl: 'https://vcdn-dulich.vnecdn.net/2020/09/04/1-Meo-chup-anh-dep-khi-di-bien-9310-1599219010.jpg',
+            //     quizId: 'a',
+            //     vote: 5,
+            //     message: 'Câu này là sao',
+            //     date: '2021-12-06'
+            // }, {
+            //     questionId: 111,
+            //     userId: 111,
+            //     username: 'Vũ Phake',
+            //     imageUrl: 'https://vcdn-dulich.vnecdn.net/2020/09/04/1-Meo-chup-anh-dep-khi-di-bien-9310-1599219010.jpg',
+            //     quizId: 'a',
+            //     vote: 0,
+            //     message: 'Sao cái gì',
+            //     date: '2021-12-06'
+            // }, {
+            //     questionId: 111,
+            //     userId: 111,
+            //     username: 'Vũ Phake 2',
+            //     imageUrl: 'https://bloganh.net/wp-content/uploads/2021/03/chup-anh-dep-anh-sang-min.jpg',
+            //     quizId: 'a',
+            //     vote: 0,
+            //     message: 'Alo 1234 alo',
+            //     date: '2021-12-06'
+            // }
             for (var i of chats) {
                 arr.push({
                     questionId: i.questionId,
@@ -18,7 +45,7 @@ class ChatController {
                     date: i.date
                 })
             }
-            res.render('discussion', {chat: arr})
+            res.render('discussion', { chat: arr })
         }).catch(e => res.render('Có lỗi ' + e.message))
     }
 
@@ -57,31 +84,33 @@ class ChatController {
     }
 
     updateComment(req, res) {
-
         if (req.body.id == null || req.body.userId == null) {
             res.json({
-                message: 'Cần truyền id , userId'
+                message: 'Cần truyền id, userId'
             })
             return
         }
-        Chat.findOne({_id: req.body.id}).then(chat => {
-            if (chat) {
+
+        Chat.findOne({ _id: req.body.id }).then(chat => {
+            if (chat != null) {
+                var arr = chat.userLiked
                 if (chat.userLiked.includes(req.body.userId)) {
-                    if (chat.vote > 0) {
-                        chat.vote--;
-                        var index = chat.userLiked.indexOf(req.body.userId);
-                        if (index > -1) {
-                            chat.userLiked.splice(index, 1);
-                        }
+                    chat.vote = Number(chat.vote) - 1
+                    var index = arr.indexOf(req.body.userId);
+                    if (index > -1) {
+                        arr.splice(index, 1);
                     }
-
-
                 } else {
-                    chat.vote++;
-                    chat.userLiked.push(req.body.userId);
+                    chat.vote = Number(chat.vote) + 1
+                    arr.push(req.body.userId)
+                }
+                chat.userLiked = arr
+                if(chat.vote < 0){
+                    chat.vote = 0
+                    chat.userLiked = []
                 }
                 chat.save().then(c => {
-                    Chat.find({questionId: c.questionId}).then(chats => {
+                    Chat.find({ questionId: c.questionId }).then(chats => {
                         res.json({
                             message: 'Thành công',
                             code: 200,
@@ -110,10 +139,10 @@ class ChatController {
 
     deleteChat(req, res) {
         if (req.body.id == null) {
-            res.json({message: 'Cần truyền params id', status: false})
+            res.json({ message: 'Cần truyền params id', status: false })
             return
         }
-        Chat.deleteOne({_id: req.body.id}, function (err) {
+        Chat.deleteOne({ _id: req.body.id }, function (err) {
             if (!err) {
                 res.json({
                     message: 'Xoa thành công',
@@ -122,7 +151,7 @@ class ChatController {
                 })
                 return
             } else {
-                res.json({message: err.message, status: false, code: 400})
+                res.json({ message: err.message, status: false, code: 400 })
             }
 
         })
@@ -131,11 +160,11 @@ class ChatController {
 
     async getChatByQuestion(req, res) {
         if (req.query.questionId == null) {
-            res.json({message: 'Cần truyền params questionId', status: false})
+            res.json({ message: 'Cần truyền params questionId', status: false })
             return
         }
 
-        var chats = await Chat.find({questionId: req.query.questionId})
+        var chats = await Chat.find({ questionId: req.query.questionId })
 
         // .catch(e => res.json({
         //     message: e.message,
@@ -144,7 +173,7 @@ class ChatController {
         // }))
         var data = []
         for (var i of chats) {
-            var u = await User.findOne({_id: i.userId})
+            var u = await User.findOne({ _id: i.userId })
             // .catch(e => res.json({
             //     message: e.message,
             //     code: 404,
@@ -171,11 +200,11 @@ class ChatController {
 
     getChatByQuestionId(req, res) {
         if (req.query.questionId == null) {
-            res.json({message: 'Cần truyền params questionId', status: false})
+            res.json({ message: 'Cần truyền params questionId', status: false })
             return
         }
 
-        Chat.find({questionId: req.query.questionId}).then(chats => {
+        Chat.find({ questionId: req.query.questionId }).then(chats => {
             res.json({
                 message: 'Thành công',
                 code: 200,
@@ -191,10 +220,10 @@ class ChatController {
 
     getChatByQuiz(req, res) {
         if (req.query.quizId == null) {
-            res.json({message: 'Cần truyền params quizId', status: false})
+            res.json({ message: 'Cần truyền params quizId', status: false })
             return
         }
-        Chat.find({quizId: req.query.quizId}).then(chats => {
+        Chat.find({ quizId: req.query.quizId }).then(chats => {
             res.json({
                 message: 'Thành công',
                 code: 200,
