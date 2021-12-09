@@ -11,7 +11,7 @@ const Chat = new Schema({
     vote: { type: Number, default: 0 },
     message: { type: String, default: '' },
     date: { type: String, default: '' },
-    userLiked: { type: Array, default: '' }
+    userLiked: { type: Array, default: [] }
 }, {
     versionKey: false
 })
