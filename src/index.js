@@ -2,7 +2,7 @@ const express = require('express')
 const app = express();
 const handlebars = require('express-handlebars');
 // const morgan = require('morgan');
-const { extname } = require('path');
+const {extname} = require('path');
 const path = require('path')
 
 
@@ -25,7 +25,7 @@ db.connect()
 app.use(express.static(path.join(__dirname, 'public')))
 
 //body parse giúp xem đc params thông qua body. VD: req.body._ten_param
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
 //template handlebars
@@ -41,48 +41,75 @@ route(app)
 
 
 io.sockets.on('connection', function (socket) {
-
-    socket.on('send_message', function (message) {
-        const text = JSON.parse(message);
-        io.sockets.emit('receiver_message', { message });
-
-    });
-
-    socket.on('joinQiz', function (dataroom) {
-        const data = JSON.parse(dataroom);
-        console.log('data :\t' + dataroom);
-
-
-        if (data.message == null || data.message.trim() == '') {
-        } else {
-            //luu monggo
-            var today = new Date();
-            var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    console.log("đã kết nối máy chủ thử nghiệm ")
+    socket.volatile.on('JoinRoomChat', function (chat) {
+        const Data = JSON.parse(chat);
+        var today = new Date();
+        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        console.log(Data.questionId)
+        if (!Data.message == null || !Data.message == '') {
             Chat({
-                questionId: data.questionId,
-                userId: data.userId,
-                username: data.username,
-                quizId: data.questionId,
-                vote: data.vote,
-                imageUrl: data.imageUrl,
-                message: data.message,
+                questionId: Data.questionId,
+                userId: Data.userId,
+                username: Data.username,
+                quizId: Data.questionId,
+                vote: Data.vote,
+                imageUrl: Data.imageUrl,
+                message: Data.message,
                 date: date,
             }).save().then(chat => {
+                socket.join(Data.questionId)
+                io.in(Data.questionId).emit('ChatAtRoom', {data: chat});
             }).catch(e => {
 
             })
+
+
+        } else {
+            socket.join(Data.questionId)
+            io.in(Data.questionId).emit('ChatAtRoom', {data: ''});
         }
 
+    });
 
-        socket.join(data.questionId)
-        io.in(data.idRoom).emit('private_message', { dataroom });
+    socket.on('ClickLike', function (data, id) {
+        const Data = JSON.parse(data);
+        Chat.findOne({_id: Data._id}).then(chat => {
+            if (chat != null) {
+                var arr = chat.userLiked
+                if (chat.userLiked.includes(id)) {
+                    chat.vote = Number(chat.vote) - 1
+                    var index = arr.indexOf(id);
+
+                    if (index > -1) {
+                        arr.splice(index, 1);
+                    }
+                } else {
+                    chat.vote = Number(chat.vote) + 1
+                    arr.push(id)
+
+                }
+                chat.userLiked = arr
+                chat.save().then(c => {
+                    Chat.find({questionId: c.questionId}).then(chats => {
+                        socket.join(Data.questionId)
+                        io.in(Data.questionId).emit('Refresh', {data: chats});
+                    })
+                })
+            }
+        })
     });
 
 
-});
+    socket.on('disconnect', function () {
+        console.log('đã ngắt kết nối  máy chủ thử nghiệm');
+        socket.on('leaveroom', function () {
+            console.log('user đã out  phòng chat');
+        });
+    });
+
+})
+
+
 server.listen(process.env.PORT || port)
 
-
-// app.listen(process.env.PORT || 3000, () => {
-//     console.log(`App listening at ${process.env.PORT}`)
-// })
