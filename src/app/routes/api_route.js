@@ -6,6 +6,8 @@ const userController = require('../controllers/UserController')
 const qaController = require('../controllers/QAController')
 const chatController = require('../controllers/ChatController')
 
+
+//lesson
 route.get('/get-lesson', apiController.getAllLesson)
 
 route.get('/get-topic', apiController.getTopicByLessonId)
@@ -14,12 +16,14 @@ route.get('/get-quiz', apiController.getQuestionByLessonId)
 
 route.get('/get-all-in-lesson', apiController.getAllByLesson)
 
+//program
 route.get('/get-program', apiController.getProgram)
 
 route.get('/get-program-detail', apiController.getProgramDetail)
 
 route.get('/get-all-in-program', apiController.getAllInProgram)
 
+// user && mark
 route.post('/insert-user', userController.insertUser)
 
 route.post('/update-mark-user', userController.updateUser)
@@ -28,16 +32,19 @@ route.get('/get-top-user', userController.getTopUser)
 
 route.get('/get-user', userController.getUser)
 
+// process
 route.post('/update-process', processController.insertOrUpdate)
 
 route.get('/get-process', processController.getProcess)
 
 route.get('/get-all-process', processController.getProcessByUser)
 
+//rank
 route.get('/get-daily-score', apiController.getDailyScore)
 
 route.get('/get-score-profile', apiController.getMarkProfile)
 
+//qa
 route.post('/add-qa', qaController.addQA)
 
 //chat:
