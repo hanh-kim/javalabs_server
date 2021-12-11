@@ -12,7 +12,6 @@ const port = 3000;
 //import thư  viện socket
 var server = require("http").Server(app)
 const Chat = require('./app/model/ChatModel')
-const ChatController = require('./app/controllers/ChatController')
 
 var io = require('socket.io')(server)
 
@@ -45,7 +44,6 @@ io.sockets.on('connection', function (socket) {
     console.log("đã kết nối máy chủ thử nghiệm ")
     socket.volatile.on('JoinRoomChat', function (chat) {
         const Data = JSON.parse(chat);
-
         var today = new Date();
         var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
         console.log(Data.questionId)
@@ -60,12 +58,12 @@ io.sockets.on('connection', function (socket) {
                 message: Data.message,
                 date: date,
             }).save().then(chat => {
-
+                socket.join(Data.questionId)
+                io.in(Data.questionId).emit('ChatAtRoom', {data: chat});
             }).catch(e => {
 
             })
-            socket.join(Data.questionId)
-            io.in(Data.questionId).emit('ChatAtRoom', {data: Data});
+
 
         } else {
             socket.join(Data.questionId)
@@ -74,20 +72,40 @@ io.sockets.on('connection', function (socket) {
 
     });
 
-    socket.on('ClickLike', function (data) {
+    socket.on('ClickLike', function (data, id) {
         const Data = JSON.parse(data);
-        socket.join(Data.questionId)
-        io.in(Data.questionId).emit('Refresh', {data: Data});
+        Chat.findOne({_id: Data._id}).then(chat => {
+            if (chat != null) {
+                var arr = chat.userLiked
+                if (chat.userLiked.includes(id)) {
+                    chat.vote = Number(chat.vote) - 1
+                    var index = arr.indexOf(id);
 
+                    if (index > -1) {
+                        arr.splice(index, 1);
+                    }
+                } else {
+                    chat.vote = Number(chat.vote) + 1
+                    arr.push(id)
+
+                }
+                chat.userLiked = arr
+                chat.save().then(c => {
+                    Chat.find({questionId: c.questionId}).then(chats => {
+                        socket.join(Data.questionId)
+                        io.in(Data.questionId).emit('Refresh', {data: chats});
+                    })
+                })
+            }
+        })
     });
 
 
     socket.on('disconnect', function () {
-        console.log('đã ngắt kết nối  máy chủ thử nghiệm ');
+        console.log('đã ngắt kết nối  máy chủ thử nghiệm');
         socket.on('leaveroom', function () {
             console.log('user đã out  phòng chat');
         });
-
     });
 
 })
