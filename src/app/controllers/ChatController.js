@@ -67,6 +67,9 @@ class ChatController {
 
         Chat.findOne({_id: req.body.id}).then(chat => {
             if (chat != null) {
+                if(req.body.id == ''){
+                    return
+                }
                 var arr = chat.userLiked
                 if (chat.userLiked.includes(req.body.userId)) {
                     chat.vote = Number(chat.vote) - 1
