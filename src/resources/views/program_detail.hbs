@@ -73,10 +73,9 @@
                                     <tr>
                                         <td class="text-center">{{this.title}}</td>
                                         <td>
-                                            <p
-                                                style="font-family: 'Cutive Mono', monospace;background-color: #f0f0f0;padding-left: 10px;padding-right: 10px;padding-top: 2px;padding-bottom: 2px;white-space: wrap;overflow-x: scroll;">
-                                                <br>{{this.content}}<br>
-                                            </p>
+                                            <textarea class="form-control" name="content" placeholder="content"
+                                                rows="10" readonly
+                                                style="font-family: 'Cutive Mono', monospace;background-color: #f0f0f0;">{{this.content}}</textarea>
                                         </td>
                                         <td><a class="btn btn-danger" role="button"
                                                 style="margin-left: 5px;background-color: rgb(98,155,241); padding-left: 27px; padding-right: 27px; margin-top: 5px; margin-bottom: 5px"

@@ -150,7 +150,6 @@ class ApiController {
         var listData = [];
         for (var pr of program) {
             const programDetail = await ProgramDetail.find({ programId: pr._id })
-            // var data = Buffer.from(pr.image.data, "binary").toString("base64");
             var program = new ProgramWithDetail(pr._id, pr.name, programDetail, pr.image)
             listData.push(program)
         }

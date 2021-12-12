@@ -53,10 +53,8 @@ class ProcessController {
                     // }
                     process.completed = arrCompleted
                 }
-                console.log(req.body.status)
 
                 if (req.body.status != null && req.body.status != '') {
-                    console.log('>>>>>>> trong if' + req.body.status)
                     process.status = req.body.status
                 }
                 if (req.body.status == 0) {
