@@ -137,12 +137,23 @@ class UserController {
     //get top N user:
     getTopUser(req, res) {
         if (req.query.topUser == null) {
-            User.find({}).sort({ mark: 1 }).then(users => {
+            User.find({}).sort({ mark: -1 }).then(users => {
+                var arr = []
+                for (var i of users) {
+                    arr.push({
+                        _id: i._id,
+                        gmail: i.gmail,
+                        username: i.username,
+                        imageUrl: i.imageUrl,
+                        mark: i.mark,
+                        top: users.indexOf(i) + 1
+                    })
+                }
                 res.json({
                     message: "success",
                     isSuccess: true,
                     code: 200,
-                    data: users
+                    data: arr
                 })
                 return
             }).catch(e => {
@@ -154,11 +165,22 @@ class UserController {
             })
         } else {
             User.find({}).limit((Number(req.query.topUser))).sort({ mark: -1 }).then(users => {
+                var arr = []
+                for (var i of users) {
+                    arr.push({
+                        _id: i._id,
+                        gmail: i.gmail,
+                        username: i.username,
+                        imageUrl: i.imageUrl,
+                        mark: i.mark,
+                        top: users.indexOf(i) + 1
+                    })
+                }
                 res.json({
                     message: "success",
                     isSuccess: true,
                     code: 200,
-                    data: users
+                    data: arr
                 })
                 return
             }).catch(e => {

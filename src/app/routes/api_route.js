@@ -32,6 +32,10 @@ route.get('/get-top-user', userController.getTopUser)
 
 route.get('/get-user', userController.getUser)
 
+route.get('/get-daily-score', apiController.getDailyScore)
+
+route.get('/get-score-profile', apiController.getMarkProfile)
+
 // process
 route.post('/update-process', processController.insertOrUpdate)
 
@@ -39,10 +43,7 @@ route.get('/get-process', processController.getProcess)
 
 route.get('/get-all-process', processController.getProcessByUser)
 
-//rank
-route.get('/get-daily-score', apiController.getDailyScore)
 
-route.get('/get-score-profile', apiController.getMarkProfile)
 
 //qa
 route.post('/add-qa', qaController.addQA)
