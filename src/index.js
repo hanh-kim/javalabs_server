@@ -2,7 +2,7 @@ const express = require('express')
 const app = express();
 const handlebars = require('express-handlebars');
 // const morgan = require('morgan');
-const {extname} = require('path');
+const { extname } = require('path');
 const path = require('path')
 
 
@@ -25,7 +25,7 @@ db.connect()
 app.use(express.static(path.join(__dirname, 'public')))
 
 //body parse giúp xem đc params thông qua body. VD: req.body._ten_param
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 //template handlebars
@@ -41,12 +41,10 @@ route(app)
 
 
 io.sockets.on('connection', function (socket) {
-    console.log("đã kết nối máy chủ thử nghiệm ")
     socket.volatile.on('JoinRoomChat', function (chat) {
         const Data = JSON.parse(chat);
         var today = new Date();
         var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-        console.log(Data.questionId)
         if (!Data.message == null || !Data.message == '') {
             Chat({
                 questionId: Data.questionId,
@@ -59,7 +57,7 @@ io.sockets.on('connection', function (socket) {
                 date: date,
             }).save().then(chat => {
                 socket.join(Data.questionId)
-                io.in(Data.questionId).emit('ChatAtRoom', {data: chat});
+                io.in(Data.questionId).emit('ChatAtRoom', { data: chat });
             }).catch(e => {
 
             })
@@ -67,14 +65,14 @@ io.sockets.on('connection', function (socket) {
 
         } else {
             socket.join(Data.questionId)
-            io.in(Data.questionId).emit('ChatAtRoom', {data: ''});
+            io.in(Data.questionId).emit('ChatAtRoom', { data: '' });
         }
 
     });
 
     socket.on('ClickLike', function (data, id) {
         const Data = JSON.parse(data);
-        Chat.findOne({_id: Data._id}).then(chat => {
+        Chat.findOne({ _id: Data._id }).then(chat => {
             if (chat != null) {
                 var arr = chat.userLiked
                 if (chat.userLiked.includes(id)) {
@@ -91,9 +89,9 @@ io.sockets.on('connection', function (socket) {
                 }
                 chat.userLiked = arr
                 chat.save().then(c => {
-                    Chat.find({questionId: c.questionId}).then(chats => {
+                    Chat.find({ questionId: c.questionId }).then(chats => {
                         socket.join(Data.questionId)
-                        io.in(Data.questionId).emit('Refresh', {data: chats});
+                        io.in(Data.questionId).emit('Refresh', { data: chats });
                     })
                 })
             }
@@ -102,9 +100,7 @@ io.sockets.on('connection', function (socket) {
 
 
     socket.on('disconnect', function () {
-        console.log('đã ngắt kết nối  máy chủ thử nghiệm');
         socket.on('leaveroom', function () {
-            console.log('user đã out  phòng chat');
         });
     });
 

@@ -1,4 +1,5 @@
 const User = require('../model/UserModel')
+const Process = require('../model/ProcessModel')
 
 class UserController {
     //insert user:
@@ -119,19 +120,77 @@ class UserController {
     }
 
     //GET /
-    index(req, res) {
+    async index(req, res) {
         User.find({}).sort({ mark: -1 }).then(user => {
             var arr = []
             for (var i of user) {
                 var obj = new UserMD(i.gmail, i.mark, i.username, i.imageUrl)
                 arr.push(obj)
             }
-            console.log(arr)
 
             res.render('user', { user: arr, totalUser: user.length })
         }).catch(e => {
             res.render('404')
         })
+
+
+        // try {
+        //     //get all process list
+        //     var process = await Process.find({})
+        //     var data = new Map()
+
+        //     //tỉnh tổng điểm của từng user, lưu id, điểm vào map
+        //     for (var i of process) {
+        //         if (!data.has(i.userId)) {
+        //             data.set(i.userId, i.quizMarked)
+        //         } else {
+        //             var temp = data.get(i.userId) + Number(i.quizMarked)
+        //             data.set(i.userId, temp)
+        //         }
+        //     }
+
+        //     //sort map theo điểm từ cao xuống thấp
+        //     const dataSorted = new Map([...data.entries()].sort((a, b) => b[1] - a[1]));
+        //     var response = []
+        //     var listKey = []
+        //     var listValue = []
+
+        //     dataSorted.forEach((value, key) => {
+        //         listKey.push(key)
+        //         listValue.push(value)
+        //     })
+        //     var j = 0
+        //     var i = 0
+
+        //     //lấy thông tin user, trả về json
+        //     while (i < req.query.topUser) {
+        //         try {
+        //             var u = await User.findOne({ _id: listKey[i] })
+        //             if (u != null) {
+        //                 j++;
+        //                 response.push({
+        //                     _id: u._id,
+        //                     gmail: u.gmail,
+        //                     username: u.username,
+        //                     imageUrl: u.imageUrl,
+        //                     mark: dataSorted.get(listKey[i]),
+        //                     top: j
+        //                 })
+        //             }
+        //             console.log(i)
+        //             if ((Number(i) + 1) == req.query.topUser || i > listKey.length) {
+        //                 res.render('user', { user: response, totalUser: user.length })
+
+        //                 i = (req.query.topUser)
+        //             }
+        //             i++
+        //         } catch (e) {
+        //             res.render('404')
+        //         }
+        //     }
+        // } catch (e) {
+        //     res.render('404')
+        // }
     }
 
     //get top N user:
@@ -193,6 +252,77 @@ class UserController {
         }
 
     }
+
+    //get top user từ process collection
+    async getRank(req, res) {
+        try {
+            //get all process list
+            var process = await Process.find({})
+            var data = new Map()
+
+            //tỉnh tổng điểm của từng user, lưu id, điểm vào map
+            for (var i of process) {
+                if (!data.has(i.userId)) {
+                    data.set(i.userId, i.quizMarked)
+                } else {
+                    var temp = data.get(i.userId) + Number(i.quizMarked)
+                    data.set(i.userId, temp)
+                }
+            }
+
+            //sort map theo điểm từ cao xuống thấp
+            const dataSorted = new Map([...data.entries()].sort((a, b) => b[1] - a[1]));
+            var response = []
+            var listKey = []
+            var listValue = []
+
+            dataSorted.forEach((value, key) => {
+                listKey.push(key)
+                listValue.push(value)
+            })
+            var j = 0
+            var i = 0
+
+            //lấy thông tin user, trả về json
+            while (i < req.query.topUser) {
+                try {
+                    var u = await User.findOne({ _id: listKey[i] })
+                    if (u != null) {
+                        j++;
+                        response.push({
+                            _id: u._id,
+                            gmail: u.gmail,
+                            username: u.username,
+                            imageUrl: u.imageUrl,
+                            mark: dataSorted.get(listKey[i]),
+                            top: j
+                        })
+                    }
+                    console.log(i)
+                    if ((Number(i) + 1) == req.query.topUser || i > listKey.length) {
+                        res.json(response)
+                        i = (req.query.topUser)
+                    }
+                    i++
+                } catch (e) {
+                    res.json({
+                        isSuccess: false,
+                        message: e.message,
+                        code: 404
+                    })
+                }
+            }
+        } catch (e) {
+            res.json({
+                isSuccess: false,
+                message: e.message,
+                code: 404
+            })
+        }
+
+    }
+
+
 }
 
 class UserMD {

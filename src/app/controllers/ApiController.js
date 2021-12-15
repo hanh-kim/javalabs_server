@@ -209,7 +209,6 @@ class ApiController {
             var day = new Date(dayWork) // trả về datetime: yyyy-MM-dd hh:mm:ss
             var dayFomarted = day.getUTCFullYear() + "/" + (day.getUTCMonth() + 1) + "/" + day.getUTCDate(); // format datetime: yyyy-MM-dd
             var dayReturn = day.getUTCDate() + '/' + (day.getUTCMonth() + 1);
-            console.log(i)
             try {
                 var process = await Process.find({ userId: req.query.userId, lastModify: dayFomarted })
                 if (process.length > 0) {

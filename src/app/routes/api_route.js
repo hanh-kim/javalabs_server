@@ -28,7 +28,9 @@ route.post('/insert-user', userController.insertUser)
 
 route.post('/update-mark-user', userController.updateUser)
 
-route.get('/get-top-user', userController.getTopUser)
+route.get('/get-top-user', userController.getRank)
+
+// route.get('/get-rank', userController.getRank)
 
 route.get('/get-user', userController.getUser)
 

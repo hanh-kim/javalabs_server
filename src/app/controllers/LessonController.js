@@ -75,7 +75,6 @@ class LessonController {
                         })
                     }
                 }).catch((error) => {
-                    console.log(error);
                     res.status(500).json({
                         success: false,
                         message: 'Create failed. Please try again.',
@@ -91,7 +90,6 @@ class LessonController {
                         title: xlData[i].title,
                         content: xlData[i].content
                     }).save().catch((error) => {
-                        console.log(error);
                         res.status(500).json({
                             success: false,
                             message: 'Create failed. Please try again.',
@@ -101,7 +99,6 @@ class LessonController {
                     })
                 }
             }).catch((error) => {
-                console.log(error);
                 res.status(500).json({
                     success: false,
                     message: 'Create failed. Please try again.',
