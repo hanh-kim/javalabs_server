@@ -300,7 +300,12 @@ class UserController {
                     }
                     console.log(i)
                     if ((Number(i) + 1) == req.query.topUser || i > listKey.length) {
-                        res.json(response)
+                        res.json({
+                            message: "success",
+                            isSuccess: true,
+                            code: 200,
+                            data: response
+                        })
                         i = (req.query.topUser)
                     }
                     i++
