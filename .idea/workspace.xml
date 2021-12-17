@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4e383003-dcd5-4f56-82db-16457d21fa6e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_4_2021_9_36_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_4_2021_9_36_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controllers/ChatController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controllers/ChatController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/model/ChatModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/model/ChatModel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
@@ -112,7 +113,9 @@
       <workItem from="1639013304273" duration="5413000" />
       <workItem from="1639060499894" duration="3212000" />
       <workItem from="1639098996912" duration="3310000" />
-      <workItem from="1639232064178" duration="1373000" />
+      <workItem from="1639232064178" duration="3551000" />
+      <workItem from="1639276129617" duration="14054000" />
+      <workItem from="1639317212314" duration="6063000" />
     </task>
     <task id="LOCAL-00001" summary="luu code">
       <created>1638541828252</created>
@@ -149,7 +152,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638978840320</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="upcode hoàn thiện">
+      <created>1639233611531</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1639233611531</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -170,7 +180,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="luu code" />
     <MESSAGE value="day code chat" />
-    <option name="LAST_COMMIT_MESSAGE" value="day code chat" />
+    <MESSAGE value="upcode hoàn thiện" />
+    <option name="LAST_COMMIT_MESSAGE" value="upcode hoàn thiện" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

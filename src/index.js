@@ -12,6 +12,7 @@ const port = 3000;
 //import thư  viện socket
 var server = require("http").Server(app)
 const Chat = require('./app/model/ChatModel')
+const User = require('./app/model/UserModel')
 
 var io = require('socket.io')(server)
 
@@ -38,14 +39,13 @@ app.set('views', path.join(__dirname, 'resources', 'views'))
 
 //set route
 route(app)
-
-
+var today = new Date();
+var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 io.sockets.on('connection', function (socket) {
-    console.log("đã kết nối máy chủ thử nghiệm ")
+    console.log("đã kết nối máy chủ thử nghiệm  v1")
     socket.volatile.on('JoinRoomChat', function (chat) {
         const Data = JSON.parse(chat);
-        var today = new Date();
-        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+
         console.log(Data.questionId)
         if (!Data.message == null || !Data.message == '') {
             Chat({
@@ -71,7 +71,6 @@ io.sockets.on('connection', function (socket) {
         }
 
     });
-
     socket.on('ClickLike', function (data, id) {
         const Data = JSON.parse(data);
         Chat.findOne({_id: Data._id}).then(chat => {
@@ -98,17 +97,59 @@ io.sockets.on('connection', function (socket) {
                 })
             }
         })
+
     });
+    socket.on('userOut', function (id) {
+        User.findOne({_id: id}).then(chat => {
+            if (chat != null) {
+                // chat.lastSignIn = date
+                console.log('user đã out  phòng chat' + chat);
+
+                chat.save().then(c => {
+                    io.emit('out', {data: chat})
+                })
+            }
+        })
 
 
-    socket.on('disconnect', function () {
-        console.log('đã ngắt kết nối  máy chủ thử nghiệm');
-        socket.on('leaveroom', function () {
-            console.log('user đã out  phòng chat');
-        });
     });
+
 
 })
+
+
+//kết nối
+
+var FCM = require('fcm-node');
+const {firestore} = require("firebase-admin");
+var serverKey = 'AAAA1B7zZfc:APA91bGq3hOJ-QZmrMtnf5_63KsQvE75_E2HglUoiC3ITPqGrsV8O7IU3o9TOXhS4SGU4xfdmQ-mZcZ_7kxS3NGHVH9AJiz1tzRgZl9vmnk-OvTVh7_51dCEDrZ-VMvIuTvloTFMLngw';
+var fcm = new FCM(serverKey);
+
+var message = {
+    to: 'dX_ztlvvZ3E:APA91bHGFd_RUphm7ufLsJWfK1fZl6XTXjdpmecCbkLQXGPsZVcnb5ww2OQ_yabXVe5nAk33zfkZ1TEWK5oT00-kOwE6Lh68Z4gbRGkJSk0uis2-QbHuHjPZ1AMZKsNXQECzoyGaAhnX',
+    notification: {
+        title: ' ơi , đã đến giờ học bài rồi ',
+        body: 'Bổ xung kiến thức mới mỗi ngày, sẽ giúp bạn nâng cao trình độ bản thân ',
+    },
+
+    data: {
+        title: 'tiêu đề là gì cho hay ',
+        body: '{"name" : "Hi Want","product_id" : "123"}'
+    }
+
+};
+
+
+
+
+
+// fcm.send(message, function (err, response) {
+//     if (err) {
+//         console.log("Something has gone wrong!" + err);
+//     } else {
+//         console.log("Successfullysent with response: ", response);
+//     }
+// });
 
 
 server.listen(process.env.PORT || port)
