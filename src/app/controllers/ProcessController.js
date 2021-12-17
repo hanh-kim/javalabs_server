@@ -19,6 +19,7 @@ class ProcessController {
         }).then(process => {
             if (process == null) {
                 var arr = []
+                var date = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate();
                 if (req.body.completed != null && req.body.completed != "")
                     arr.push(req.body.completed)
                 Process({
@@ -28,8 +29,8 @@ class ProcessController {
                     status: (req.body.status != null && req.body.status != '') ? req.body.status : -1,
                     quizStatus: (req.body.quizStatus != null && req.body.quizStatus != '') ? req.body.quizStatus : -1,
                     quizMarked: req.body.quizMarked,
-                    dateTime: req.body.dateTime,
-                    lastModify: req.body.dateTime
+                    dateTime: date,
+                    lastModify: date
                 }).save().then(pr => {
                     res.json({
                         code: 200,
@@ -70,7 +71,7 @@ class ProcessController {
                     process.quizMarked = req.body.quizMarked
                 }
                 var today = new Date();
-                var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                var date = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate();
                 process.lastModify = date
 
                 process.save().then(pro => {

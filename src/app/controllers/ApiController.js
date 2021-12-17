@@ -211,11 +211,14 @@ class ApiController {
             var dayReturn = day.getUTCDate() + '/' + (day.getUTCMonth() + 1);
             try {
                 var process = await Process.find({ userId: req.query.userId, lastModify: dayFomarted })
+                console.log('date: ' + dayFomarted)
+                console.log(process)
                 if (process.length > 0) {
                     var sumScore = 0
                     for (var j of process) {
                         sumScore += Number(j.quizMarked)
                     }
+                    console.log(sumScore)
                     listData.push({
                         date: dayReturn,
                         mark: sumScore
