@@ -19,6 +19,7 @@ class ProcessController {
         }).then(process => {
             if (process == null) {
                 var arr = []
+                var today = new Date();
                 var date = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate();
                 if (req.body.completed != null && req.body.completed != "")
                     arr.push(req.body.completed)
