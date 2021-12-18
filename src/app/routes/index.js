@@ -1,17 +1,17 @@
-const loginRoute = require('./login_route')
-const lessonRoute = require('./lesson_route')
-const apiRoute = require('./api_route')
-const lessonDetailRoute = require('./lesson_detail_route')
-const programRoute = require('./add_program_route')
-const proRoute = require('./program_route')
-const detailProgram = require('./detail_program_route')
-const userRoute = require('./user_route')
-const homeRoute = require('./home_route')
-const updateRoute = require('./update_route')
-const updateQuestionRoute = require('./update_question_route')
-const updateProgramRoute = require('./update_program_route')
-const qaRoute = require('./qa_route')
-const discussionRoute = require('./chat_route')
+import loginRoute from './login_route'
+import lessonRoute from './lesson_route'
+import apiRoute from './api_route'
+import lessonDetailRoute from './lesson_detail_route'
+import programRoute from './add_program_route'
+import proRoute from './program_route'
+import detailProgram from './detail_program_route'
+import userRoute from './user_route'
+import homeRoute from './home_route'
+import updateRoute from './update_route'
+import updateQuestionRoute from './update_question_route'
+import updateProgramRoute from './update_program_route'
+import qaRoute from './qa_route'
+import discussionRoute from './chat_route'
 function route(app) {
 
     app.use('/', loginRoute)
@@ -72,4 +72,4 @@ function route(app) {
 
 
 }
-module.exports = route
+export default route
