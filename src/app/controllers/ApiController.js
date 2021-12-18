@@ -115,8 +115,8 @@ class ApiController {
 
             var listData = [];
     
-            for (var ls of lessons) {  
-                for (var topic of topics){
+            for (var ls of lslist) {  
+                for (var topic of topicList){
                     if(ls._id == topic.lessonId){
                         var lessonAll = new LessonAll(ls.id, ls.title, ls.totalTopic, topic, null)
                         listData.push(lessonAll)
