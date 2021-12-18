@@ -94,9 +94,9 @@ class ApiController {
         var listData = [];
         for (var ls of lesson) {
             const topic = await Topic.find({ lessonId: ls._id })
-            const quiz = await Quiz.findOne({ lessonId: ls._id })
-            const question = await Question.find({ quizId: quiz._id }).sort({ STT: 1 })
-            var quizMD = new QuizMD(quiz._id, quiz.lessonId, quiz.name, question)
+            // const quiz = await Quiz.findOne({ lessonId: ls._id })
+            // const question = await Question.find({ quizId: quiz._id }).sort({ STT: 1 })
+            // var quizMD = new QuizMD(quiz._id, quiz.lessonId, quiz.name, question)
             var lessonAll = new LessonAll(ls.id, ls.title, ls.totalTopic, topic, quizMD)
             listData.push(lessonAll)
         }
