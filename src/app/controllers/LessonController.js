@@ -207,6 +207,7 @@ class LessonController {
                 const question = await Question.find({ quizId: i._id }).sort({ STT: 1 })
                 listData.push({
                     _id: i._id,
+                    lessonId: i.lessonId,
                     name: i.name,
                     question: question
                 })
