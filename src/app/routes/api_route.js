@@ -23,6 +23,8 @@ route.get('/get-all-topic', LessonController.getAllTopic)
 
 route.get('/get-all-topic-no-fomart', LessonController.getAllTopicWithNoFomart)
 
+route.get('/get-list-lesson', apiController.getAllLessonData)
+
 
 //program
 route.get('/get-program', apiController.getProgram)

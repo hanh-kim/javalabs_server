@@ -108,6 +108,49 @@ class ApiController {
         })
     }
 
+
+    async getAllLessonData(req, res, next) {
+        Lesson.find({}).then(lslist =>{
+           Topic.find({}).then(topicList =>{
+
+            var listData = [];
+    
+            for (var ls of lessons) {  
+                for (var topic of topics){
+                    if(ls._id == topic.lessonId){
+                        var lessonAll = new LessonAll(ls.id, ls.title, ls.totalTopic, topic, null)
+                        listData.push(lessonAll)
+                    } 
+                }
+            }
+
+            this.onSuccess(listData)
+           
+           }).catch(e => this.onError(e))
+          
+    
+        }).catch(e => this.onError(e))
+     
+    }
+
+    onError(e){res.json({
+        status: false,
+        message: e.message,
+        code: 404
+    })}
+
+    onSuccess(listData){
+        res.json({
+            isSuccess: true,
+            code: 200,
+            message: "success",
+            data: listData
+        })
+    }
+
+
+
+
     //get Program:
     getProgram(req, res, next) {
         var listData = []
