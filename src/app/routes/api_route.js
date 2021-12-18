@@ -21,6 +21,9 @@ route.get('/get-all-quiz', LessonController.getAllQuiz)
 
 route.get('/get-all-topic', LessonController.getAllTopic)
 
+route.get('/get-all-topic-no-fomart', LessonController.getAllTopicWithNoFomart)
+
+
 //program
 route.get('/get-program', apiController.getProgram)
 

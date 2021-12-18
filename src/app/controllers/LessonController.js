@@ -154,6 +154,23 @@ class LessonController {
         })
     }
 
+    getAllTopicWithNoFomart(req, res) {
+        Topic.find({}).then(topics => {
+            res.json({
+                isSuccess: true,
+                code: 200,
+                message: "success",
+                data: topics
+            })
+        }).catch(e => {
+            res.json({
+                status: false,
+                message: e.message,
+                code: 404
+            })
+        })
+    }
+
     async getAllTopic(req, res) {
         try {
             var lessons = await Lesson.find({})
