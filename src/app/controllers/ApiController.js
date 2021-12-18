@@ -124,31 +124,27 @@ class ApiController {
                 }
             }
 
-            this.onSuccess(listData)
+            res.json({
+                isSuccess: true,
+                code: 200,
+                message: "success",
+                data: listData
+            })
            
-           }).catch(e => this.onError(e))
+           }).catch(e => res.json({
+            status: false,
+            message: e.message,
+            code: 404
+        }))
           
     
-        }).catch(e => this.onError(e))
+        }).catch(e => res.json({
+            status: false,
+            message: e.message,
+            code: 404
+        }))
      
     }
-
-    onError(e){res.json({
-        status: false,
-        message: e.message,
-        code: 404
-    })}
-
-    onSuccess(listData){
-        res.json({
-            isSuccess: true,
-            code: 200,
-            message: "success",
-            data: listData
-        })
-    }
-
-
 
 
     //get Program:
