@@ -154,6 +154,48 @@ class LessonController {
         })
     }
 
+    getAllTopic(req, res) {
+        Topic.find({}).then(topics => {
+            res.json({
+                isSuccess: true,
+                code: 200,
+                message: "success",
+                data: topics
+            })
+        }).catch(e => res.json({
+            status: false,
+            message: e.message,
+            code: 404
+        }))
+    }
+    async getAllQuiz(req, res) {
+        try {
+            const quiz = await Quiz.find()
+            var listData = []
+            for (var i of quiz) {
+                const question = await Question.find({ quizId: i._id }).sort({ STT: 1 })
+                listData.push({
+                    _id: i._id,
+                    name: i.name,
+                    question: question
+                })
+            }
+            res.json({
+                isSuccess: true,
+                code: 200,
+                message: "success",
+                data: listData
+            })
+        } catch (e) {
+            res.json({
+                status: false,
+                message: e.message,
+                code: 404
+            })
+        }
+
+    }
+
 }
 
 

@@ -5,6 +5,7 @@ const processController = require('../controllers/ProcessController')
 const userController = require('../controllers/UserController')
 const qaController = require('../controllers/QAController')
 const chatController = require('../controllers/ChatController')
+const LessonController = require('../controllers/LessonController')
 
 
 //lesson
@@ -15,6 +16,10 @@ route.get('/get-topic', apiController.getTopicByLessonId)
 route.get('/get-quiz', apiController.getQuestionByLessonId)
 
 route.get('/get-all-in-lesson', apiController.getAllByLesson)
+
+route.get('/get-all-quiz', LessonController.getAllQuiz)
+
+route.get('/get-all-topic', LessonController.getAllTopic)
 
 //program
 route.get('/get-program', apiController.getProgram)
