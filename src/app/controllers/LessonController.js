@@ -154,19 +154,33 @@ class LessonController {
         })
     }
 
-    getAllTopic(req, res) {
-        Topic.find({}).then(topics => {
+    async getAllTopic(req, res) {
+        try {
+            var lessons = await Lesson.find({})
+            var listData = []
+            for (var i of lessons) {
+                const topic = await Topic.find({ lessonId: i._id })
+                console.log(topic)
+                listData.push({
+                    lessonID: i._id,
+                    title: i.title,
+                    topics: topic
+                })
+            }
             res.json({
                 isSuccess: true,
                 code: 200,
                 message: "success",
-                data: topics
+                data: listData
             })
-        }).catch(e => res.json({
-            status: false,
-            message: e.message,
-            code: 404
-        }))
+        } catch (e) {
+            res.json({
+                status: false,
+                message: e.message,
+                code: 404
+            })
+        }
+
     }
     async getAllQuiz(req, res) {
         try {
