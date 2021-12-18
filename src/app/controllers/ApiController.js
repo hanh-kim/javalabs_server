@@ -114,7 +114,7 @@ class ApiController {
             var listData = [];
             for (var ls of lslist) {
               await Topic.find({lessonId: ls._id}).then(topicList => {
-                    var lessonAll = new LessonAll(ls.id, ls.title, ls.totalTopic, topic, null)
+                    var lessonAll = new LessonAll(ls.id, ls.title, ls.totalTopic, topicList, null)
                     listData.push(lessonAll)
 
                 }).catch(e => res.json({
