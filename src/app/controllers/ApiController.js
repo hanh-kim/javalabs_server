@@ -110,33 +110,32 @@ class ApiController {
 
 
     async getAllLessonData(req, res, next) {
-        Lesson.find({}).then(lslist => {
-            var listData = [];
+        var listData = [];
+        try {
+            var lslist = await Lesson.find({})
             for (var ls of lslist) {
-                Topic.find({ lessonId: ls._id }).then(topicList => {
-                    var lessonAll = new LessonAll(ls.id, ls.title, ls.totalTopic, topicList, null)
-                    listData.push(lessonAll)
-
-                }).catch(e => res.json({
-                    status: false,
-                    message: e.message,
-                    code: 404
-                }))
+                var topicList = await Topic.find({ lessonId: ls._id })
+                listData.push({
+                    _id: ls._id,
+                    title: ls.title,
+                    totalTopic: ls.totalTopic,
+                    topic: topicList
+                })
+                console.log(listData)
             }
-
             res.json({
                 isSuccess: true,
                 code: 200,
                 message: "success",
                 data: listData
             })
-
-        }).catch(e => res.json({
-            status: false,
-            message: e.message,
-            code: 404
-        }))
-
+        } catch (e) {
+            res.json({
+                status: false,
+                message: e.message,
+                code: 404
+            })
+        }
     }
 
 
