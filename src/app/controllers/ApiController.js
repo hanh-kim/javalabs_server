@@ -110,18 +110,14 @@ class ApiController {
 
 
     async getAllLessonData(req, res, next) {
-        var listData = [];
+
         try {
-            var lslist = await Lesson.find({})
-            for (var ls of lslist) {
-                var topicList = await Topic.find({ lessonId: ls._id })
-                listData.push({
-                    _id: ls._id,
-                    title: ls.title,
-                    totalTopic: ls.totalTopic,
-                    topic: topicList
-                })
-                console.log(listData)
+            var lessons = await Lesson.find({})
+            var listData = []
+            for (var ls of lessons) {
+                const topic = await Topic.find({ lessonId: ls._id })
+                var lessonAll = new LessonAll(ls.id, ls.title, ls.totalTopic, topic, null)
+                listData.push(lessonAll)
             }
             res.json({
                 isSuccess: true,
