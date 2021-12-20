@@ -255,6 +255,13 @@ class UserController {
 
     //get top user từ process collection
     async getRank(req, res) {
+        if (req.query.topUser == null) {
+            res.json({
+                message: "Cần truyền topUser",
+                status: false
+            })
+            return
+        }
         try {
             //get all process list
             var process = await Process.find({})
