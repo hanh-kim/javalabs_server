@@ -2,12 +2,46 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4e383003-dcd5-4f56-82db-16457d21fa6e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/app/constance/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controllers/FeedBackController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controllers/NotificationController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/routes/feedback_router.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/routes/notification_route.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/public/assets/css/Beautiful-Alert.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/public/assets/css/Contact-Form-by-Moorcam.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/public/assets/css/TD-BS4-Simple-Contact-Form-1.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/public/assets/css/TD-BS4-Simple-Contact-Form.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/public/assets/css/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/public/assets/fonts/KingFruitDemoRegular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/public/assets/fonts/ionicons.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/public/assets/fonts/ionicons.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/public/assets/fonts/ionicons.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/public/assets/fonts/ionicons.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/public/assets/fonts/ionicons.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/public/uploads/jv2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/views/alert.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/views/feedback.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/views/s.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/JavaLab.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/JavaLab.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_4_2021_9_36_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_4_2021_9_36_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/model/ChatModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/model/ChatModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controllers/LessonDetailController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controllers/LessonDetailController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controllers/LoginController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controllers/LoginController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controllers/QAController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controllers/QAController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/routes/api_route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/routes/api_route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/routes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/routes/login_route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/routes/login_route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/db/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/db/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/views/layouts/main.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/layouts/main.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/views/pending_request.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/pending_request.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/views/quiz.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/quiz.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/views/user.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/user.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/views/viewchat.hbs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +51,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -30,17 +64,29 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="ProjectId" id="20xW0rCNdNOaaakMw5hhzKQXZ5P" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/public/assets/img/avatars" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -50,7 +96,16 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\JavaLab\src\public\assets\img\avatars" />
+      <recent name="C:\JavaLab\src\public\assets\fonts" />
+      <recent name="C:\JavaLab\src\resources\views" />
+      <recent name="C:\JavaLab\src\public\assets\css" />
       <recent name="C:\Users\Asus\Desktop\JavaLab" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\JavaLab\src\public\uploads" />
+      <recent name="C:\JavaLab\src\app" />
+      <recent name="C:\JavaLab\src\config" />
     </key>
   </component>
   <component name="RunManager">
@@ -116,6 +171,10 @@
       <workItem from="1639232064178" duration="3551000" />
       <workItem from="1639276129617" duration="14054000" />
       <workItem from="1639317212314" duration="6063000" />
+      <workItem from="1640094735558" duration="6639000" />
+      <workItem from="1640273033392" duration="1325000" />
+      <workItem from="1640310496117" duration="24933000" />
+      <workItem from="1640414292391" duration="7314000" />
     </task>
     <task id="LOCAL-00001" summary="luu code">
       <created>1638541828252</created>

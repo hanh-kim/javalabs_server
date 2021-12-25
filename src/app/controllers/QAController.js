@@ -2,7 +2,7 @@ const QA = require('../model/QAModel')
 
 class QAController {
     index(req, res) {
-        QA.find().sort({ status: 1 }).then(qa => {
+        QA.find().sort({status: 1}).then(qa => {
             var arr = []
             for (var i of qa) {
                 var stt = ''
@@ -11,9 +11,9 @@ class QAController {
                 } else {
                     stt = 'Pending'
                 }
-                arr.push({ userId: i.userId, title: i.title, content: i.content, status: stt, _id: i._id })
+                arr.push({userId: i.userId, title: i.title, content: i.content, status: stt, _id: i._id})
             }
-            res.render('pending_request', { QA: arr })
+            res.render('pending_request', {QA: arr})
         }).catch(e => res.send('Loi ' + e.message))
     }
 
@@ -51,7 +51,7 @@ class QAController {
             })
             return
         }
-        QA.findOne({ _id: req.body.id }).then(qa => {
+        QA.findOne({_id: req.body.id}).then(qa => {
             qa.status = 1
             qa.save().then(q => res.redirect('/pending_request')).catch(e => res.json({
                 message: e.message,
@@ -67,12 +67,12 @@ class QAController {
 
     deleteQA(req, res) {
         if (req.body.id == null) {
-            res.json({ message: 'Cần truyền params id', status: false })
+            res.json({message: 'Cần truyền params id', status: false})
             return
         }
-        QA.deleteOne({ _id: req.body.id }, function (err) {
+        QA.deleteOne({_id: req.body.id}, function (err) {
             if (err) {
-                res.json({ message: 'Delete failed', status: false, err: err })
+                res.json({message: 'Delete failed', status: false, err: err})
                 return
             }
             res.redirect('/pending_request')

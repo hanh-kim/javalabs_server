@@ -8,7 +8,7 @@ class LessonDetailController {
     //Get /
     async index(req, res, next) {
         if (req.query.lessonId == null) {
-            res.render('404')
+            res.render('feedback')
             return;
         }
 
