@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 
 const Lesson = new Schema({
     title: { type: String, default: '' },
-    totalTopic: { type: Number, default: 0 }
+    totalTopic: { type: Number, default: 0 },
 }, {
     versionKey: false
 })

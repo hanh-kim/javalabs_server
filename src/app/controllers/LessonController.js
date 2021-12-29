@@ -4,6 +4,7 @@ const xlsx = require('xlsx');
 const Topic = require('../model/TopicModel')
 const Quiz = require('../model/QuizModel')
 const Question = require('../model/QuestionModel')
+const Process = require('../model/ProcessModel')
 
 class LessonController {
     index(req, res) {
@@ -226,6 +227,60 @@ class LessonController {
             })
         }
 
+    }
+
+    async thongKeUser(req, res) {
+        try {
+            var data = new Map();
+            var process = await Process.find({})
+            for (var i of process) {
+                if (!data.has(i.lessonId)) {
+                    data.set(i.lessonId, 1)
+                } else {
+                    var count = Number(data.get(i.lessonId)) + 1
+                    data.set(i.lessonId, count)
+                }
+            }
+
+            var listId = []
+            data.forEach((value, key) => {
+                listId.push(key)
+            })
+
+            var listReturn = []
+            for (var j of listId) {
+                try {
+                    var lesson = await Lesson.findOne({ _id: j })
+                    if (lesson != null) {
+                        listReturn.push({
+                            _id: j,
+                            title: lesson.title,
+                            totalTopic: lesson.totalTopic,
+                            activeCount: data.get(j),
+                        })
+                    }
+                } catch (e) {
+                    res.json({
+                        status: false,
+                        message: e.message,
+                        code: 404
+                    })
+                }
+
+            }
+            res.json({
+                isSuccess: true,
+                code: 200,
+                message: "success",
+                data: listReturn
+            })
+        } catch (e) {
+            res.json({
+                status: false,
+                message: e.message,
+                code: 404
+            })
+        }
     }
 
 }

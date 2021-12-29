@@ -25,6 +25,8 @@ route.get('/get-all-topic-no-fomart', LessonController.getAllTopicWithNoFomart)
 
 route.get('/get-list-lesson', apiController.getAllLessonData)
 
+route.get('/thong-ke', LessonController.thongKeUser)
+
 
 //program
 route.get('/get-program', apiController.getProgram)
@@ -39,6 +41,7 @@ route.post('/insert-user', userController.insertUser)
 route.post('/update-mark-user', userController.updateUser)
 
 route.get('/get-top-user', userController.getRank)
+
 
 // route.get('/get-rank', userController.getRank)
 
