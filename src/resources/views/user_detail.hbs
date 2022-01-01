@@ -57,7 +57,7 @@
                 <div class="container-fluid">
                     <center>
                         <div class="text-center border rounded-0 shadow-sm profile-box"
-                            style="max-width: 900px;background-color: #ffffff;margin: 5px;">
+                            style="background-color: #ffffff;margin: 5px;">
                             <div
                                 style="height: 50px;background-image: url(&quot;assets/img/bg-pattern.png&quot;);background-color: rgba(54,162,177,0);">
                             </div>
@@ -67,56 +67,89 @@
                                 <h3 style="font-weight: bold;color: steelblue;margin-top: 20px;">{{user.username}}</h3>
                                 <p style="font-size: 14px;">{{user.gmail}}</p>
                             </div>
-                            <p>Highest Score:</p>
-                            <p>Total score:</p>
+                            <p>Total score: {{this.totalScore}}</p>
 
-
-                            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-                            <script type="text/javascript"
-                                src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-                            <script type="text/javascript"
-                                src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-                            <script type="text/javascript"
-                                src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-                            <link rel="stylesheet" type="text/css"
-                                href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
                             <center>
-                                <canvas id="myChart2"
-                                    style="width:100%;max-width: 950px; margin-top: 100px; margin-bottom: 50px"></canvas>
-                            </center>
-                            <input id="list-lesson-below" style="display: none;" value="{{this.listTime}}"></input>
-                            <input id="list-Count-below" style="display: none;" value="{{this.score}}"></input>
-                            <script>
-                                var listTime = document.getElementById('list-lesson-below').getAttribute("value");
-                                var listScore = document.getElementById('list-Count-below').getAttribute("value");
-                                var arrTime = listTime.split("-")
-                                var arrCount = listScore.split("-")
-                                var color = ['green', 'yellow', 'red', 'blue', 'cyan', 'brown', 'violet']
-                                arrTime.pop()
-                                arrCount.pop()
-                                new Chart("myChart2", {
-                                    type: "bar",
-                                    data: {
-                                        labels: arrTime,
-                                        datasets: [{
-                                            backgroundColor: color,
-                                            data: arrCount
-                                        }]
-                                    },
-                                    options: {
-                                        legend: { display: false },
-                                        title: {
-                                            display: true,
-                                            text: "Top 10 Lesson được học  nhất"
+                                <div style="max-width: 900px; text-align: center; margin-top: 50px;">
+                                    <h5 style="float: left;">Statistics of lessons learned</h5>
+                                    <table class="table">
+                                        <thead style="background-color: steelblue;">
+                                            <tr>
+                                                <th scope="col">
+                                                    <h5 style="color: white;">Lesson</h5>
+                                                </th>
+                                                <th scope="col">
+                                                    <h5 style="color: white;">Topic Learned</h5>
+                                                </th>
+                                                <th scope="col">
+                                                    <h5 style="color: white;">Quiz Mark</h5>
+                                                </th>
+                                                <th scope="col">
+                                                    <h5 style="color: white;">Date</h5>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{#each daHoc}}
+                                            <tr>
+                                                <td>{{this.title}}</td>
+                                                <td>{{this.topic}}</td>
+                                                <td>{{this.score}}</td>
+                                                <td>{{this.lastModify}}</td>
+                                            </tr>
+                                            {{/each}}
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <script
+                                    src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+                                <script type="text/javascript"
+                                    src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+                                <script type="text/javascript"
+                                    src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+                                <script type="text/javascript"
+                                    src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+                                <link rel="stylesheet" type="text/css"
+                                    href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+                                <center>
+                                    <canvas id="myChart2"
+                                        style="width:100%;max-width: 950px; margin-top: 100px; margin-bottom: 50px"></canvas>
+                                </center>
+                                <input id="list-lesson-below" style="display: none;" value="{{this.listTime}}"></input>
+                                <input id="list-Count-below" style="display: none;" value="{{this.score}}"></input>
+                                <script>
+                                    var listTime = document.getElementById('list-lesson-below').getAttribute("value");
+                                    var listScore = document.getElementById('list-Count-below').getAttribute("value");
+                                    var arrTime = listTime.split("-")
+                                    var arrCount = listScore.split("-")
+                                    var color = ['green', 'yellow', 'red', 'blue', 'cyan', 'brown', 'violet']
+                                    arrTime.pop()
+                                    arrCount.pop()
+                                    new Chart("myChart2", {
+                                        type: "bar",
+                                        data: {
+                                            labels: arrTime,
+                                            datasets: [{
+                                                backgroundColor: color,
+                                                data: arrCount
+                                            }]
+                                        },
+                                        options: {
+                                            legend: { display: false },
+                                            title: {
+                                                display: true,
+                                                text: "Quiz score statistics for the last 7 days"
+                                            }
                                         }
-                                    }
-                                });
-                            </script>
+                                    });
+                                </script>
+                            </center>
                         </div>
                     </center>
-
-
                 </div>
+
+
             </div>
             <footer class=" bg-white sticky-footer">
                 <div class="container my-auto">

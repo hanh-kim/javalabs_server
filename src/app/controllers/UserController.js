@@ -1,5 +1,7 @@
 const User = require('../model/UserModel')
 const Process = require('../model/ProcessModel')
+const Lesson = require('../model/LessonModel')
+const { status } = require('express/lib/response')
 
 class UserController {
     //insert user:
@@ -163,7 +165,6 @@ class UserController {
             var dayWork = nowToMilisen - milisecond //tính khoảng cách hiện tại tới ngày thứ 'i'
             var day = new Date(dayWork) // trả về datetime: yyyy-MM-dd hh:mm:ss
             var dayFomarted = day.getUTCFullYear() + "/" + (day.getUTCMonth() + 1) + "/" + day.getUTCDate(); // format datetime: yyyy-MM-dd
-            console.log(day)
             try {
                 var process = await Process.find({ userId: req.query.userId, lastModify: dayFomarted })
                 if (process.length > 0) {
@@ -185,9 +186,28 @@ class UserController {
                 })
             }
         }
-        console.log(listTime)
-        console.log(score)
-        res.render('user_detail', { listTime: listTime, score: score, user: u })
+        var listDaHoc = []
+        var totalScore = 0
+        try {
+            var prc = await Process.find({ userId: req.query.userId }).sort({ quizMarked: -1 })
+            for (var v of prc) {
+                totalScore += Number(v.quizMarked)
+                var ls = await Lesson.findOne({ _id: v.lessonId })
+                if (ls != null) {
+                    listDaHoc.push({
+                        title: ls.title,
+                        score: v.quizMarked,
+                        topic: v.completed.length.toString() + '/' + ls.totalTopic,
+                        lastModify: v.lastModify
+                    })
+                }
+            }
+        } catch (e) {
+            res.json({
+                mess: e.message
+            })
+        }
+        res.render('user_detail', { listTime: listTime, score: score, user: u, daHoc: listDaHoc, totalScore: totalScore })
     }
     //get top N user:
     getTopUser(req, res) {
