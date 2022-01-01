@@ -12,8 +12,9 @@ const updateQuestionRoute = require('./update_question_route')
 const updateProgramRoute = require('./update_program_route')
 const qaRoute = require('./qa_route')
 const discussionRoute = require('./chat_route')
-function route(app) {
+const userControll = require('../controllers/UserController')
 
+function route(app) {
     app.use('/', loginRoute)
 
     app.use('/api', apiRoute)
@@ -59,6 +60,8 @@ function route(app) {
     app.get('/register.html', (req, res) => {
         res.render('register')
     })
+
+    app.get('/user-detail', userControll.userDetail)
 
     app.use('/update_topic', updateRoute)
 

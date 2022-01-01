@@ -124,7 +124,7 @@ class UserController {
         User.find({}).sort({ mark: -1 }).then(user => {
             var arr = []
             for (var i of user) {
-                var obj = new UserMD(i.gmail, i.mark, i.username, i.imageUrl)
+                var obj = new UserMD(i.gmail, i.mark, i.username, i.imageUrl, i._id)
                 arr.push(obj)
             }
 
@@ -133,66 +133,62 @@ class UserController {
             res.render('404')
         })
 
-
-        // try {
-        //     //get all process list
-        //     var process = await Process.find({})
-        //     var data = new Map()
-
-        //     //tỉnh tổng điểm của từng user, lưu id, điểm vào map
-        //     for (var i of process) {
-        //         if (!data.has(i.userId)) {
-        //             data.set(i.userId, i.quizMarked)
-        //         } else {
-        //             var temp = data.get(i.userId) + Number(i.quizMarked)
-        //             data.set(i.userId, temp)
-        //         }
-        //     }
-
-        //     //sort map theo điểm từ cao xuống thấp
-        //     const dataSorted = new Map([...data.entries()].sort((a, b) => b[1] - a[1]));
-        //     var response = []
-        //     var listKey = []
-        //     var listValue = []
-
-        //     dataSorted.forEach((value, key) => {
-        //         listKey.push(key)
-        //         listValue.push(value)
-        //     })
-        //     var j = 0
-        //     var i = 0
-
-        //     //lấy thông tin user, trả về json
-        //     while (i < req.query.topUser) {
-        //         try {
-        //             var u = await User.findOne({ _id: listKey[i] })
-        //             if (u != null) {
-        //                 j++;
-        //                 response.push({
-        //                     _id: u._id,
-        //                     gmail: u.gmail,
-        //                     username: u.username,
-        //                     imageUrl: u.imageUrl,
-        //                     mark: dataSorted.get(listKey[i]),
-        //                     top: j
-        //                 })
-        //             }
-        //             console.log(i)
-        //             if ((Number(i) + 1) == req.query.topUser || i > listKey.length) {
-        //                 res.render('user', { user: response, totalUser: user.length })
-
-        //                 i = (req.query.topUser)
-        //             }
-        //             i++
-        //         } catch (e) {
-        //             res.render('404')
-        //         }
-        //     }
-        // } catch (e) {
-        //     res.render('404')
-        // }
     }
 
+    async userDetail(req, res) {
+
+
+        if (req.query.userId == null) {
+            res.json({
+                isSuccess: false,
+                message: 'Cần truyền userId',
+                code: 404
+            })
+            return
+        }
+        var today = new Date();
+        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        var now = new Date(date)
+        var nowToMilisen = now.getTime()
+        var user = await User.findOne({ _id: req.query.userId })
+        var u = {
+            username: user.username,
+            gmail: user.gmail,
+            imageUrl: user.imageUrl
+        }
+        var listTime = '';
+        var score = ''
+        for (var i = 0; i < 7; i++) {
+            var milisecond = 1000 * 60 * 60 * 24 * i
+            var dayWork = nowToMilisen - milisecond //tính khoảng cách hiện tại tới ngày thứ 'i'
+            var day = new Date(dayWork) // trả về datetime: yyyy-MM-dd hh:mm:ss
+            var dayFomarted = day.getUTCFullYear() + "/" + (day.getUTCMonth() + 1) + "/" + day.getUTCDate(); // format datetime: yyyy-MM-dd
+            console.log(day)
+            try {
+                var process = await Process.find({ userId: req.query.userId, lastModify: dayFomarted })
+                if (process.length > 0) {
+                    var sumScore = 0
+                    for (var j of process) {
+                        sumScore += Number(j.quizMarked)
+                    }
+                    listTime += dayFomarted + '-'
+                    score += sumScore.toString() + '-'
+                } else {
+                    listTime += dayFomarted + '-'
+                    score += '0' + '-'
+                }
+            } catch (e) {
+                res.json({
+                    isSuccess: false,
+                    message: e.message,
+                    code: 404
+                })
+            }
+        }
+        console.log(listTime)
+        console.log(score)
+        res.render('user_detail', { listTime: listTime, score: score, user: u })
+    }
     //get top N user:
     getTopUser(req, res) {
         if (req.query.topUser == null) {
@@ -341,12 +337,14 @@ class UserMD {
     mark
     username
     imageUrl
+    _id
 
-    constructor(gmail, mark, username, imageUrl) {
+    constructor(gmail, mark, username, imageUrl, _id) {
         this.gmail = gmail
         this.mark = mark
         this.username = username
         this.imageUrl = imageUrl
+        this._id = _id
     }
 }
 

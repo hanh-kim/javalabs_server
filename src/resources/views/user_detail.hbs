@@ -55,65 +55,67 @@
                     </div>
                 </nav>
                 <div class="container-fluid">
-                    <h3 class="text-dark mb-4">User</h3>
-                    <div class="card shadow">
-                        <div class="card-header py-3">
-                            <p class="text-primary m-0 font-weight-bold">User Info</p>
+                    <center>
+                        <div class="text-center border rounded-0 shadow-sm profile-box"
+                            style="max-width: 900px;background-color: #ffffff;margin: 5px;">
+                            <div
+                                style="height: 50px;background-image: url(&quot;assets/img/bg-pattern.png&quot;);background-color: rgba(54,162,177,0);">
+                            </div>
+                            <div><img class="rounded-circle" src="{{user.imageUrl}}" width="120px" height="120px"
+                                    style="background-color: rgb(255,255,255);padding: 2px;"></div>
+                            <div style="height: 80px;">
+                                <h3 style="font-weight: bold;color: steelblue;margin-top: 20px;">{{user.username}}</h3>
+                                <p style="font-size: 14px;">{{user.gmail}}</p>
+                            </div>
+                            <p>Highest Score:</p>
+                            <p>Total score:</p>
+
+
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+                            <script type="text/javascript"
+                                src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+                            <script type="text/javascript"
+                                src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+                            <script type="text/javascript"
+                                src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+                            <link rel="stylesheet" type="text/css"
+                                href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+                            <center>
+                                <canvas id="myChart2"
+                                    style="width:100%;max-width: 950px; margin-top: 100px; margin-bottom: 50px"></canvas>
+                            </center>
+                            <input id="list-lesson-below" style="display: none;" value="{{this.listTime}}"></input>
+                            <input id="list-Count-below" style="display: none;" value="{{this.score}}"></input>
+                            <script>
+                                var listTime = document.getElementById('list-lesson-below').getAttribute("value");
+                                var listScore = document.getElementById('list-Count-below').getAttribute("value");
+                                var arrTime = listTime.split("-")
+                                var arrCount = listScore.split("-")
+                                var color = ['green', 'yellow', 'red', 'blue', 'cyan', 'brown', 'violet']
+                                arrTime.pop()
+                                arrCount.pop()
+                                new Chart("myChart2", {
+                                    type: "bar",
+                                    data: {
+                                        labels: arrTime,
+                                        datasets: [{
+                                            backgroundColor: color,
+                                            data: arrCount
+                                        }]
+                                    },
+                                    options: {
+                                        legend: { display: false },
+                                        title: {
+                                            display: true,
+                                            text: "Top 10 Lesson được học  nhất"
+                                        }
+                                    }
+                                });
+                            </script>
                         </div>
-                        <div class="card-body">
-                            <div class="col-md-10 ">
-                                <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite"
-                                    style="color: rgb(146, 146, 146); font-weight: 800;">
-                                    Total: {{totalUser}} user</p>
-                            </div>
-                            <div class="row" style="display: flex; justify-content: space-between;">
-                                <div class="col-md-6 text-nowrap">
-                                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
+                    </center>
 
 
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="table-responsive table mt-2" id="dataTable" role="grid"
-                                aria-describedby="dataTable_info">
-                                <table class="table dataTable my-0" id="dataTable">
-                                    <thead>
-                                        <tr>
-                                            <td><strong>Name</strong></td>
-                                            <td><strong>Email</strong></td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {{#each user}}
-                                        <tr>
-                                            <td><img class="rounded-circle mr-2" width="30" height="30"
-                                                    src="{{this.imageUrl}}">{{this.username}}</td>
-                                            <td>{{this.gmail}}</td>
-                                            <td>
-                                                <a href="user-detail?userId={{this._id}}">
-                                                    <button style="background-color: transparent; border: none;"
-                                                        type="submit">
-                                                        <img src="assets/img/right-arrow.png" alt="" width="24px"
-                                                            height="24px">
-                                                    </button>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        {{/each}}
-                                    </tbody>
-                                    {{!-- <tfoot>
-                                        <tr>
-                                            <td><strong>Name</strong></td>
-                                            <td><strong>Email</strong></td>
-                                            <td><strong>Score</strong></td>
-                                        </tr>
-                                    </tfoot> --}}
-                                </table>
-                            </div>
-
-                        </div>
-                    </div>
                 </div>
             </div>
             <footer class=" bg-white sticky-footer">
