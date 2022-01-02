@@ -90,21 +90,55 @@ class ApiController {
 
     //get all in lesson
     async getAllByLesson(req, res, next) {
-        var lesson = await Lesson.find({})
-        var listData = [];
-        for (var ls of lesson) {
-            const topic = await Topic.find({ lessonId: ls._id })
-            const quiz = await Quiz.findOne({ lessonId: ls._id })
-            const question = await Question.find({ quizId: quiz._id }).sort({ STT: 1 })
-            var quizMD = new QuizMD(quiz._id, quiz.lessonId, quiz.name, question)
-            var lessonAll = new LessonAll(ls.id, ls.title, ls.totalTopic, topic, quizMD)
-            listData.push(lessonAll)
-        }
+        // var lesson = await Lesson.find({})
+        // const topic = await Topic.find({})
+        // const quiz = await Quiz.find({})
+        // const question = await Question.find()
+
+        // var listData = [];
+        // console.log(topic)
+        // for (var ls of lesson) {
+
+
+        // }
+
+        var a = await Lesson.aggregate([
+
+            // Join with user_info table
+            {
+                $lookup: {
+                    from: "quizzes",       // other table name
+                    localField: "_id",   // name of users table field
+                    foreignField: "lessonId", // name of userinfo table field
+                    as: "quiz"         // alias for userinfo table
+                }
+
+            },
+
+            // Join with user_role table
+            {
+                $lookup: {
+                    from: "topics",       // other table name
+                    localField: "_id",   // name of users table field
+                    foreignField: "lessonId", // name of userinfo table field
+                    as: "topic"         // alias for userinfo table
+                }
+            },
+            {
+                $lookup: {
+                    from: "questions",       // other table name
+                    localField: "_id",   // name of users table field
+                    foreignField: "lessonId", // name of userinfo table field
+                    as: "question"         // alias for userinfo table
+                }
+
+            },
+        ]);
         res.json({
             isSuccess: true,
             code: 200,
             message: "success",
-            data: listData
+            data: a
         })
     }
 

@@ -67,6 +67,7 @@ class LessonController {
                             question: i.question,
                             answer: arr,
                             correctAnswer: i.correctAnswer,
+                            lessonId: newLesson._id,
                         }).save().catch((error) => {
                             res.status(500).json({
                                 success: false,

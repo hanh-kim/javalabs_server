@@ -9,7 +9,8 @@ const Question = new Schema({
     answer: {
         type: Array, default: []
     },
-    correctAnswer: { type: String, default: '' }
+    correctAnswer: { type: String, default: '' },
+    lessonId: { type: Schema.Types.ObjectId, ref: 'lessons' },
 }, {
     versionKey: false
 })

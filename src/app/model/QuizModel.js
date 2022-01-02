@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 
 const Quiz = new Schema({
-    lessonId: { type: String, default: '' },
+    lessonId: { type: Schema.Types.ObjectId, ref: 'lessons' },
     name: { type: String, default: '' }
 }, {
     versionKey: false
