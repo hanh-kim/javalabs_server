@@ -90,6 +90,15 @@
                                             <td><img class="rounded-circle mr-2" width="30" height="30"
                                                     src="{{this.imageUrl}}">{{this.username}}</td>
                                             <td>{{this.gmail}}</td>
+                                            <td>
+                                                <a href="user-detail?userId={{this._id}}">
+                                                    <button style="background-color: transparent; border: none;"
+                                                        type="submit">
+                                                        <img src="assets/img/right-arrow.png" alt="" width="24px"
+                                                            height="24px">
+                                                    </button>
+                                                </a>
+                                            </td>
                                         </tr>
                                         {{/each}}
                                     </tbody>
