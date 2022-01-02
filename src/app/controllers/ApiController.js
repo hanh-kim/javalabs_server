@@ -104,7 +104,6 @@ class ApiController {
 
         var a = await Lesson.aggregate([
 
-            // Join with user_info table
             {
                 $lookup: {
                     from: "quizzes",       // other table name
@@ -112,10 +111,8 @@ class ApiController {
                     foreignField: "lessonId", // name of userinfo table field
                     as: "quiz"         // alias for userinfo table
                 }
-
             },
-
-            // Join with user_role table
+            { $unwind: "$quiz" },     // $unwind used for getting data in object or for one record only
             {
                 $lookup: {
                     from: "topics",       // other table name
@@ -131,8 +128,22 @@ class ApiController {
                     foreignField: "lessonId", // name of userinfo table field
                     as: "question"         // alias for userinfo table
                 }
-
             },
+            {
+                $project: {
+                    id: 1,
+                    title: 1,
+                    totalTopic: 1,
+                    quiz: {
+                        _id: "$quiz._id",
+                        lessonId: "$quiz.lessonId",
+                        name: "$quiz.name",
+                        question: "$question"
+                    },
+                    topic: "$topic"
+
+                }
+            }
         ]);
         res.json({
             isSuccess: true,
