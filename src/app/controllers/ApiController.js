@@ -90,21 +90,66 @@ class ApiController {
 
     //get all in lesson
     async getAllByLesson(req, res, next) {
-        var lesson = await Lesson.find({})
-        var listData = [];
-        for (var ls of lesson) {
-            const topic = await Topic.find({ lessonId: ls._id })
-            const quiz = await Quiz.findOne({ lessonId: ls._id })
-            const question = await Question.find({ quizId: quiz._id }).sort({ STT: 1 })
-            var quizMD = new QuizMD(quiz._id, quiz.lessonId, quiz.name, question)
-            var lessonAll = new LessonAll(ls.id, ls.title, ls.totalTopic, topic, quizMD)
-            listData.push(lessonAll)
-        }
+        // var lesson = await Lesson.find({})
+        // const topic = await Topic.find({})
+        // const quiz = await Quiz.find({})
+        // const question = await Question.find()
+
+        // var listData = [];
+        // console.log(topic)
+        // for (var ls of lesson) {
+
+
+        // }
+
+        var a = await Lesson.aggregate([
+
+            {
+                $lookup: {
+                    from: "quizzes",       // other table name
+                    localField: "_id",   // name of users table field
+                    foreignField: "lessonId", // name of userinfo table field
+                    as: "quiz"         // alias for userinfo table
+                }
+            },
+            { $unwind: "$quiz" },     // $unwind used for getting data in object or for one record only
+            {
+                $lookup: {
+                    from: "topics",       // other table name
+                    localField: "_id",   // name of users table field
+                    foreignField: "lessonId", // name of userinfo table field
+                    as: "topic"         // alias for userinfo table
+                }
+            },
+            {
+                $lookup: {
+                    from: "questions",       // other table name
+                    localField: "_id",   // name of users table field
+                    foreignField: "lessonId", // name of userinfo table field
+                    as: "question"         // alias for userinfo table
+                }
+            },
+            {
+                $project: {
+                    id: 1,
+                    title: 1,
+                    totalTopic: 1,
+                    quiz: {
+                        _id: "$quiz._id",
+                        lessonId: "$quiz.lessonId",
+                        name: "$quiz.name",
+                        question: "$question"
+                    },
+                    topic: "$topic"
+
+                }
+            }
+        ]);
         res.json({
             isSuccess: true,
             code: 200,
             message: "success",
-            data: listData
+            data: a
         })
     }
 
