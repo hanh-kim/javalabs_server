@@ -141,6 +141,7 @@ class ApiController {
                 $project: {
                     id: 1,
                     title: 1,
+                    totalTopic: 1,
                     count: { $size: "$process" },
                     quiz: {
                         _id: "$quiz._id",
