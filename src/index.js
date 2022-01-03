@@ -4,7 +4,8 @@ const handlebars = require('express-handlebars');
 // const morgan = require('morgan');
 const {extname} = require('path');
 const path = require('path')
-
+var schedule = require('node-schedule');
+var rule = new schedule.RecurrenceRule();
 
 const db = require('./config/db')
 const route = require('./app/routes')
@@ -13,6 +14,7 @@ const port = 3000;
 var server = require("http").Server(app)
 const Chat = require('./app/model/ChatModel')
 const User = require('./app/model/UserModel')
+const notifi = require('./app/controllers/NotificationController')
 
 var io = require('socket.io')(server)
 
@@ -39,6 +41,15 @@ app.set('views', path.join(__dirname, 'resources', 'views'))
 
 //set route
 route(app)
+
+//
+
+rule.minute = 0;
+rule.hour = 20
+var a = schedule.scheduleJob(rule, function () {
+    notifi.sendNotifiAll();
+});
+//
 var today = new Date();
 var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 io.sockets.on('connection', function (socket) {
@@ -119,8 +130,6 @@ io.sockets.on('connection', function (socket) {
 
 
 //kết nối
-
-
 
 
 server.listen(process.env.PORT || port)

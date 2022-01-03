@@ -6,4 +6,6 @@ route.get('/', updateController.index)
 
 route.post('/update-question', updateController.updateQuestion)
 
+// route.post('/update-questionv2', updateController.updateQuestionV2)
+
 module.exports = route

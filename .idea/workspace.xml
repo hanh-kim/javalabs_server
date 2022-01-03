@@ -1,47 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="4e383003-dcd5-4f56-82db-16457d21fa6e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/app/constance/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/controllers/FeedBackController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/controllers/NotificationController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/routes/feedback_router.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/routes/notification_route.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/assets/css/Beautiful-Alert.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/assets/css/Contact-Form-by-Moorcam.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/assets/css/TD-BS4-Simple-Contact-Form-1.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/assets/css/TD-BS4-Simple-Contact-Form.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/assets/css/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/assets/fonts/KingFruitDemoRegular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/assets/fonts/ionicons.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/assets/fonts/ionicons.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/assets/fonts/ionicons.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/assets/fonts/ionicons.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/assets/fonts/ionicons.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/uploads/jv2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/views/alert.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/views/feedback.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/views/s.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/public/assets/css/Sakae-Contact-form-with-map.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/views/detail_pending.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/views/lesson_detail_v2.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/views/update_questionv2.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/views/update_topicv2.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/JavaLab.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/JavaLab.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_4_2021_9_36_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_4_2021_9_36_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/constance/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/constance/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controllers/FeedBackController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controllers/FeedBackController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/controllers/LessonDetailController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controllers/LessonDetailController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controllers/LoginController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controllers/LoginController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controllers/NotificationController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controllers/NotificationController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/controllers/QAController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controllers/QAController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/routes/api_route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/routes/api_route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controllers/UpdateController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controllers/UpdateController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controllers/UpdateQuestionController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controllers/UpdateQuestionController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controllers/UserController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controllers/UserController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/model/QAModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/model/QAModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/model/UserModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/model/UserModel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/routes/login_route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/routes/login_route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/db/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/db/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/routes/notification_route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/routes/notification_route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/routes/qa_route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/routes/qa_route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/routes/update_question_route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/routes/update_question_route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/routes/update_route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/routes/update_route.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/views/layouts/main.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/layouts/main.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/views/404.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/404.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/views/add_page.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/add_page.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/views/add_program.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/add_program.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/views/discussion.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/discussion.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/views/feedback.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/feedback.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/views/home.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/home.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/views/import.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/import.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/views/lesson.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/lesson.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/views/lesson_detail.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/lesson_detail.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/views/pending_request.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/pending_request.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/views/profile.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/profile.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/views/program_detail.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/program_detail.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/views/programs.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/programs.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/views/quiz.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/quiz.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/views/s.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/views/update_program_detail.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/update_program_detail.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/views/update_question.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/update_question.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/views/update_topic.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/update_topic.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/views/user.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/user.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/views/viewchat.hbs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,20 +95,20 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/public/assets/img/avatars" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/resources/views" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="JavaScript.Libraries" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2021.2.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\JavaLab\src\public\assets\img\avatars" />
-      <recent name="C:\JavaLab\src\public\assets\fonts" />
       <recent name="C:\JavaLab\src\resources\views" />
       <recent name="C:\JavaLab\src\public\assets\css" />
+      <recent name="C:\JavaLab\src\public\assets\img\avatars" />
+      <recent name="C:\JavaLab\src\public\assets\fonts" />
       <recent name="C:\Users\Asus\Desktop\JavaLab" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -130,6 +139,9 @@
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\Asus\AppData\Roaming\Subversion</configuration>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="4e383003-dcd5-4f56-82db-16457d21fa6e" name="Changes" comment="" />
@@ -175,6 +187,23 @@
       <workItem from="1640273033392" duration="1325000" />
       <workItem from="1640310496117" duration="24933000" />
       <workItem from="1640414292391" duration="7314000" />
+      <workItem from="1640521609239" duration="9701000" />
+      <workItem from="1640573758709" duration="1072000" />
+      <workItem from="1640596035385" duration="5137000" />
+      <workItem from="1640618395178" duration="1489000" />
+      <workItem from="1640660221761" duration="1187000" />
+      <workItem from="1640700106969" duration="1975000" />
+      <workItem from="1640743732351" duration="7174000" />
+      <workItem from="1640760177794" duration="5308000" />
+      <workItem from="1640784532573" duration="6697000" />
+      <workItem from="1640834072815" duration="1233000" />
+      <workItem from="1641043164595" duration="3006000" />
+      <workItem from="1641051014392" duration="2094000" />
+      <workItem from="1641053140966" duration="1640000" />
+      <workItem from="1641136967458" duration="7851000" />
+      <workItem from="1641207404052" duration="2211000" />
+      <workItem from="1641210347880" duration="1220000" />
+      <workItem from="1641216531980" duration="1487000" />
     </task>
     <task id="LOCAL-00001" summary="luu code">
       <created>1638541828252</created>
@@ -240,7 +269,8 @@
     <MESSAGE value="luu code" />
     <MESSAGE value="day code chat" />
     <MESSAGE value="upcode hoàn thiện" />
-    <option name="LAST_COMMIT_MESSAGE" value="upcode hoàn thiện" />
+    <MESSAGE value="sửa code  index.html" />
+    <option name="LAST_COMMIT_MESSAGE" value="sửa code  index.html" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

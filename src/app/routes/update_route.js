@@ -8,4 +8,6 @@ route.post('/update-topic', updateController.updateTopic)
 
 route.post('/update-question', updateController.updateQuestion)
 
+route.post('/update-questionv2', updateController.updateQuestionv2)
+
 module.exports = route

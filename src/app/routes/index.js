@@ -13,6 +13,9 @@ const updateQuestionRoute = require('./update_question_route')
 const updateProgramRoute = require('./update_program_route')
 const qaRoute = require('./qa_route')
 const discussionRoute = require('./chat_route')
+const notifi = require('./notification_route')
+const qaController = require('../controllers/QAController')
+const question = require('../controllers/UpdateQuestionController')
 
 function route(app) {
 
@@ -32,11 +35,15 @@ function route(app) {
 
     app.use('/lesson_detail', lessonDetailRoute)
 
+    app.use('/lesson_detail_v2', question.loadIndext)
+
     app.use('/add_program', programRoute)
 
     app.use('/program_detail', detailProgram)
 
     app.use('/programs.html', proRoute)
+
+    app.use('/notifycation.html', notifi)
 
     app.use('/lesson.html', lessonRoute)
 
@@ -56,8 +63,11 @@ function route(app) {
     })
 
     app.use('/pending_request', qaRoute)
+    app.use('/detail_pending', qaController.deltailPending)
 
     app.use('/feed_back', feedBack)
+
+    app.use('/notification', notifi)
 
     app.use('/nextfeedback', feedBack)
 

@@ -81,30 +81,56 @@
                             <thead class="bill-header cs">
                             <tr>
                                 <th id="trs-hd" class="col-lg-1">User</th>
-                                <th id="trs-hd" class="col-lg-6">Content</th>
-                                <th id="trs-hd" class="col-lg-2">Type</th>
+                                <th id="trs-hd" class="col-lg-6">Title</th>
+                                <th id="trs-hd" class="col-lg-5">Content</th>
+                                <th id="trs-hd" class="col-lg-2">Status</th>
                                 <th id="trs-hd" class="col-lg-1">Action</th>
                             </tr>
                             </thead>
                             <tbody>
-
                             {{#each QA}}
                                 <tr>
                                     <td>{{this.user}}</td>
+                                    <td>{{this.title}}</td>
                                     <td>{{this.content}}</td>
-
-                                    {{#if type}}
-                                        <td>Loại Qiz</td>
+                                    {{#if this.status}}
+                                        <td>đã giải quyết</td>
                                     {{else}}
-                                        <td>Loại Setting</td>
+                                        <td>chưa giải quyết</td>
                                     {{/if}}
                                     <td>
+                                        {{#if this.status}}
 
 
-                                        <a class="btn btn-danger" role="button"
-                                           style="margin-left: 5px;background-color: rgb(98,155,241); padding-left: 25px; padding-right: 25px; margin-top: 5px; margin-bottom: 5px"
-                                           a
-                                           href="detail_pending?id={{this._id}}">Detail</a>
+                                            {{#if type}}
+                                                <a class="btn btn-danger" role="button"
+                                                   style="margin-left: 5px;background-color: rgb(98,155,241); padding-left: 25px; padding-right: 25px; margin-top: 5px; margin-bottom: 5px"
+                                                >Resolved</a>
+                                            {{else}}
+
+                                                <a class="btn btn-danger" role="button"
+                                                   style="margin-left: 5px;background-color: rgb(98,155,241); padding-left: 25px; padding-right: 25px; margin-top: 5px; margin-bottom: 5px"
+                                                   href="resolved?id={{this._id}}">Giai quyết Seting </a>
+
+                                            {{/if}}
+                                        {{else}}
+
+                                            {{#if type}}
+                                                <a class="btn btn-danger" role="button"
+                                                   style="margin-left: 5px;background-color: rgb(98,155,241); padding-left: 25px; padding-right: 25px; margin-top: 5px; margin-bottom: 5px"
+                                                   a
+                                                   href="lesson_detail_v2?questionId={{this.idQuestionId}}&idQA={{this._id}}&user={{this.user}}">Resolved</a>
+                                            {{else}}
+
+                                                <a class="btn btn-danger" role="button"
+                                                   style="margin-left: 5px;background-color: rgb(98,155,241); padding-left: 25px; padding-right: 25px; margin-top: 5px; margin-bottom: 5px"
+                                                   href="resolved?id={{this._id}}">Giai quyết Seting </a>
+
+                                            {{/if}}
+
+                                        {{/if}}
+
+
 
 
                                         <form action="pending_request/delete-qa" method="post">
@@ -113,11 +139,13 @@
                                                     type="submit" name="id" value="{{this._id}}">Delete
                                             </button>
                                         </form>
+                                        <a class="btn btn-danger" role="button"
+                                           style="margin-left: 5px;background-color: rgb(98,155,241); padding-left: 25px; padding-right: 25px; margin-top: 5px; margin-bottom: 5px"
+                                           href="nextfeedback?email={{this.user}}">FeedBack</a>
 
                                     </td>
                                 </tr>
                             {{/each}}
-
 
                             </tbody>
                         </table>
@@ -131,18 +159,8 @@
             </div>
         </footer>
     </div>
-    <script>
 
-        Handlebars.registerHelper('ifCond', function (v1, options) {
-            if (v1 == 1) {
-                return true;
-            } else {
-                return false
-            }
 
-        });
-    </script>
-    <script src="https://twitter.github.io/typeahead.js/js/handlebars.js"></script>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>

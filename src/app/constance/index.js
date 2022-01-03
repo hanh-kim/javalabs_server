@@ -2,6 +2,9 @@ module.exports.adminEmail = "dragonfly.javalab@gmail.com";
 module.exports.adminPassword = 'canhphan1234'
 module.exports.mailHost = 'smtp.gmail.com'
 module.exports.mailPort = 587;
+module.exports.topic = '/topics/all';
+module.exports.text = 'Cảm ơn bạn đã gửi báo cáo cho chúng tôi ';
+module.exports.title = 'Gửi bạn ';
 module.exports.auto = `<h4 style="color: #2d4373;font-family: 'Candara'" class="text-primary m-0 font-weight-bold">Cám ơn bạn đã gửi thư góp ý  ,chúng tôi sẽ kiểm tra và gửi lại thông báo cho bạn sau . Một lần nữa xin chân thành cảm ơn và chúc bạn một ngày mới tốt lành</h4>
 `;
 module.exports.autoMess = `

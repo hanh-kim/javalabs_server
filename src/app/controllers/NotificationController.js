@@ -1,36 +1,114 @@
 const FCM = require('fcm-node');
 const {firestore} = require("firebase-admin");
+const constance = require('../constance/index')
+var serverKey = 'AAAA1B7zZfc:APA91bGq3hOJ-QZmrMtnf5_63KsQvE75_E2HglUoiC3ITPqGrsV8O7IU3o9TOXhS4SGU4xfdmQ-mZcZ_7kxS3NGHVH9AJiz1tzRgZl9vmnk-OvTVh7_51dCEDrZ-VMvIuTvloTFMLngw';
+var fcm = new FCM(serverKey);
 
-
+//todo by canhpd
 class NotificationController {
     index(req, res) {
-        res.render('login')
+        res.render('notifycation')
     }
 
-    sendNotifi(req, res) {
-        var serverKey = 'AAAA1B7zZfc:APA91bGq3hOJ-QZmrMtnf5_63KsQvE75_E2HglUoiC3ITPqGrsV8O7IU3o9TOXhS4SGU4xfdmQ-mZcZ_7kxS3NGHVH9AJiz1tzRgZl9vmnk-OvTVh7_51dCEDrZ-VMvIuTvloTFMLngw';
-        var fcm = new FCM(serverKey);
+    sendNotifiWithUser(req, res) {
+        if (req.body.title == null ||
+            req.body.text == null) {
+            res.json({
+                message: 'Cần truyền đủ tham số '
+            })
+            return
+        }
         var message = {
-            to: 'dX_ztlvvZ3E:APA91bHGFd_RUphm7ufLsJWfK1fZl6XTXjdpmecCbkLQXGPsZVcnb5ww2OQ_yabXVe5nAk33zfkZ1TEWK5oT00-kOwE6Lh68Z4gbRGkJSk0uis2-QbHuHjPZ1AMZKsNXQECzoyGaAhnX',
+            to: req.body.token,
             notification: {
-                title: ' ơi , đã đến giờ học bài rồi ',
-                body: 'Bổ xung kiến thức mới mỗi ngày, sẽ giúp bạn nâng cao trình độ bản thân ',
+                title: 'NotifcatioTestAPP sad',
+                body: 'Test App sadasd',
             },
 
             data: {
-                title: 'tiêu đề là gì cho hay ',
-                body: '{"name" : "Hi Want","product_id" : "123"}'
+                title: 'success',
+                body: '{"name" : "admin_canhnamdinh"}'
             }
         };
 
         fcm.send(message, function (err, response) {
             if (err) {
                 console.log("Something has gone wrong!" + err);
+                console.log("Respponse:! " + response);
             } else {
-                console.log("Successfullysent with response: ", response);
+                // showToast("Successfully sent with response");
+                console.log("Successfully sent with response: ", response);
+            }
+            res.json({
+                message: 'Successfully'
+            })
+        });
+    }
+
+    sendNotifiAllUser(req, res) {
+        if (req.body.title == null ||
+            req.body.text == null) {
+            res.json({
+                message: 'Cần truyền đủ tham số  '
+            })
+            return
+        }
+        var message = {
+            to: constance.topic,
+            notification: {
+                title: req.body.title,
+                body: req.body.text,
+            },
+
+            data: {
+                title: 'ok',
+                body: '{"name" : "admin_canhnamdinh"}'
+            }
+
+        };
+
+        fcm.send(message, function (err, response) {
+            if (err) {
+                console.log("Something has gone wrong!" + err);
+                console.log("Respponse:! " + response);
+            } else {
+                // showToast("Successfully sent with response");
+                console.log("Successfully sent with response: ", response);
+            }
+            res.redirect('/index.html')
+        });
+    }
+
+    sendNotifiAll() {
+
+        var message = {
+            to: constance.topic,
+            notification: {
+                title: "JavaLab",
+                body: "Bắt đầu bài học hôm nay thôi nào ." +
+                    " Hãy luyện tập mỗi ngày bạn nhé !",
+            },
+//gửi json
+            data: {
+                title: 'JavaLab Xin Chào ',
+                body: '{"body" : "Bắt đầu bài học hôm nay thôi nào "' +
+                    ',"text" : "luyện tập mỗi ngày bạn nhé",' +
+                    '"text1" : "0.00035"}'
+            }
+
+        };
+
+        fcm.send(message, function (err, response) {
+            if (err) {
+                console.log("Something has gone wrong!" + err);
+                console.log("Respponse:! " + response);
+            } else {
+                console.log("Successfully sent with response: ", response);
             }
         });
     }
+
+
 }
 
 module.exports = new NotificationController()
