@@ -15,15 +15,14 @@ class HomeController {
         var length = ls.length;
         var process = await Process.find({})
         for (var i of process) {
-            if (!data.has(i.lessonId)) {
-                data.set(i.lessonId, 1)
+            if (!data.has(i.lessonId.toString())) {
+                data.set(i.lessonId.toString(), 1)
             } else {
-                var count = Number(data.get(i.lessonId)) + 1
-                data.set(i.lessonId, count)
+                var count = Number(data.get(i.lessonId.toString())) + 1
+                data.set(i.lessonId.toString(), count)
             }
         }
         const dataSorted = new Map([...data.entries()].sort((a, b) => b[1] - a[1]));
-
         var listId = []
         dataSorted.forEach((value, key) => {
             listId.push(key)
