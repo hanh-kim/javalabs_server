@@ -130,18 +130,25 @@ class ApiController {
                 }
             },
             {
+                $lookup: {
+                    from: "processes",       // other table name
+                    localField: "_id",   // name of users table field
+                    foreignField: "lessonId", // name of userinfo table field
+                    as: "process"         // alias for userinfo table
+                }
+            },
+            {
                 $project: {
                     id: 1,
                     title: 1,
-                    totalTopic: 1,
+                    count: { $size: "$process" },
                     quiz: {
                         _id: "$quiz._id",
                         lessonId: "$quiz.lessonId",
                         name: "$quiz.name",
                         question: "$question"
                     },
-                    topic: "$topic"
-
+                    topic: "$topic",
                 }
             }
         ]);
