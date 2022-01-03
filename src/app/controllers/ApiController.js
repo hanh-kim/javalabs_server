@@ -142,6 +142,7 @@ class ApiController {
                     id: 1,
                     title: 1,
                     count: { $size: "$process" },
+                    totalTopic: 1,
                     quiz: {
                         _id: "$quiz._id",
                         lessonId: "$quiz.lessonId",
