@@ -123,7 +123,8 @@
                     href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
                 <input id="list-lesson" style="display: none;" value="{{this.listLesson}}"></input>
                 <input id="list-Count" style="display: none;" value="{{this.listCount}}"></input>
-
+                <input id="list-lesson2" style="display: none;" value="{{this.listLesson2}}"></input>
+                <input id="list-Count2" style="display: none;" value="{{this.listCount2}}"></input>
                 {{!-- Thống kê All --}}
                 <center>
                     <canvas id="myChartAll"
@@ -156,24 +157,21 @@
                     arrCount.pop()
 
 
-                    console.log(arrLesson)
+                    var listLesson2 = document.getElementById('list-lesson2').getAttribute("value");
+                    var listCount2 = document.getElementById('list-Count2').getAttribute("value");
+                    var arrLesson2 = listLesson2.split("/")
+                    var arrCount2 = listCount2.split("/")
+                    arrLesson2.pop()
+                    arrCount2.pop()
+                    var arrLessonTop10 = arrLesson2.slice(0, 10)
+                    var arrCountTop10 = arrCount2.splice(0, 10)
 
-                    var arrLessonTop10 = arrLesson.slice(0, 10)
-                    var arrCountTop10 = arrCount.splice(0, 10)
-                    console.log(arrLesson)
-
-
-                    var arrLessonTop10Below = arrLesson.splice(arrLesson.length - 10)
-                    var arrCountTop10Below = arrCount.splice(arrCount.length - 10)
+                    var arrLessonTop10Below = arrLesson2.splice(arrLesson2.length - 10)
+                    var arrCountTop10Below = arrCount2.splice(arrCount2.length - 10)
 
                     var color = ['green', 'yellow', 'red', 'blue', 'cyan', 'brown', 'violet', 'orange', 'purple', 'pink']
                     arrCountTop10.push(0)
-                    console.log(arrLesson)
 
-                    var arrLesson = listLesson.split("/")
-                    var arrCount = listCount.split("/")
-                    arrLesson.pop()
-                    arrCount.pop()
                     new Chart("myChartAll", {
                         type: "bar",
                         data: {

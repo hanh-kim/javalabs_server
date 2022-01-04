@@ -10,50 +10,54 @@ class HomeController {
         var user = await User.find({})
         var ls = await Lesson.find({})
         var qa = await QA.find({})
-
-        var data = new Map();
-        var length = ls.length;
-        var process = await Process.find({})
-        for (var i of process) {
-            if (!data.has(i.lessonId.toString())) {
-                data.set(i.lessonId.toString(), 1)
-            } else {
-                var count = Number(data.get(i.lessonId.toString())) + 1
-                data.set(i.lessonId.toString(), count)
-            }
-        }
-        const dataSorted = new Map([...data.entries()].sort((a, b) => b[1] - a[1]));
-        var listId = []
-        dataSorted.forEach((value, key) => {
-            listId.push(key)
-        })
-
-        var topBelow = await Lesson.find({ _id: { $nin: listId } });
-        for (var k of topBelow) {
-            dataSorted.set(k._id.toString(), 0)
-        }
-        listId = []
-        dataSorted.forEach((value, key) => {
-            listId.push(key)
-        })
-        var listLesson = ''
-        var listCount = ''
-        for (var j of listId) {
-            try {
-                var lesson = await Lesson.findOne({ _id: j })
-                if (lesson != null) {
-                    listLesson += lesson.title + '/'
-                    listCount += dataSorted.get(j) + '/'
+        var a = await Lesson.aggregate([
+            {
+                $lookup: {
+                    from: "processes",       // other table name
+                    localField: "_id",   // name of users table field
+                    foreignField: "lessonId", // name of userinfo table field
+                    as: "process"         // alias for userinfo table
                 }
-            } catch (e) {
-                res.json({
-                    status: false,
-                    message: e.message,
-                    code: 404
-                })
+            },
+            {
+                $project: {
+                    title: 1,
+                    count: { $size: "$process" },
+                }
             }
+        ]);
+        var listLessson = ''
+        var listCount = ''
+
+        for (var i of a) {
+            listLessson += i.title + '/'
+            listCount += i.count + '/'
         }
-        res.render('home', { user: user.length, lesson: length, qa: qa.length, listLesson: listLesson, listCount: listCount })
+        function compare(a1, a2) {
+            if (a1.count > a2.count) {
+                return -1;
+            }
+            if (a1.count < a2.count) {
+                return 1;
+            }
+            return 0;
+        }
+
+        a.sort(compare);
+
+        var listLessson2 = ''
+        var listCount2 = ''
+        for (var i = 0; i < 10; i++) {
+            listLessson2 += a[i].title + '/'
+            listCount2 += a[i].count + '/'
+        }
+
+        for (var i = a.length - 10; i < a.length; i++) {
+            listLessson2 += a[i].title + '/'
+            listCount2 += a[i].count + '/'
+        }
+
+        res.render('home', { user: user.length, lesson: ls.length, qa: qa.length, listLesson: listLessson, listCount: listCount, listLesson2: listLessson2, listCount2: listCount2 })
     }
 }
 
