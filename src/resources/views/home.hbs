@@ -128,21 +128,22 @@
                 {{!-- Thống kê All --}}
                 <center>
                     <canvas id="myChartAll"
-                        style="max-width: 1050px;width:100%;margin-top: 100px; margin-bottom: 10px"></canvas>
-                    <h4 style="text-transform: uppercase; color: black;">Top 10 most learned lesson</h4>
+                        style="max-width: 1250px;width:100%;margin-top: 100px; margin-bottom: 10px"></canvas>
+                    <h4 style="text-transform: uppercase; color: black;">Statistics of the number of learners per lesson
+                    </h4>
                 </center>
 
                 {{!-- TOp học nhiều nhất --}}
                 <center>
                     <canvas id="myChart"
-                        style="width:100%;max-width: 1050px;margin-top: 100px; margin-bottom: 10px"></canvas>
+                        style="width:100%;max-width: 800px;margin-top: 100px; margin-bottom: 10px"></canvas>
                     <h4 style="text-transform: uppercase; color: black;">Top 10 most learned lesson</h4>
                 </center>
 
                 {{!-- TOp học ít nhất --}}
                 <center>
                     <canvas id="myChart2"
-                        style="width:100%;max-width: 1050px; margin-top: 100px; margin-bottom: 10px"></canvas>
+                        style="width:100%;max-width: 800px; margin-top: 100px; margin-bottom: 10px"></canvas>
                     <h4 style="text-transform: uppercase; color: black;">Top 10 lessons learned the least</h4>
                 </center>
 
@@ -155,7 +156,13 @@
                     var arrCount = listCount.split("/")
                     arrLesson.pop()
                     arrCount.pop()
-
+                    var color = ['Thistle', 'Teal', 'SteelBlue', 'SpringGreen', 'SkyBlue', 'SandyBrown', 'SaddleBrown', 'RebeccaPurple', 'OliveDrab']
+                    var color2 = ['green', 'yellow', 'red', 'blue', 'cyan', 'brown', 'violet', 'orange', 'purple', 'pink']
+                    console.log(color.length)
+                    var listColor = []
+                    for (var i = 0; i < arrLesson.length; i++) {
+                        listColor.push(color2[Math.floor(Math.random() * 10)])
+                    }
 
                     var listLesson2 = document.getElementById('list-lesson2').getAttribute("value");
                     var listCount2 = document.getElementById('list-Count2').getAttribute("value");
@@ -169,7 +176,6 @@
                     var arrLessonTop10Below = arrLesson2.splice(arrLesson2.length - 10)
                     var arrCountTop10Below = arrCount2.splice(arrCount2.length - 10)
 
-                    var color = ['green', 'yellow', 'red', 'blue', 'cyan', 'brown', 'violet', 'orange', 'purple', 'pink']
                     arrCountTop10.push(0)
 
                     new Chart("myChartAll", {
@@ -177,14 +183,14 @@
                         data: {
                             labels: arrLesson,
                             datasets: [{
-                                backgroundColor: 'lightblue',
+                                backgroundColor: listColor,
                                 data: arrCount
                             }]
                         },
                         options: {
                             legend: { display: false },
                             title: {
-                                display: true,
+                                display: false,
                             }
                         }
                     });
@@ -194,7 +200,7 @@
                         data: {
                             labels: arrLessonTop10,
                             datasets: [{
-                                backgroundColor: color,
+                                backgroundColor: color2,
                                 data: arrCountTop10
                             }]
                         },
@@ -211,7 +217,7 @@
                         data: {
                             labels: arrLessonTop10Below,
                             datasets: [{
-                                backgroundColor: color.reverse(),
+                                backgroundColor: color2.reverse(),
                                 data: arrCountTop10Below
                             }]
                         },

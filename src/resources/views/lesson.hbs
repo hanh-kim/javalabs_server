@@ -65,16 +65,25 @@
                         <table class="table table-bordered table-hover">
                             <thead class="bill-header cs">
                                 <tr>
-                                    <th id="trs-hd" class="col-lg-4">Lesson</th>
-                                    <th id="trs-hd" class="col-lg-4">Number of Topics</th>
-                                    <th id="trs-hd" class="col-lg-4">Action</th>
+                                    <td id="trs-hd" class="col-lg-4" align="center"
+                                        style="text-transform: uppercase; font-size: 18px;">Lesson
+                                    </td>
+                                    <td id="trs-hd" class="col-lg-3" align="center"
+                                        style="text-transform: uppercase; font-size: 18px;">Number of
+                                        Topics</td>
+                                    <td id="trs-hd" class="col-lg-3" align="center"
+                                        style="text-transform: uppercase; font-size: 18px;"> number of
+                                        users learned</td>
+                                    <td id="trs-hd" class="col-lg-2" align="center"
+                                        style="text-transform: uppercase; font-size: 18px;">Action</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 {{#each lesson}}
                                 <tr>
-                                    <td class="text-center">{{this.title}}</td>
+                                    <td align="center">{{this.title}}</td>
                                     <td class="text-center">{{this.totalTopic}}</td>
+                                    <td class="text-center">{{this.count}}</td>
                                     <td>
                                         <div style="justify-content: center;display: flex; flex-wrap: wrap;">
                                             <a class="btn btn-danger" role="button"

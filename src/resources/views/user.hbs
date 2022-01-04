@@ -54,28 +54,27 @@
                         </ul>
                     </div>
                 </nav>
+
                 <div class="container-fluid">
                     <h3 class="text-dark mb-4">User</h3>
                     <div class="card shadow">
                         <div class="card-header py-3">
                             <p class="text-primary m-0 font-weight-bold">User Info</p>
                         </div>
+
                         <div class="card-body">
-                            <div class="col-md-10 ">
+                            <div class="col-md-12 "
+                                style="display: flex; justify-content: space-between; flex-wrap: wrap;">
                                 <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite"
                                     style="color: rgb(146, 146, 146); font-weight: 800;">
                                     Total: {{totalUser}} user</p>
-                            </div>
-                            <div class="row" style="display: flex; justify-content: space-between;">
-                                <div class="col-md-6 text-nowrap">
-                                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
-
-
-                                    </div>
+                                <div style="width: 500px;">
+                                    <input type="text" placeholder="Search by typing here..."
+                                        class="search form-control">
                                 </div>
-
                             </div>
-                            <div class="table-responsive table mt-2" id="dataTable" role="grid"
+
+                            <div class="table-responsive table mt-2 results" id="dataTable" role="grid"
                                 aria-describedby="dataTable_info">
                                 <table class="table dataTable my-0" id="dataTable">
                                     <thead>
