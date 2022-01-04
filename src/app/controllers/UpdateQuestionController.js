@@ -85,7 +85,6 @@ class UpdateQuestionController {
 
 //todo by canhnamdinh
 
-
     loadIndext(req, res) {
         if (req.query.questionId == null) {
             res.send('Cần truyền Id')

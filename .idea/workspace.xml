@@ -5,52 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e383003-dcd5-4f56-82db-16457d21fa6e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/public/assets/css/Sakae-Contact-form-with-map.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/views/detail_pending.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/views/lesson_detail_v2.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/views/update_questionv2.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/views/update_topicv2.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/JavaLab.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/JavaLab.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/constance/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/constance/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controllers/FeedBackController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controllers/FeedBackController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controllers/LessonDetailController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controllers/LessonDetailController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controllers/NotificationController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controllers/NotificationController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/controllers/QAController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controllers/QAController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controllers/UpdateController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controllers/UpdateController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/controllers/UpdateQuestionController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controllers/UpdateQuestionController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controllers/UserController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controllers/UserController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/model/QAModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/model/QAModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/model/UserModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/model/UserModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/routes/notification_route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/routes/notification_route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/routes/qa_route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/routes/qa_route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/routes/update_question_route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/routes/update_question_route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/routes/update_route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/routes/update_route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/views/404.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/404.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/views/add_page.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/add_page.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/views/add_program.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/add_program.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/views/discussion.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/discussion.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/views/feedback.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/feedback.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/views/home.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/home.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/views/import.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/import.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/views/lesson.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/lesson.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/views/lesson_detail.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/lesson_detail.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/views/pending_request.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/pending_request.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/views/profile.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/profile.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/views/program_detail.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/program_detail.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/views/programs.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/programs.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/views/quiz.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/quiz.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/views/s.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/views/update_program_detail.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/update_program_detail.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/views/update_question.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/update_question.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/views/update_topic.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/update_topic.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/views/user.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/user.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/views/detail_pending.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/detail_pending.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,6 +162,8 @@
       <workItem from="1641207404052" duration="2211000" />
       <workItem from="1641210347880" duration="1220000" />
       <workItem from="1641216531980" duration="1487000" />
+      <workItem from="1641285959037" duration="1594000" />
+      <workItem from="1641304068164" duration="569000" />
     </task>
     <task id="LOCAL-00001" summary="luu code">
       <created>1638541828252</created>

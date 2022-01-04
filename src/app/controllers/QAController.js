@@ -46,6 +46,7 @@ class QAController {
     }
 
     updateQA(req, res) {
+        console.log(req.body.username)
         if (req.body.id == null) {
             res.json({
                 message: 'Cần truyền id ',
@@ -55,16 +56,11 @@ class QAController {
         }
         QA.findOne({_id: req.body.id}).then(qa => {
             qa.status = true
-            qa.save().then(q => res.redirect('/detail_pending?id=' + req.body.id)).catch(e => res.json({
-                message: e.message,
-                code: 404,
-                isSuccess: false
-            }))
-        }).catch(e => es.json({
-            message: e.message,
-            code: 404,
-            isSuccess: false
-        }))
+            //    res.redirect('/detail_pending?id=' + req.body.id)
+            qa.save()
+            res.redirect('/nextfeedback?email=' + req.body.username + '&id=' + req.body.id)
+        })
+
     }
 
     deleteQA(req, res) {
