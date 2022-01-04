@@ -54,14 +54,7 @@
                 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
                     <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle mr-3"
                             id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
-                        <form
-                            class="form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                            <div class="input-group"><input class="bg-light form-control border-0 small" type="text"
-                                    placeholder="Search for ...">
-                                <div class="input-group-append"><button class="btn btn-primary py-0" type="button"><i
-                                            class="fas fa-search"></i></button></div>
-                            </div>
-                        </form>
+
                         <ul class="nav navbar-nav flex-nowrap ml-auto">
                             <li class="nav-item dropdown no-arrow" role="presentation">
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link"
@@ -88,9 +81,12 @@
                             <table class="table table-bordered table-hover">
                                 <thead class="bill-header cs">
                                     <tr>
-                                        <th id="trs-hd" class="col-lg-3">Topic</th>
-                                        <th id="trs-hd" class="col-lg-7">Content</th>
-                                        <th id="trs-hd" class="col-lg-2">Action</th>
+                                        <td id="trs-hd" class="col-lg-2" align="center"
+                                            style="text-transform: uppercase; font-size: 18px;">Topic</td>
+                                        <td id="trs-hd" class="col-lg-6" align="center"
+                                            style="text-transform: uppercase; font-size: 18px;">Content</td>
+                                        <td id="trs-hd" class="col-lg-2" align="center"
+                                            style="text-transform: uppercase; font-size: 18px;">Action</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -98,7 +94,7 @@
                                     <tr>
                                         <td>{{this.title}}</td>
                                         <td>{{this.content}}</td>
-                                        <td>
+                                        <td align="center">
                                             <a class="btn btn-danger" role="button"
                                                 style="margin-left: 5px;background-color: rgb(98,155,241); padding-left: 25px; padding-right: 25px; margin-top: 5px; margin-bottom: 5px"
                                                 href="update_topic?id_topic={{this._id}}">UPDATE</a>
@@ -120,14 +116,16 @@
                     </div>
                     <h1 style="margin-left: 15px;">Quiz</h1>
                     <div class="col-md-12 search-table-col" style="margin-top: 10px;">
-                        <div class="form-group pull-right col-lg-4"><input type="text" class="search form-control"
-                                placeholder="Search by typing here.."></div><span class="counter pull-right"></span>
+                        <div class="form-group pull-right col-lg-4"></div>
                         <div class="table-responsive table-bordered table table-hover table-bordered results">
                             <table class="table table-bordered table-hover">
                                 <thead class="bill-header cs">
                                     <tr>
-                                        <th id="trs-hd" class="col-lg-10">Question</th>
-                                        <th id="trs-hd" class="col-lg-2">Action</th>
+                                        <td id="trs-hd" class="col-lg-10" align="center"
+                                            style="text-transform: uppercase; font-size: 18px;">Question</td>
+                                        <td id="trs-hd" class="col-lg-2" align="center"
+                                            style="text-transform: uppercase; font-size: 18px;">Action</td>
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -147,7 +145,7 @@
                                                 {{this.correctAnswer}}<br></h6>
 
                                         </td>
-                                        <td>
+                                        <td align="center">
                                             <div style="justify-content: center;display: flex; flex-wrap: wrap;">
 
                                                 <a href="update-question?id={{this._id}}"><button

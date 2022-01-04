@@ -7,16 +7,26 @@ const Question = require('../model/QuestionModel')
 const Process = require('../model/ProcessModel')
 
 class LessonController {
-    index(req, res) {
-        Lesson.find({}).then(
-            lesson => {
-                var listLesson = []
-                for (var i of lesson) {
-                    var ls = new LessonMD(i.title, i.totalTopic, i._id)
-                    listLesson.push(ls)
+    async index(req, res) {
+        var a = await Lesson.aggregate([
+            {
+                $lookup: {
+                    from: "processes",       // other table name
+                    localField: "_id",   // name of users table field
+                    foreignField: "lessonId", // name of userinfo table field
+                    as: "process"         // alias for userinfo table
                 }
-                res.render('lesson', { lesson: listLesson });
-            }).catch(e => res.json({ status: e }))
+            },
+            {
+                $project: {
+                    _id: 1,
+                    title: 1,
+                    totalTopic: 1,
+                    count: { $size: "$process" },
+                }
+            }
+        ]);
+        res.render('lesson', { lesson: a });
     }
 
     //read excel file:
