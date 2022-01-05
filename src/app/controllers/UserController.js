@@ -209,6 +209,44 @@ class UserController {
         }
         res.render('user_detail', { listTime: listTime, score: score, user: u, daHoc: listDaHoc, totalScore: totalScore })
     }
+
+    //get lesson đã học
+    async getTop10Lesson(req, res){
+        if(req.query.userId == null){
+            res.json({
+                message: 'Cần truyền userId',
+                status: false
+            })
+            return
+        }
+        try {
+            var listDaHoc= []
+            var prc = await Process.find({ userId: req.query.userId }).sort({ quizMarked: -1 })
+            for (var v of prc) {
+                var ls = await Lesson.findOne({ _id: v.lessonId })
+                if (ls != null) {
+                    listDaHoc.push({
+                        title: ls.title,
+                        score: v.quizMarked,
+                        topic: v.completed.length.toString() + '/' + ls.totalTopic,
+                        date: v.lastModify,
+                    })
+                }
+                if(prc.indexOf(v) == 9){
+                    break
+                }
+            }
+            res.json({
+                isSuccess: true,
+                code: 200,
+                data: listDaHoc
+            })
+        } catch (e) {
+            res.json({
+                mess: e.message
+            })
+        }
+    }
     //get top N user:
     getTopUser(req, res) {
         if (req.query.topUser == null) {

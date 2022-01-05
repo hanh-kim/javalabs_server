@@ -42,6 +42,9 @@ route.post('/update-mark-user', userController.updateUser)
 
 route.get('/get-top-user', userController.getRank)
 
+route.get('/top-lesson-score', userController.getTop10Lesson)
+
+
 
 // route.get('/get-rank', userController.getRank)
 
