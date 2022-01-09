@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e383003-dcd5-4f56-82db-16457d21fa6e" name="Changes" comment="">
+    <list default="true" id="4e383003-dcd5-4f56-82db-16457d21fa6e" name="Changes" comment="Changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controllers/QAController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controllers/QAController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controllers/UpdateQuestionController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controllers/UpdateQuestionController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/views/detail_pending.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/detail_pending.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,11 +50,12 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/resources/views" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2021.2.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -98,7 +96,7 @@
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
-    <configuration>C:\Users\Asus\AppData\Roaming\Subversion</configuration>
+    <configuration>C:\Users\phanc\AppData\Roaming\Subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -163,7 +161,9 @@
       <workItem from="1641210347880" duration="1220000" />
       <workItem from="1641216531980" duration="1487000" />
       <workItem from="1641285959037" duration="1594000" />
-      <workItem from="1641304068164" duration="569000" />
+      <workItem from="1641304068164" duration="1576000" />
+      <workItem from="1641712579108" duration="328000" />
+      <workItem from="1641712937991" duration="2062000" />
     </task>
     <task id="LOCAL-00001" summary="luu code">
       <created>1638541828252</created>
@@ -207,7 +207,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639233611531</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary=" report câu hỏi">
+      <created>1641304826756</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1641304826756</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,7 +237,8 @@
     <MESSAGE value="day code chat" />
     <MESSAGE value="upcode hoàn thiện" />
     <MESSAGE value="sửa code  index.html" />
-    <option name="LAST_COMMIT_MESSAGE" value="sửa code  index.html" />
+    <MESSAGE value=" report câu hỏi" />
+    <option name="LAST_COMMIT_MESSAGE" value=" report câu hỏi" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
