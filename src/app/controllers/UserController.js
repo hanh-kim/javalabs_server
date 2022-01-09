@@ -96,38 +96,6 @@ class UserController {
         }))
     }
 
-    resetToken(req, res, next) {
-        if (req.body.id == null || req.body.mark == null) {
-            res.json({message: 'Cân truyền id, mark'})
-            return
-        }
-        User.findOne({_id: req.body.id}).then(user => {
-            if (user == null) {
-                res.json({message: "User không tồn tại, kiểm tra lại id", isSuccess: false})
-            }
-            var mark = user.mark;
-            if (req.body.mark != '') {
-                mark += Number(req.body.mark)
-                user.mark = mark;
-            }
-            user.save().then(user => res.json(
-                {
-                    message: "success",
-                    isSuccess: true,
-                    code: 200,
-                    data: user
-                })).catch(e => res.json(
-                {
-                    isSuccess: false,
-                    message: e.message,
-                    code: 404
-                }))
-        }).catch(e => res.json({
-            isSuccess: false,
-            message: e.message,
-            code: 404
-        }))
-    }
 
     //get 
     getUser(req, res) {
