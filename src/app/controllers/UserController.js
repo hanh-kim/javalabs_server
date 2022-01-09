@@ -38,6 +38,7 @@ class UserController {
                 User({
                     gmail: req.body.gmail,
                     mark: mark,
+                    tokenDevice: req.body.tokenDevice,
                     imageUrl: req.body.imageUrl,
                     username: username
                 }).save().then(user => {
@@ -97,6 +98,7 @@ class UserController {
             code: 404
         }))
     }
+
 
     //get 
     getUser(req, res) {
@@ -211,8 +213,8 @@ class UserController {
     }
 
     //get lesson đã học
-    async getTop10Lesson(req, res){
-        if(req.query.userId == null){
+    async getTop10Lesson(req, res) {
+        if (req.query.userId == null) {
             res.json({
                 message: 'Cần truyền userId',
                 status: false
@@ -220,7 +222,7 @@ class UserController {
             return
         }
         try {
-            var listDaHoc= []
+            var listDaHoc = []
             var prc = await Process.find({ userId: req.query.userId }).sort({ quizMarked: -1 })
             for (var v of prc) {
                 var ls = await Lesson.findOne({ _id: v.lessonId })
@@ -232,7 +234,7 @@ class UserController {
                         date: v.lastModify,
                     })
                 }
-                if(prc.indexOf(v) == 9){
+                if (prc.indexOf(v) == 9) {
                     break
                 }
             }

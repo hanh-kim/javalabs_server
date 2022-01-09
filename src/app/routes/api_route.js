@@ -5,11 +5,14 @@ const processController = require('../controllers/ProcessController')
 const userController = require('../controllers/UserController')
 const qaController = require('../controllers/QAController')
 const chatController = require('../controllers/ChatController')
+const feedback = require('../controllers/FeedBackController')
 const LessonController = require('../controllers/LessonController')
 
 
 //lesson
 route.get('/get-lesson', apiController.getAllLesson)
+
+route.get('/sendmail_user', feedback.sendMailFeedBack)
 
 route.get('/get-topic', apiController.getTopicByLessonId)
 
@@ -80,7 +83,6 @@ route.get('/get-comment-by-quiz', chatController.getChatByQuiz)
 route.get('/get-all-comment', chatController.getAllChat)
 
 route.get('/get-comment-by-questionid', chatController.getChatByQuestion)
-
 
 
 module.exports = route

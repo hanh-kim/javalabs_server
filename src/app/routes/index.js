@@ -1,4 +1,5 @@
 const loginRoute = require('./login_route')
+const feedBack = require('./feedback_router')
 const lessonRoute = require('./lesson_route')
 const apiRoute = require('./api_route')
 const lessonDetailRoute = require('./lesson_detail_route')
@@ -12,13 +13,23 @@ const updateQuestionRoute = require('./update_question_route')
 const updateProgramRoute = require('./update_program_route')
 const qaRoute = require('./qa_route')
 const discussionRoute = require('./chat_route')
+const notifi = require('./notification_route')
+const qaController = require('../controllers/QAController')
+const question = require('../controllers/UpdateQuestionController')
 const userControll = require('../controllers/UserController')
 const lessonControl = require('../controllers/LessonController')
+
 
 function route(app) {
     app.use('/', loginRoute)
 
     app.use('/api', apiRoute)
+
+    app.use('/feedback', (req, res) => {
+        res.render('feedback')
+    })
+
+    app.use('/feedback', feedBack)
 
     app.use('/login.html', loginRoute)
 
@@ -26,11 +37,15 @@ function route(app) {
 
     app.use('/lesson_detail', lessonDetailRoute)
 
+    app.use('/lesson_detail_v2', question.loadIndext)
+
     app.use('/add_program', programRoute)
 
     app.use('/program_detail', detailProgram)
 
     app.use('/programs.html', proRoute)
+
+    app.use('/notifycation.html', notifi)
 
     app.use('/lesson.html', lessonRoute)
 
@@ -50,6 +65,13 @@ function route(app) {
     })
 
     app.use('/pending_request', qaRoute)
+    app.use('/detail_pending', qaController.deltailPending)
+
+    app.use('/feed_back', feedBack)
+
+    app.use('/notification', notifi)
+
+    app.use('/nextfeedback', feedBack)
 
     app.get('/profile.html', (req, res) => {
         res.render('profile')
@@ -78,4 +100,5 @@ function route(app) {
 
 
 }
+
 module.exports = route

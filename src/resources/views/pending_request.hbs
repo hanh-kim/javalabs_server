@@ -26,17 +26,31 @@
                     <li class="nav-item" role="presentation"><a class="nav-link"
                             href="programs.html"><span>Programs</span></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link"
+                            href="notifycation.html"><span>Notification</span></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link"
                             href="login.html"><span>Logout</span></a></li>
                 </ul>
-                <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0"
-                        id="sidebarToggle" type="button"></button></div>
+                <div class="text-center d-none d-md-inline">
+                    <button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button>
+                </div>
             </div>
         </nav>
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
                 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
-                    <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle mr-3"
-                            id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
+                    <div class="container-fluid">
+                        <button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop"
+                            type="button"><i class="fas fa-bars"></i></button>
+                        <form
+                            class="form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                            <div class="input-group"><input class="bg-light form-control border-0 small" type="text"
+                                    placeholder="Search for ...">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary py-0" type="button"><i
+                                            class="fas fa-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
                         <ul class="nav navbar-nav flex-nowrap ml-auto">
                             <li class="nav-item dropdown no-arrow" role="presentation">
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link"
@@ -45,8 +59,8 @@
                                             class="border rounded-circle img-profile"
                                             src="assets/img/avatars/user.png"></a>
                                     <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
-                                        <div class="dropdown-divider"></div><a class="dropdown-item" role="presentation"
-                                            href="/"><i
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" role="presentation" href="/"><i
                                                 class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a>
                                     </div>
                                 </div>
@@ -57,39 +71,49 @@
                 <div class="container-fluid">
                     <div class="col-md-12 search-table-col" style="margin-top: 10px;">
                         <div class="form-group pull-right col-lg-4"><input type="text" class="search form-control"
-                                placeholder="Search by typing here.."></div><span class="counter pull-right"></span>
+                                placeholder="Search by typing here.."></div>
+                        <span class="counter pull-right"></span>
                         <div class="table-responsive table-bordered table table-hover table-bordered results">
                             <table class="table table-bordered table-hover">
                                 <thead class="bill-header cs">
                                     <tr>
                                         <th id="trs-hd" class="col-lg-1">User</th>
-                                        <th id="trs-hd" class="col-lg-2">Title</th>
                                         <th id="trs-hd" class="col-lg-6">Content</th>
-                                        <th id="trs-hd" class="col-lg-2">Status</th>
+                                        <th id="trs-hd" class="col-lg-2">Type</th>
                                         <th id="trs-hd" class="col-lg-1">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+
                                     {{#each QA}}
                                     <tr>
-                                        <td>{{this.userId}}</td>
-                                        <td>{{this.title}}</td>
+                                        <td>{{this.user}}</td>
                                         <td>{{this.content}}</td>
-                                        <td>{{this.status}}</td>
+
+                                        {{#if type}}
+                                        <td>Loại Qiz</td>
+                                        {{else}}
+                                        <td>Loại Setting</td>
+                                        {{/if}}
                                         <td>
-                                            <form action="pending_request/update-qa" method="post">
-                                                <button class="btn btn-primary"
-                                                    style="padding-left: 20px; padding-right: 20px;" type="submit"
-                                                    name="id" value="{{this._id}}">Resolved</button>
-                                            </form>
+
+
+                                            <a class="btn btn-danger" role="button"
+                                                style="margin-left: 5px;background-color: rgb(98,155,241); padding-left: 25px; padding-right: 25px; margin-top: 5px; margin-bottom: 5px"
+                                                a href="detail_pending?id={{this._id}}">Detail</a>
+
+
                                             <form action="pending_request/delete-qa" method="post">
                                                 <button class="btn btn-danger"
                                                     style="padding-left: 28px; padding-right: 28px; margin-top: 10px;"
-                                                    type="submit" name="id" value="{{this._id}}">Delete </button>
+                                                    type="submit" name="id" value="{{this._id}}">Delete
+                                                </button>
                                             </form>
+
                                         </td>
                                     </tr>
                                     {{/each}}
+
 
                                 </tbody>
                             </table>
@@ -103,9 +127,18 @@
                 </div>
             </footer>
         </div>
+        <script>
 
+            Handlebars.registerHelper('ifCond', function (v1, options) {
+                if (v1 == 1) {
+                    return true;
+                } else {
+                    return false
+                }
 
-
+            });
+        </script>
+        <script src="https://twitter.github.io/typeahead.js/js/handlebars.js"></script>
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
@@ -118,3 +151,9 @@
 </body>
 
 </html>
+<!--<form action="pending_request/update-qa" method="post">-->
+<!--    <button class="btn btn-primary"-->
+<!--            style="padding-left: 20px; padding-right: 20px;"-->
+<!--            type="submit" name="id" value="this._id">Resolved-->
+<!--    </button>-->
+<!--</form>-->

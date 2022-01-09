@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e383003-dcd5-4f56-82db-16457d21fa6e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_4_2021_9_36_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_4_2021_9_36_PM__Changes_.xml" afterDir="false" />
+    <list default="true" id="4e383003-dcd5-4f56-82db-16457d21fa6e" name="Changes" comment="đẩy code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controllers/ChatController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controllers/ChatController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/model/ChatModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/model/ChatModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +15,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -29,30 +28,63 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="ProjectId" id="20xW0rCNdNOaaakMw5hhzKQXZ5P" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="JavaScript.Libraries" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2021.2.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\JavaLab\src\resources\views" />
+      <recent name="C:\JavaLab\src\public\assets\css" />
+      <recent name="C:\JavaLab\src\public\assets\img\avatars" />
+      <recent name="C:\JavaLab\src\public\assets\fonts" />
       <recent name="C:\Users\Asus\Desktop\JavaLab" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\JavaLab\src\public\uploads" />
+      <recent name="C:\JavaLab\src\app" />
+      <recent name="C:\JavaLab\src\config" />
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -74,6 +106,9 @@
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\phanc\AppData\Roaming\Subversion</configuration>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="4e383003-dcd5-4f56-82db-16457d21fa6e" name="Changes" comment="" />
@@ -112,7 +147,34 @@
       <workItem from="1639013304273" duration="5413000" />
       <workItem from="1639060499894" duration="3212000" />
       <workItem from="1639098996912" duration="3310000" />
-      <workItem from="1639232064178" duration="1373000" />
+      <workItem from="1639232064178" duration="3551000" />
+      <workItem from="1639276129617" duration="14054000" />
+      <workItem from="1639317212314" duration="6063000" />
+      <workItem from="1640094735558" duration="6639000" />
+      <workItem from="1640273033392" duration="1325000" />
+      <workItem from="1640310496117" duration="24933000" />
+      <workItem from="1640414292391" duration="7314000" />
+      <workItem from="1640521609239" duration="9701000" />
+      <workItem from="1640573758709" duration="1072000" />
+      <workItem from="1640596035385" duration="5137000" />
+      <workItem from="1640618395178" duration="1489000" />
+      <workItem from="1640660221761" duration="1187000" />
+      <workItem from="1640700106969" duration="1975000" />
+      <workItem from="1640743732351" duration="7174000" />
+      <workItem from="1640760177794" duration="5308000" />
+      <workItem from="1640784532573" duration="6697000" />
+      <workItem from="1640834072815" duration="1233000" />
+      <workItem from="1641043164595" duration="3006000" />
+      <workItem from="1641051014392" duration="2094000" />
+      <workItem from="1641053140966" duration="1640000" />
+      <workItem from="1641136967458" duration="7851000" />
+      <workItem from="1641207404052" duration="2211000" />
+      <workItem from="1641210347880" duration="1220000" />
+      <workItem from="1641216531980" duration="1487000" />
+      <workItem from="1641285959037" duration="1594000" />
+      <workItem from="1641304068164" duration="1576000" />
+      <workItem from="1641712579108" duration="328000" />
+      <workItem from="1641712937991" duration="2370000" />
     </task>
     <task id="LOCAL-00001" summary="luu code">
       <created>1638541828252</created>
@@ -149,7 +211,35 @@
       <option name="project" value="LOCAL" />
       <updated>1638978840320</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="upcode hoàn thiện">
+      <created>1639233611531</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1639233611531</updated>
+    </task>
+    <task id="LOCAL-00007" summary=" report câu hỏi">
+      <created>1641304826756</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1641304826756</updated>
+    </task>
+    <task id="LOCAL-00008" summary="upcode">
+      <created>1641718820052</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1641718820052</updated>
+    </task>
+    <task id="LOCAL-00009" summary="đẩy code">
+      <created>1641721402884</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1641721402884</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -170,7 +260,12 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="luu code" />
     <MESSAGE value="day code chat" />
-    <option name="LAST_COMMIT_MESSAGE" value="day code chat" />
+    <MESSAGE value="upcode hoàn thiện" />
+    <MESSAGE value="sửa code  index.html" />
+    <MESSAGE value=" report câu hỏi" />
+    <MESSAGE value="upcode" />
+    <MESSAGE value="đẩy code" />
+    <option name="LAST_COMMIT_MESSAGE" value="đẩy code" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
