@@ -1,11 +1,11 @@
 var nodemailer = require('nodemailer');
 const constance = require('../constance/index')
-const FCM = require('fcm-node');
-const {firestore} = require("firebase-admin");
+// const FCM = require('fcm-node');
+const { firestore } = require("firebase-admin");
 const User = require("../model/UserModel");
 
 var serverKey = 'AAAA1B7zZfc:APA91bGq3hOJ-QZmrMtnf5_63KsQvE75_E2HglUoiC3ITPqGrsV8O7IU3o9TOXhS4SGU4xfdmQ-mZcZ_7kxS3NGHVH9AJiz1tzRgZl9vmnk-OvTVh7_51dCEDrZ-VMvIuTvloTFMLngw';
-var fcm = new FCM(serverKey);
+// var fcm = new FCM(serverKey);
 
 //todo by canhpd
 //61b4699433357adc1beb637b device samsung s20
@@ -64,15 +64,15 @@ color: #0527fa;
                 }
             };
 
-            fcm.send(message, function (err, response) {
-                if (err) {
-                    console.log("Something has gone wrong!" + err);
-                    console.log("Respponse:! " + response);
-                } else {
-                    console.log("Successfully sent with response: ", response);
-                }
+            // fcm.send(message, function (err, response) {
+            //     if (err) {
+            //         console.log("Something has gone wrong!" + err);
+            //         console.log("Respponse:! " + response);
+            //     } else {
+            //         console.log("Successfully sent with response: ", response);
+            //     }
 
-            });
+            // });
 
         }
 
@@ -121,7 +121,7 @@ color: #0527fa;
     }
 
     nextFeedBack(req, res) {
-        User.findOne({gmail: req.query.email}).then(user => {
+        User.findOne({ gmail: req.query.email }).then(user => {
             res.render('feedback', {
                 email: req.query.email,
                 idQA: req.query.id,

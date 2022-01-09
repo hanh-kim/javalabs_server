@@ -1,8 +1,8 @@
-const FCM = require('fcm-node');
-const {firestore} = require("firebase-admin");
+// const FCM = require('fcm-node');
+const { firestore } = require("firebase-admin");
 const constance = require('../constance/index')
 var serverKey = 'AAAA1B7zZfc:APA91bGq3hOJ-QZmrMtnf5_63KsQvE75_E2HglUoiC3ITPqGrsV8O7IU3o9TOXhS4SGU4xfdmQ-mZcZ_7kxS3NGHVH9AJiz1tzRgZl9vmnk-OvTVh7_51dCEDrZ-VMvIuTvloTFMLngw';
-var fcm = new FCM(serverKey);
+// var fcm = new FCM(serverKey);
 
 //todo by canhpd
 class NotificationController {
@@ -31,18 +31,18 @@ class NotificationController {
             }
         };
 
-        fcm.send(message, function (err, response) {
-            if (err) {
-                console.log("Something has gone wrong!" + err);
-                console.log("Respponse:! " + response);
-            } else {
-                // showToast("Successfully sent with response");
-                console.log("Successfully sent with response: ", response);
-            }
-            res.json({
-                message: 'Successfully'
-            })
-        });
+        // fcm.send(message, function (err, response) {
+        //     if (err) {
+        //         console.log("Something has gone wrong!" + err);
+        //         console.log("Respponse:! " + response);
+        //     } else {
+        //         // showToast("Successfully sent with response");
+        //         console.log("Successfully sent with response: ", response);
+        //     }
+        //     res.json({
+        //         message: 'Successfully'
+        //     })
+        // });
     }
 
     sendNotifiAllUser(req, res) {
@@ -67,16 +67,16 @@ class NotificationController {
 
         };
 
-        fcm.send(message, function (err, response) {
-            if (err) {
-                console.log("Something has gone wrong!" + err);
-                console.log("Respponse:! " + response);
-            } else {
-                // showToast("Successfully sent with response");
-                console.log("Successfully sent with response: ", response);
-            }
-            res.redirect('/index.html')
-        });
+        // fcm.send(message, function (err, response) {
+        //     if (err) {
+        //         console.log("Something has gone wrong!" + err);
+        //         console.log("Respponse:! " + response);
+        //     } else {
+        //         // showToast("Successfully sent with response");
+        //         console.log("Successfully sent with response: ", response);
+        //     }
+        //     res.redirect('/index.html')
+        // });
     }
 
     sendNotifiAll() {
@@ -88,7 +88,7 @@ class NotificationController {
                 body: "Bắt đầu bài học hôm nay thôi nào ." +
                     " Hãy luyện tập mỗi ngày bạn nhé !",
             },
-//gửi json
+            //gửi json
             data: {
                 title: 'JavaLab Xin Chào ',
                 body: '{"body" : "Bắt đầu bài học hôm nay thôi nào "' +
@@ -98,14 +98,14 @@ class NotificationController {
 
         };
 
-        fcm.send(message, function (err, response) {
-            if (err) {
-                console.log("Something has gone wrong!" + err);
-                console.log("Respponse:! " + response);
-            } else {
-                console.log("Successfully sent with response: ", response);
-            }
-        });
+        // fcm.send(message, function (err, response) {
+        //     if (err) {
+        //         console.log("Something has gone wrong!" + err);
+        //         console.log("Respponse:! " + response);
+        //     } else {
+        //         console.log("Successfully sent with response: ", response);
+        //     }
+        // });
     }
 
 
