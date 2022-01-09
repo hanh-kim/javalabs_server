@@ -13,6 +13,7 @@ const updateProgramRoute = require('./update_program_route')
 const qaRoute = require('./qa_route')
 const discussionRoute = require('./chat_route')
 const userControll = require('../controllers/UserController')
+const lessonControl = require('../controllers/LessonController')
 
 function route(app) {
     app.use('/', loginRoute)
@@ -68,6 +69,8 @@ function route(app) {
     app.use('/update_program_detail', updateProgramRoute)
 
     app.use('/update-question', updateQuestionRoute)
+
+    app.get('/user-learned', lessonControl.userLearned)
 
     app.get('*', function (req, res) {
         res.render('404')

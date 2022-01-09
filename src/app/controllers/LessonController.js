@@ -5,6 +5,8 @@ const Topic = require('../model/TopicModel')
 const Quiz = require('../model/QuizModel')
 const Question = require('../model/QuestionModel')
 const Process = require('../model/ProcessModel')
+const User = require('../model/UserModel');
+const UserModel = require('../model/UserModel');
 
 class LessonController {
     async index(req, res) {
@@ -27,6 +29,23 @@ class LessonController {
             }
         ]);
         res.render('lesson', { lesson: a });
+    }
+
+    async userLearned(req, res) {
+        var process = await Process.find({ lessonId: req.query.lessonId }, { _id: 0, quizMarked: 1, userId: 1, lastModify: 1 }).sort({ quizMarked: -1 });
+        var listData = [];
+        for (var i of process) {
+            var u = await UserModel.findOne({ _id: i.userId });
+            listData.push({
+                userId: i.userId,
+                mark: i.quizMarked,
+                username: u.username,
+                date: i.lastModify,
+                avatar: u.imageUrl
+            })
+        }
+        res.render('user-learned', { user: listData })
+
     }
 
     //read excel file:
