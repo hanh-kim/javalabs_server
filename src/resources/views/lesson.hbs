@@ -39,14 +39,7 @@
                 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
                     <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle mr-3"
                             id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
-                        <form
-                            class="form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                            <div class="input-group"><input class="bg-light form-control border-0 small" type="text"
-                                    placeholder="Search for ...">
-                                <div class="input-group-append"><button class="btn btn-primary py-0" type="button"><i
-                                            class="fas fa-search"></i></button></div>
-                            </div>
-                        </form>
+
                         <ul class="nav navbar-nav flex-nowrap ml-auto">
                             <li class="nav-item dropdown no-arrow" role="presentation">
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link"
@@ -55,7 +48,7 @@
                                             class="border rounded-circle img-profile"
                                             src="assets/img/avatars/user.png"></a>
                                     <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
-                                        
+
                                         <div class="dropdown-divider"></div><a class="dropdown-item" role="presentation"
                                             href="#"><i
                                                 class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a>
@@ -74,16 +67,27 @@
                         <table class="table table-bordered table-hover">
                             <thead class="bill-header cs">
                                 <tr>
-                                    <th id="trs-hd" class="col-lg-4">Lesson</th>
-                                    <th id="trs-hd" class="col-lg-4">Number of Topics</th>
-                                    <th id="trs-hd" class="col-lg-4">Action</th>
+                                    <td id="trs-hd" class="col-lg-4" align="center"
+                                        style="text-transform: uppercase; font-size: 18px;">Lesson
+                                    </td>
+                                    <td id="trs-hd" class="col-lg-3" align="center"
+                                        style="text-transform: uppercase; font-size: 18px;">Number of
+                                        Topics</td>
+                                    <td id="trs-hd" class="col-lg-3" align="center"
+                                        style="text-transform: uppercase; font-size: 18px;"> number of
+                                        users learned</td>
+                                    <td id="trs-hd" class="col-lg-2" align="center"
+                                        style="text-transform: uppercase; font-size: 18px;">Action</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 {{#each lesson}}
                                 <tr>
-                                    <td class="text-center">{{this.title}}</td>
+                                    <td align="center">{{this.title}}</td>
                                     <td class="text-center">{{this.totalTopic}}</td>
+                                    <td class="text-center"><a
+                                            href="user-learned?lessonId={{this._id}}">{{this.count}}</a>
+                                    </td>
                                     <td>
                                         <div style="justify-content: center;display: flex; flex-wrap: wrap;">
                                             <a class="btn btn-danger" role="button"

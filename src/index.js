@@ -2,7 +2,7 @@ const express = require('express')
 const app = express();
 const handlebars = require('express-handlebars');
 // const morgan = require('morgan');
-const {extname} = require('path');
+const { extname } = require('path');
 const path = require('path')
 var schedule = require('node-schedule');
 var rule = new schedule.RecurrenceRule();
@@ -28,7 +28,7 @@ db.connect()
 app.use(express.static(path.join(__dirname, 'public')))
 
 //body parse giúp xem đc params thông qua body. VD: req.body._ten_param
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 //template handlebars
@@ -70,7 +70,7 @@ io.sockets.on('connection', function (socket) {
                 date: date,
             }).save().then(chat => {
                 socket.join(Data.questionId)
-                io.in(Data.questionId).emit('ChatAtRoom', {data: chat});
+                io.in(Data.questionId).emit('ChatAtRoom', { data: chat });
             }).catch(e => {
 
             })
@@ -78,13 +78,13 @@ io.sockets.on('connection', function (socket) {
 
         } else {
             socket.join(Data.questionId)
-            io.in(Data.questionId).emit('ChatAtRoom', {data: ''});
+            io.in(Data.questionId).emit('ChatAtRoom', { data: '' });
         }
 
     });
     socket.on('ClickLike', function (data, id) {
         const Data = JSON.parse(data);
-        Chat.findOne({_id: Data._id}).then(chat => {
+        Chat.findOne({ _id: Data._id }).then(chat => {
             if (chat != null) {
                 var arr = chat.userLiked
                 if (chat.userLiked.includes(id)) {
@@ -101,9 +101,9 @@ io.sockets.on('connection', function (socket) {
                 }
                 chat.userLiked = arr
                 chat.save().then(c => {
-                    Chat.find({questionId: c.questionId}).then(chats => {
+                    Chat.find({ questionId: c.questionId }).then(chats => {
                         socket.join(Data.questionId)
-                        io.in(Data.questionId).emit('Refresh', {data: chats});
+                        io.in(Data.questionId).emit('Refresh', { data: chats });
                     })
                 })
             }
@@ -111,13 +111,13 @@ io.sockets.on('connection', function (socket) {
 
     });
     socket.on('userOut', function (id) {
-        User.findOne({_id: id}).then(chat => {
+        User.findOne({ _id: id }).then(chat => {
             if (chat != null) {
                 // chat.lastSignIn = date
                 console.log('user đã out  phòng chat' + chat);
 
                 chat.save().then(c => {
-                    io.emit('out', {data: chat})
+                    io.emit('out', { data: chat })
                 })
             }
         })

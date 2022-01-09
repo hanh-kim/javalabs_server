@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 
 const Topic = new Schema({
-    lessonId: { type: String, default: '' },
+    lessonId: { type: Schema.Types.ObjectId, ref: 'lessons' },
     title: { type: String, default: '' },
     content: { type: String, default: '' }
 }, {

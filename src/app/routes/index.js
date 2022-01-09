@@ -16,9 +16,11 @@ const discussionRoute = require('./chat_route')
 const notifi = require('./notification_route')
 const qaController = require('../controllers/QAController')
 const question = require('../controllers/UpdateQuestionController')
+const userControll = require('../controllers/UserController')
+const lessonControl = require('../controllers/LessonController')
+
 
 function route(app) {
-
     app.use('/', loginRoute)
 
     app.use('/api', apiRoute)
@@ -82,12 +84,15 @@ function route(app) {
         res.render('register')
     })
 
+    app.get('/user-detail', userControll.userDetail)
 
     app.use('/update_topic', updateRoute)
 
     app.use('/update_program_detail', updateProgramRoute)
 
     app.use('/update-question', updateQuestionRoute)
+
+    app.get('/user-learned', lessonControl.userLearned)
 
     app.get('*', function (req, res) {
         res.render('404')

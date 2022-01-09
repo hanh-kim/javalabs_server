@@ -39,14 +39,6 @@
                 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
                     <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle mr-3"
                             id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
-                        <form
-                            class="form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                            <div class="input-group"><input class="bg-light form-control border-0 small" type="text"
-                                    placeholder="Search for ...">
-                                <div class="input-group-append"><button class="btn btn-primary py-0" type="button"><i
-                                            class="fas fa-search"></i></button></div>
-                            </div>
-                        </form>
                         <ul class="nav navbar-nav flex-nowrap ml-auto">
                             <li class="nav-item dropdown no-arrow" role="presentation">
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link"
@@ -55,13 +47,6 @@
                                             class="border rounded-circle img-profile"
                                             src="assets/img/avatars/user.png"></a>
                                     <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
-                                        <a class="dropdown-item" role="presentation" href="#"><i
-                                                class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a><a
-                                            class="dropdown-item" role="presentation" href="#"><i
-                                                class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Settings</a>
-                                        <a class="dropdown-item" role="presentation" href="#"><i
-                                                class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Activity
-                                            log</a>
                                         <div class="dropdown-divider"></div><a class="dropdown-item" role="presentation"
                                             href="#"><i
                                                 class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a>
@@ -71,50 +56,43 @@
                         </ul>
                     </div>
                 </nav>
+
                 <div class="container-fluid">
                     <h3 class="text-dark mb-4">User</h3>
                     <div class="card shadow">
                         <div class="card-header py-3">
                             <p class="text-primary m-0 font-weight-bold">User Info</p>
                         </div>
+
                         <div class="card-body">
-                            <div class="col-md-10 ">
+                            <div class="col-md-12 "
+                                style="display: flex; justify-content: space-between; flex-wrap: wrap;">
                                 <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite"
                                     style="color: rgb(146, 146, 146); font-weight: 800;">
                                     Total: {{totalUser}} user</p>
-                            </div>
-                            <div class="row" style="display: flex; justify-content: space-between;">
-                                <div class="col-md-6 text-nowrap">
-                                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
-                                        <label>Show&nbsp;<select
-                                                class="form-control form-control-sm custom-select custom-select-sm">
-                                                <option value="10" selected="">10</option>
-                                                <option value="25">25</option>
-                                                <option value="50">50</option>
-                                                <option value="100">100</option>
-                                            </select>&nbsp;</label>
-
-                                    </div>
+                                <div style="width: 500px;">
+                                    <input type="text" placeholder="Search by typing here..."
+                                        class="search form-control">
                                 </div>
-
                             </div>
-                            <div class="table-responsive table mt-2" id="dataTable" role="grid"
+
+                            <div class="table-responsive table mt-2 results" id="dataTable" role="grid"
                                 aria-describedby="dataTable_info">
                                 <table class="table dataTable my-0" id="dataTable">
                                     <thead>
                                         <tr>
                                             <td><strong>Name</strong></td>
                                             <td><strong>Email</strong></td>
-                                            <td><strong>Score</strong></td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {{#each user}}
                                         <tr>
                                             <td><img class="rounded-circle mr-2" width="30" height="30"
-                                                    src="{{this.imageUrl}}">{{this.username}}</td>
+                                                    src="{{this.imageUrl}}"><a style="color: rgb(51, 51, 51);"
+                                                    href="user-detail?userId={{this._id}}">{{this.username}}</a></td>
                                             <td>{{this.gmail}}</td>
-                                            <td>{{this.mark}}</td>
+
                                         </tr>
                                         {{/each}}
                                     </tbody>

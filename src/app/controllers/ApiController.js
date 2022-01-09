@@ -90,23 +90,103 @@ class ApiController {
 
     //get all in lesson
     async getAllByLesson(req, res, next) {
-        var lesson = await Lesson.find({})
-        var listData = [];
-        for (var ls of lesson) {
-            const topic = await Topic.find({ lessonId: ls._id })
-            const quiz = await Quiz.findOne({ lessonId: ls._id })
-            const question = await Question.find({ quizId: quiz._id }).sort({ STT: 1 })
-            var quizMD = new QuizMD(quiz._id, quiz.lessonId, quiz.name, question)
-            var lessonAll = new LessonAll(ls.id, ls.title, ls.totalTopic, topic, quizMD)
-            listData.push(lessonAll)
-        }
+        // var lesson = await Lesson.find({})
+        // const topic = await Topic.find({})
+        // const quiz = await Quiz.find({})
+        // const question = await Question.find()
+
+        // var listData = [];
+        // console.log(topic)
+        // for (var ls of lesson) {
+
+
+        // }
+
+        var a = await Lesson.aggregate([
+
+            {
+                $lookup: {
+                    from: "quizzes",       // other table name
+                    localField: "_id",   // name of users table field
+                    foreignField: "lessonId", // name of userinfo table field
+                    as: "quiz"         // alias for userinfo table
+                }
+            },
+            { $unwind: "$quiz" },     // $unwind used for getting data in object or for one record only
+            {
+                $lookup: {
+                    from: "topics",       // other table name
+                    localField: "_id",   // name of users table field
+                    foreignField: "lessonId", // name of userinfo table field
+                    as: "topic"         // alias for userinfo table
+                }
+            },
+            {
+                $lookup: {
+                    from: "questions",       // other table name
+                    localField: "_id",   // name of users table field
+                    foreignField: "lessonId", // name of userinfo table field
+                    as: "question"         // alias for userinfo table
+                }
+            },
+            {
+                $lookup: {
+                    from: "processes",       // other table name
+                    localField: "_id",   // name of users table field
+                    foreignField: "lessonId", // name of userinfo table field
+                    as: "process"         // alias for userinfo table
+                }
+            },
+            {
+                $project: {
+                    id: 1,
+                    title: 1,
+                    totalTopic: 1,
+                    count: { $size: "$process" },
+                    quiz: {
+                        _id: "$quiz._id",
+                        lessonId: "$quiz.lessonId",
+                        name: "$quiz.name",
+                        question: "$question"
+                    },
+                    topic: "$topic",
+                }
+            }
+        ]);
         res.json({
             isSuccess: true,
             code: 200,
             message: "success",
-            data: listData
+            data: a
         })
     }
+
+
+    async getAllLessonData(req, res, next) {
+
+        try {
+            var lessons = await Lesson.find({})
+            var listData = []
+            for (var ls of lessons) {
+                const topic = await Topic.find({ lessonId: ls._id })
+                var lessonAll = new LessonAll(ls.id, ls.title, ls.totalTopic, topic, null)
+                listData.push(lessonAll)
+            }
+            res.json({
+                isSuccess: true,
+                code: 200,
+                message: "success",
+                data: listData
+            })
+        } catch (e) {
+            res.json({
+                status: false,
+                message: e.message,
+                code: 404
+            })
+        }
+    }
+
 
     //get Program:
     getProgram(req, res, next) {
@@ -150,7 +230,6 @@ class ApiController {
         var listData = [];
         for (var pr of program) {
             const programDetail = await ProgramDetail.find({ programId: pr._id })
-            // var data = Buffer.from(pr.image.data, "binary").toString("base64");
             var program = new ProgramWithDetail(pr._id, pr.name, programDetail, pr.image)
             listData.push(program)
         }
@@ -210,14 +289,16 @@ class ApiController {
             var day = new Date(dayWork) // trả về datetime: yyyy-MM-dd hh:mm:ss
             var dayFomarted = day.getUTCFullYear() + "/" + (day.getUTCMonth() + 1) + "/" + day.getUTCDate(); // format datetime: yyyy-MM-dd
             var dayReturn = day.getUTCDate() + '/' + (day.getUTCMonth() + 1);
-            console.log(i)
             try {
                 var process = await Process.find({ userId: req.query.userId, lastModify: dayFomarted })
+                console.log('date: ' + dayFomarted)
+                console.log(process)
                 if (process.length > 0) {
                     var sumScore = 0
                     for (var j of process) {
                         sumScore += Number(j.quizMarked)
                     }
+                    console.log(sumScore)
                     listData.push({
                         date: dayReturn,
                         mark: sumScore

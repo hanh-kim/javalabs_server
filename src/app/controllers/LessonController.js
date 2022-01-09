@@ -4,18 +4,48 @@ const xlsx = require('xlsx');
 const Topic = require('../model/TopicModel')
 const Quiz = require('../model/QuizModel')
 const Question = require('../model/QuestionModel')
+const Process = require('../model/ProcessModel')
+const User = require('../model/UserModel');
+const UserModel = require('../model/UserModel');
 
 class LessonController {
-    index(req, res) {
-        Lesson.find({}).then(
-            lesson => {
-                var listLesson = []
-                for (var i of lesson) {
-                    var ls = new LessonMD(i.title, i.totalTopic, i._id)
-                    listLesson.push(ls)
+    async index(req, res) {
+        var a = await Lesson.aggregate([
+            {
+                $lookup: {
+                    from: "processes",       // other table name
+                    localField: "_id",   // name of users table field
+                    foreignField: "lessonId", // name of userinfo table field
+                    as: "process"         // alias for userinfo table
                 }
-                res.render('lesson', { lesson: listLesson });
-            }).catch(e => res.json({ status: e }))
+            },
+            {
+                $project: {
+                    _id: 1,
+                    title: 1,
+                    totalTopic: 1,
+                    count: { $size: "$process" },
+                }
+            }
+        ]);
+        res.render('lesson', { lesson: a });
+    }
+
+    async userLearned(req, res) {
+        var process = await Process.find({ lessonId: req.query.lessonId }, { _id: 0, quizMarked: 1, userId: 1, lastModify: 1 }).sort({ quizMarked: -1 });
+        var listData = [];
+        for (var i of process) {
+            var u = await UserModel.findOne({ _id: i.userId });
+            listData.push({
+                userId: i.userId,
+                mark: i.quizMarked,
+                username: u.username,
+                date: i.lastModify,
+                avatar: u.imageUrl
+            })
+        }
+        res.render('user-learned', { user: listData })
+
     }
 
     //read excel file:
@@ -66,6 +96,7 @@ class LessonController {
                             question: i.question,
                             answer: arr,
                             correctAnswer: i.correctAnswer,
+                            lessonId: newLesson._id,
                         }).save().catch((error) => {
                             res.status(500).json({
                                 success: false,
@@ -75,7 +106,6 @@ class LessonController {
                         })
                     }
                 }).catch((error) => {
-                    console.log(error);
                     res.status(500).json({
                         success: false,
                         message: 'Create failed. Please try again.',
@@ -91,7 +121,6 @@ class LessonController {
                         title: xlData[i].title,
                         content: xlData[i].content
                     }).save().catch((error) => {
-                        console.log(error);
                         res.status(500).json({
                             success: false,
                             message: 'Create failed. Please try again.',
@@ -101,7 +130,6 @@ class LessonController {
                     })
                 }
             }).catch((error) => {
-                console.log(error);
                 res.status(500).json({
                     success: false,
                     message: 'Create failed. Please try again.',
@@ -155,6 +183,134 @@ class LessonController {
 
             res.redirect('/lesson.html')
         })
+    }
+
+    getAllTopicWithNoFomart(req, res) {
+        Topic.find({}).then(topics => {
+            res.json({
+                isSuccess: true,
+                code: 200,
+                message: "success",
+                data: topics
+            })
+        }).catch(e => {
+            res.json({
+                status: false,
+                message: e.message,
+                code: 404
+            })
+        })
+    }
+
+    async getAllTopic(req, res) {
+        try {
+            var lessons = await Lesson.find({})
+            var listData = []
+            for (var i of lessons) {
+                const topic = await Topic.find({ lessonId: i._id })
+                console.log(topic)
+                listData.push({
+                    lessonID: i._id,
+                    title: i.title,
+                    topics: topic
+                })
+            }
+            res.json({
+                isSuccess: true,
+                code: 200,
+                message: "success",
+                data: listData
+            })
+        } catch (e) {
+            res.json({
+                status: false,
+                message: e.message,
+                code: 404
+            })
+        }
+
+    }
+    async getAllQuiz(req, res) {
+        try {
+            const quiz = await Quiz.find()
+            var listData = []
+            for (var i of quiz) {
+                const question = await Question.find({ quizId: i._id }).sort({ STT: 1 })
+                listData.push({
+                    _id: i._id,
+                    lessonId: i.lessonId,
+                    name: i.name,
+                    question: question
+                })
+            }
+            res.json({
+                isSuccess: true,
+                code: 200,
+                message: "success",
+                data: listData
+            })
+        } catch (e) {
+            res.json({
+                status: false,
+                message: e.message,
+                code: 404
+            })
+        }
+
+    }
+
+    async thongKeUser(req, res) {
+        try {
+            var data = new Map();
+            var process = await Process.find({})
+            for (var i of process) {
+                if (!data.has(i.lessonId)) {
+                    data.set(i.lessonId, 1)
+                } else {
+                    var count = Number(data.get(i.lessonId)) + 1
+                    data.set(i.lessonId, count)
+                }
+            }
+
+            var listId = []
+            data.forEach((value, key) => {
+                listId.push(key)
+            })
+
+            var listReturn = []
+            for (var j of listId) {
+                try {
+                    var lesson = await Lesson.findOne({ _id: j })
+                    if (lesson != null) {
+                        listReturn.push({
+                            _id: j,
+                            title: lesson.title,
+                            totalTopic: lesson.totalTopic,
+                            activeCount: data.get(j),
+                        })
+                    }
+                } catch (e) {
+                    res.json({
+                        status: false,
+                        message: e.message,
+                        code: 404
+                    })
+                }
+
+            }
+            res.json({
+                isSuccess: true,
+                code: 200,
+                message: "success",
+                data: listReturn
+            })
+        } catch (e) {
+            res.json({
+                status: false,
+                message: e.message,
+                code: 404
+            })
+        }
     }
 
 }

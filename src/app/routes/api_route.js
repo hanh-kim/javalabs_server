@@ -6,7 +6,10 @@ const userController = require('../controllers/UserController')
 const qaController = require('../controllers/QAController')
 const chatController = require('../controllers/ChatController')
 const feedback = require('../controllers/FeedBackController')
+const LessonController = require('../controllers/LessonController')
 
+
+//lesson
 route.get('/get-lesson', apiController.getAllLesson)
 
 route.get('/sendmail_user', feedback.sendMailFeedBack)
@@ -17,30 +20,53 @@ route.get('/get-quiz', apiController.getQuestionByLessonId)
 
 route.get('/get-all-in-lesson', apiController.getAllByLesson)
 
+route.get('/get-all-quiz', LessonController.getAllQuiz)
+
+route.get('/get-all-topic', LessonController.getAllTopic)
+
+route.get('/get-all-topic-no-fomart', LessonController.getAllTopicWithNoFomart)
+
+route.get('/get-list-lesson', apiController.getAllLessonData)
+
+route.get('/thong-ke', LessonController.thongKeUser)
+
+
+//program
 route.get('/get-program', apiController.getProgram)
 
 route.get('/get-program-detail', apiController.getProgramDetail)
 
 route.get('/get-all-in-program', apiController.getAllInProgram)
 
+// user && mark
 route.post('/insert-user', userController.insertUser)
 
 route.post('/update-mark-user', userController.updateUser)
 
-route.get('/get-top-user', userController.getTopUser)
+route.get('/get-top-user', userController.getRank)
+
+route.get('/top-lesson-score', userController.getTop10Lesson)
+
+
+
+// route.get('/get-rank', userController.getRank)
 
 route.get('/get-user', userController.getUser)
 
+route.get('/get-daily-score', apiController.getDailyScore)
+
+route.get('/get-score-profile', apiController.getMarkProfile)
+
+// process
 route.post('/update-process', processController.insertOrUpdate)
 
 route.get('/get-process', processController.getProcess)
 
 route.get('/get-all-process', processController.getProcessByUser)
 
-route.get('/get-daily-score', apiController.getDailyScore)
 
-route.get('/get-score-profile', apiController.getMarkProfile)
 
+//qa
 route.post('/add-qa', qaController.addQA)
 
 //chat:
