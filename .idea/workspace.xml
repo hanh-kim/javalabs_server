@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e383003-dcd5-4f56-82db-16457d21fa6e" name="Changes" comment="Changes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="4e383003-dcd5-4f56-82db-16457d21fa6e" name="Changes" comment="upcode" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -163,7 +161,7 @@
       <workItem from="1641285959037" duration="1594000" />
       <workItem from="1641304068164" duration="1576000" />
       <workItem from="1641712579108" duration="328000" />
-      <workItem from="1641712937991" duration="2062000" />
+      <workItem from="1641712937991" duration="2370000" />
     </task>
     <task id="LOCAL-00001" summary="luu code">
       <created>1638541828252</created>
@@ -214,7 +212,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641304826756</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="upcode">
+      <created>1641718820052</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1641718820052</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -238,7 +243,8 @@
     <MESSAGE value="upcode hoàn thiện" />
     <MESSAGE value="sửa code  index.html" />
     <MESSAGE value=" report câu hỏi" />
-    <option name="LAST_COMMIT_MESSAGE" value=" report câu hỏi" />
+    <MESSAGE value="upcode" />
+    <option name="LAST_COMMIT_MESSAGE" value="upcode" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
