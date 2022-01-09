@@ -129,9 +129,19 @@
                 <input id="list-lesson2" style="display: none;" value="{{this.listLesson2}}"></input>
                 <input id="list-Count2" style="display: none;" value="{{this.listCount2}}"></input>
                 {{!-- Thống kê All --}}
-                <center>
+                {{!-- <center>
                     <canvas id="myChartAll"
                         style="max-width: 1250px;width:100%;margin-top: 100px; margin-bottom: 10px"></canvas>
+
+                </center> --}}
+
+
+                <center style="margin: 100px 50px;">
+                    <div style="width: 100%; overflow-x: auto; overflow-y: hidden;">
+                        <div style="min-width: 3000px; height: 700px">
+                            <canvas id="myChartAll" height="700" width="0"></canvas>
+                        </div>
+                    </div>
                     <h4 style="text-transform: uppercase; color: black;">Statistics of the number of learners per lesson
                     </h4>
                 </center>
@@ -153,10 +163,14 @@
 
 
                 <script>
+
+
                     var listLesson = document.getElementById('list-lesson').getAttribute("value");
                     var listCount = document.getElementById('list-Count').getAttribute("value");
                     var arrLesson = listLesson.split("/")
                     var arrCount = listCount.split("/")
+                    var newArray = arrCount.concat(arrCount);
+                    var newArray2 = arrLesson.concat(arrLesson);
                     arrLesson.pop()
                     arrCount.pop()
                     var color = ['Thistle', 'Teal', 'SteelBlue', 'SpringGreen', 'SkyBlue', 'SandyBrown', 'SaddleBrown', 'RebeccaPurple', 'OliveDrab']
