@@ -6,21 +6,42 @@ const { status } = require('express/lib/response')
 class UserController {
     //insert user:
     insertUser(req, res, next) {
-        if (req.body.gmail == null) {
-            res.json({ message: 'gmail không được trống' })
+        if (req.body.gmail == null || req.body.tokenDevice == null) {
+            res.json({ message: 'gmail, tokenDevice không được trống' })
             return
         }
 
         User.findOne({ gmail: req.body.gmail }).then(user => {
             if (user != null) {
-                res.json({
-                    message: "Thành công",
-                    type: 1,
-                    isSuccess: true,
-                    code: 200,
-                    data: user
-                })
-                return;
+                var tokenDevice = user.tokenDevice
+                if (req.body.tokenDevice != user.tokenDevice) {
+                    user.tokenDevice = req.body.tokenDevice
+                    user.save().then(u => {
+                        res.json({
+                            message: "Thành công",
+                            type: 1,
+                            isSuccess: true,
+                            code: 200,
+                            data: u
+                        })
+                        return;
+                    }).catch(e => res.json({
+                        isSuccess: false,
+                        message: e.message,
+                        code: 404
+                    }))
+                } else {
+                    res.json({
+                        message: "Thành công",
+                        type: 1,
+                        isSuccess: true,
+                        code: 200,
+                        data: user
+                    })
+                    return;
+                }
+
+
             } else {
                 var mark = 0;
                 if (req.body.mark == null) {
@@ -35,10 +56,17 @@ class UserController {
                 } else {
                     username = req.body.username
                 }
+
+                var tokenDevice = ''
+                if (req.body.tokenDevice == null) {
+                    tokenDevice = ''
+                } else {
+                    tokenDevice = req.body.tokenDevice
+                }
                 User({
                     gmail: req.body.gmail,
                     mark: mark,
-                    tokenDevice: req.body.tokenDevice,
+                    tokenDevice: tokenDevice,
                     imageUrl: req.body.imageUrl,
                     username: username
                 }).save().then(user => {
