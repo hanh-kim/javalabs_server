@@ -36,13 +36,15 @@ class LessonController {
         var listData = [];
         for (var i of process) {
             var u = await UserModel.findOne({ _id: i.userId });
-            listData.push({
-                userId: i.userId,
-                mark: i.quizMarked,
-                username: u.username,
-                date: i.lastModify,
-                avatar: u.imageUrl
-            })
+            if (u != null) {
+                listData.push({
+                    userId: i.userId,
+                    mark: i.quizMarked,
+                    username: u.username,
+                    date: i.lastModify,
+                    avatar: u.imageUrl
+                })
+            }
         }
         res.render('user-learned', { user: listData })
 

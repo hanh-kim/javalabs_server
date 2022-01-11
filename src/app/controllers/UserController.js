@@ -6,7 +6,7 @@ const { status } = require('express/lib/response')
 class UserController {
     //insert user:
     insertUser(req, res, next) {
-        if (req.body.gmail == null || req.body.tokenDevice == null) {
+        if (req.body.gmail == null) {
             res.json({ message: 'gmail, tokenDevice không được trống' })
             return
         }
