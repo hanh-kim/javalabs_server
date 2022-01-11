@@ -360,6 +360,8 @@ class UserController {
                     data.set(i.userId, temp)
                 }
             }
+            data.delete('');
+            console.log(data)
 
             //sort map theo điểm từ cao xuống thấp
             const dataSorted = new Map([...data.entries()].sort((a, b) => b[1] - a[1]));
