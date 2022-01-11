@@ -1,8 +1,8 @@
-// const FCM = require('fcm-node');
-const { firestore } = require("firebase-admin");
+const FCM = require('fcm-node');
+const {firestore} = require("firebase-admin");
 const constance = require('../constance/index')
 var serverKey = 'AAAA1B7zZfc:APA91bGq3hOJ-QZmrMtnf5_63KsQvE75_E2HglUoiC3ITPqGrsV8O7IU3o9TOXhS4SGU4xfdmQ-mZcZ_7kxS3NGHVH9AJiz1tzRgZl9vmnk-OvTVh7_51dCEDrZ-VMvIuTvloTFMLngw';
-// var fcm = new FCM(serverKey);
+var fcm = new FCM(serverKey);
 
 //todo by canhpd
 class NotificationController {
@@ -11,8 +11,10 @@ class NotificationController {
     }
 
     sendNotifiWithUser(req, res) {
+
+
         if (req.body.title == null ||
-            req.body.text == null) {
+            req.body.body == null) {
             res.json({
                 message: 'Cần truyền đủ tham số '
             })
@@ -21,8 +23,8 @@ class NotificationController {
         var message = {
             to: req.body.token,
             notification: {
-                title: 'NotifcatioTestAPP sad',
-                body: 'Test App sadasd',
+                title: req.body.title,
+                body: req.body.body,
             },
 
             data: {
@@ -31,18 +33,21 @@ class NotificationController {
             }
         };
 
-        // fcm.send(message, function (err, response) {
-        //     if (err) {
-        //         console.log("Something has gone wrong!" + err);
-        //         console.log("Respponse:! " + response);
-        //     } else {
-        //         // showToast("Successfully sent with response");
-        //         console.log("Successfully sent with response: ", response);
-        //     }
-        //     res.json({
-        //         message: 'Successfully'
-        //     })
-        // });
+        fcm.send(message, function (err, response) {
+            if (err) {
+                console.log("Something has gone wrong!" + err);
+                console.log("Respponse:! " + response);
+            } else {
+                console.log("Successfully sent with response: ", response);
+            }
+            var qa = new QA('Chào bạn ', "Cảm ơn bạn đã gửi báo cáo")
+            res.json({
+                message: "Thanh cong",
+                code: 200,
+                isSuccess: true,
+                data: qa
+            })
+        });
     }
 
     sendNotifiAllUser(req, res) {
@@ -67,16 +72,15 @@ class NotificationController {
 
         };
 
-        // fcm.send(message, function (err, response) {
-        //     if (err) {
-        //         console.log("Something has gone wrong!" + err);
-        //         console.log("Respponse:! " + response);
-        //     } else {
-        //         // showToast("Successfully sent with response");
-        //         console.log("Successfully sent with response: ", response);
-        //     }
-        //     res.redirect('/index.html')
-        // });
+        fcm.send(message, function (err, response) {
+            if (err) {
+                console.log("Something has gone wrong!" + err);
+                console.log("Respponse:! " + response);
+            } else {
+                console.log("Successfully sent with response: ", response);
+            }
+            res.redirect('/index.html')
+        });
     }
 
     sendNotifiAll() {
@@ -98,17 +102,31 @@ class NotificationController {
 
         };
 
-        // fcm.send(message, function (err, response) {
-        //     if (err) {
-        //         console.log("Something has gone wrong!" + err);
-        //         console.log("Respponse:! " + response);
-        //     } else {
-        //         console.log("Successfully sent with response: ", response);
-        //     }
-        // });
+        fcm.send(message, function (err, response) {
+            if (err) {
+                console.log("Something has gone wrong!" + err);
+                console.log("Respponse:! " + response);
+            } else {
+                console.log("Successfully sent with response: ", response);
+            }
+        });
     }
 
 
 }
+
+class QA {
+
+
+    title
+    body
+
+
+    constructor(title, body) {
+        this.title = title;
+        this.body = body;
+    }
+}
+
 
 module.exports = new NotificationController()
