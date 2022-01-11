@@ -14,8 +14,8 @@ class UserController {
         User.findOne({ gmail: req.body.gmail }).then(user => {
             if (user != null) {
                 var tokenDevice = user.tokenDevice
-                if (req.body.tokenDevice != user.tokenDevice) {
-                    user.tokenDevice = req.body.tokenDevice
+                if (1 == 1) {
+                    // user.tokenDevice = req.body.tokenDevice
                     user.save().then(u => {
                         res.json({
                             message: "Thành công",
