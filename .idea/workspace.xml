@@ -6,6 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="4e383003-dcd5-4f56-82db-16457d21fa6e" name="Changes" comment="đẩy code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controllers/FeedBackController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controllers/FeedBackController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controllers/NotificationController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controllers/NotificationController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/routes/api_route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/routes/api_route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/views/detail_pending.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/detail_pending.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/views/feedback.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/feedback.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/views/pending_request.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/views/pending_request.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +29,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="develop" />
+        <entry key="$PROJECT_DIR$" value="ft_feedback" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -73,18 +79,7 @@
       <recent name="C:\JavaLab\src\config" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="npm.start">
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -95,9 +90,19 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="start:dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start:dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start" />
+        <item itemvalue="npm.start:dev" />
         <item itemvalue="npm.start" />
         <item itemvalue="npm.start" />
         <item itemvalue="npm.start" />
@@ -175,6 +180,11 @@
       <workItem from="1641304068164" duration="1576000" />
       <workItem from="1641712579108" duration="328000" />
       <workItem from="1641712937991" duration="2370000" />
+      <workItem from="1641784987878" duration="12190000" />
+      <workItem from="1641825740375" duration="497000" />
+      <workItem from="1641829714414" duration="4498000" />
+      <workItem from="1641875443540" duration="6444000" />
+      <workItem from="1641909595121" duration="1756000" />
     </task>
     <task id="LOCAL-00001" summary="luu code">
       <created>1638541828252</created>
