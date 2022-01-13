@@ -2,15 +2,22 @@ const QA = require('../model/QAModel')
 
 class QAController {
     index(req, res) {
-        QA.find().sort({status: 1}).then(qa => {
+        QA.find().then(qa => {
             var arr = []
+            var arrQiz = []
+            var arrSystem = []
             for (var i of qa) {
+                if (i.type == false) {
+                    var QA2 = new Pending(i.userId, i.title, i.user, i.content, i._id, i.status, i.idQuestionId, i.type)
+                    arrSystem.push(QA2)
+                } else {
+                    var QA1 = new Pending(i.userId, i.title, i.user, i.content, i._id, i.status, i.idQuestionId, i.type)
+                    arrQiz.push(QA1)
+                }
                 var QA = new Pending(i.userId, i.title, i.user, i.content, i._id, i.status, i.idQuestionId, i.type)
                 arr.push(QA)
-
-
             }
-            res.render('pending_request', {QA: arr})
+            res.render('pending_request', {QIZ: arrQiz, SYTEM: arrSystem})
         }).catch(e => res.send('Loi ' + e.message))
     }
 
