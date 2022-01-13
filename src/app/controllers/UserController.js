@@ -6,16 +6,15 @@ const { status } = require('express/lib/response')
 class UserController {
     //insert user:
     insertUser(req, res, next) {
-        if (req.body.gmail == null) {
+        if (req.body.gmail == null || req.body.tokenDevice == null) {
             res.json({ message: 'gmail, tokenDevice không được trống' })
             return
         }
 
         User.findOne({ gmail: req.body.gmail }).then(user => {
             if (user != null) {
-                var tokenDevice = user.tokenDevice
-                if (1 == 1) {
-                    // user.tokenDevice = req.body.tokenDevice
+                if (user.tokenDevice != req.body.tokenDevice) {
+                    user.tokenDevice = req.body.tokenDevice
                     user.save().then(u => {
                         res.json({
                             message: "Thành công",
