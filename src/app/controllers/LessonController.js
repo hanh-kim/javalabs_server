@@ -54,7 +54,7 @@ class LessonController {
     async importLessonFromExcelFile(req, res, next) {
         const workbook = xlsx.readFile(req.file.path);
         var sheet_name_list = workbook.SheetNames;
-        if (sheet_name_list.length < 3) {
+        if (sheet_name_list.length != 3) {
             res.send('<h1>File sai định dạng</h1>');
             return;
         }
@@ -63,7 +63,15 @@ class LessonController {
             //import lesson
             let lessonSheet = workbook.Sheets[workbook.SheetNames[0]]
             var xlData = xlsx.utils.sheet_to_json(lessonSheet);
-
+            var allLs = await Lesson.find({}, { title: 1, _id: 0 });
+            if (allLs != null) {
+                for (var zz of allLs) {
+                    if (zz.title == xlData[0].title) {
+                        res.send('<center> <h2 style="color: red">Lesson has existed</h2> </center>');
+                        return;
+                    }
+                }
+            }
             Lesson({
                 title: xlData[0].title,
                 totalTopic: xlsx.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[1]]).length,
@@ -145,7 +153,7 @@ class LessonController {
             res.json({
                 success: false,
                 message: 'Create failed. Please try again.',
-                error: error.message,
+                error: e.message,
             })
         }
     }
