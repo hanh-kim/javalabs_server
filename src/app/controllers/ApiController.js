@@ -90,17 +90,6 @@ class ApiController {
 
     //get all in lesson
     async getAllByLesson(req, res, next) {
-        // var lesson = await Lesson.find({})
-        // const topic = await Topic.find({})
-        // const quiz = await Quiz.find({})
-        // const question = await Question.find()
-
-        // var listData = [];
-        // console.log(topic)
-        // for (var ls of lesson) {
-
-
-        // }
 
         var a = await Lesson.aggregate([
 
@@ -291,14 +280,11 @@ class ApiController {
             var dayReturn = day.getUTCDate() + '/' + (day.getUTCMonth() + 1);
             try {
                 var process = await Process.find({ userId: req.query.userId, lastModify: dayFomarted })
-                console.log('date: ' + dayFomarted)
-                console.log(process)
                 if (process.length > 0) {
                     var sumScore = 0
                     for (var j of process) {
                         sumScore += Number(j.quizMarked)
                     }
-                    console.log(sumScore)
                     listData.push({
                         date: dayReturn,
                         mark: sumScore
