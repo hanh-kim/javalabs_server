@@ -48,13 +48,17 @@ class HomeController {
         var listLessson2 = ''
         var listCount2 = ''
         for (var i = 0; i < 10; i++) {
-            listLessson2 += a[i].title + '/'
-            listCount2 += a[i].count + '/'
+            if (a[i] != null) {
+                listLessson2 += a[i].title + '/'
+                listCount2 += a[i].count + '/'
+            }
         }
 
         for (var i = a.length - 10; i < a.length; i++) {
-            listLessson2 += a[i].title + '/'
-            listCount2 += a[i].count + '/'
+            if (a[i] != null) {
+                listLessson2 += a[i].title + '/'
+                listCount2 += a[i].count + '/'
+            }
         }
 
         res.render('home', { user: user.length, lesson: ls.length, qa: qa.length, listLesson: listLessson, listCount: listCount, listLesson2: listLessson2, listCount2: listCount2 })
