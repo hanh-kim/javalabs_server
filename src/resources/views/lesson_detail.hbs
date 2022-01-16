@@ -28,9 +28,10 @@
     <div id="wrapper">
         <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
             <div class="container-fluid d-flex flex-column p-0">
-                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="index.html">
+                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0"
+                    href="index.html">
                     <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-laugh-wink"></i></div>
-                    <div class="sidebar-brand-text mx-3" > <span>JavaQuiz</span></div>
+                    <div class="sidebar-brand-text mx-3"> <span>JavaQuiz</span></div>
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="nav navbar-nav text-light" id="accordionSidebar">
@@ -43,7 +44,7 @@
                     <li class="nav-item" role="presentation"><a class="nav-link"
                             href="programs.html"><span>Programs</span></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link"
-                                                                href="notifycation.html"><span>Notification</span></a></li>
+                            href="notifycation.html"><span>Notification</span></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link"
                             href="login.html"><span>Logout</span></a></li>
                 </ul>
@@ -95,7 +96,20 @@
                                     {{#each topic}}
                                     <tr>
                                         <td>{{this.title}}</td>
-                                        <td>{{this.content}}</td>
+                                        <td>
+                                            <input value="{{this.content}}" class="contentt"
+                                                style="display: none;"></input>
+                                            <div class="my-content"></div>
+                                            <script
+                                                src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                                            <script>
+                                                var a = document.getElementsByClassName('contentt');
+                                                var div = document.getElementsByClassName('my-content');
+                                                div[a.length - 1].innerHTML = a[a.length - 1].getAttribute("value");
+
+                                            </script>
+                                        </td>
+
                                         <td align="center">
                                             <a class="btn btn-danger" role="button"
                                                 style="margin-left: 5px;background-color: rgb(98,155,241); padding-left: 25px; padding-right: 25px; margin-top: 5px; margin-bottom: 5px"
@@ -183,8 +197,8 @@
                 </div>
             </footer>
         </div>
-    </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
 
+    </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
 
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>

@@ -17,14 +17,13 @@ class QAController {
                 var QA = new Pending(i.userId, i.title, i.user, i.content, i._id, i.status, i.idQuestionId, i.type)
                 arr.push(QA)
             }
-            res.render('pending_request', {QIZ: arrQiz, SYTEM: arrSystem})
+            res.render('pending_request', { QIZ: arrQiz, SYTEM: arrSystem })
         }).catch(e => res.send('Loi ' + e.message))
     }
 
-//
+    //
     //addd
     addQA(req, res) {
-        console.log(req.body.userId + '\t')
         if (req.body.userId == null || req.body.user == null || req.body.content == null) {
             res.json({
                 message: 'Cần truyền userId và content, title',
@@ -53,7 +52,6 @@ class QAController {
     }
 
     updateQA(req, res) {
-        console.log(req.body.username)
         if (req.body.id == null) {
             res.json({
                 message: 'Cần truyền id ',
@@ -61,7 +59,7 @@ class QAController {
             })
             return
         }
-        QA.findOne({_id: req.body.id}).then(qa => {
+        QA.findOne({ _id: req.body.id }).then(qa => {
             qa.status = true
             //    res.redirect('/detail_pending?id=' + req.body.id)
             qa.save()
@@ -72,26 +70,26 @@ class QAController {
 
     deleteQA(req, res) {
         if (req.body.id == null) {
-            res.json({message: 'Cần truyền params id', status: false})
+            res.json({ message: 'Cần truyền params id', status: false })
             return
         }
-        QA.deleteOne({_id: req.body.id}, function (err) {
+        QA.deleteOne({ _id: req.body.id }, function (err) {
             if (err) {
-                res.json({message: 'Delete failed', status: false, err: err})
+                res.json({ message: 'Delete failed', status: false, err: err })
                 return
             }
             res.redirect('/pending_request')
         })
     }
 
-//todo by canhpd
+    //todo by canhpd
     deltailPending(req, res) {
         if (req.query.id == null) {
-            res.json({message: 'id không được trống'})
+            res.json({ message: 'id không được trống' })
             return
         }
 
-        QA.find({_id: req.query.id}).then(qa => {
+        QA.find({ _id: req.query.id }).then(qa => {
             var list = []
             for (var i of qa) {
                 var QA = new Pending(i.userId, i.title, i.user, i.content, i._id, i.status, i.idQuestionId, i.type)
@@ -99,8 +97,8 @@ class QAController {
 
             }
             console.log(list)
-            res.render('detail_pending', {QA: list})
-        }).catch(e => res.json({status: false, message: 'Lỗi', error: e.message}))
+            res.render('detail_pending', { QA: list })
+        }).catch(e => res.json({ status: false, message: 'Lỗi', error: e.message }))
     }
 }
 
